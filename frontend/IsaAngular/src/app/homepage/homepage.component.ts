@@ -14,7 +14,7 @@ export class HomepageComponent implements OnInit {
   constructor(private _userService: UserServiceService) { }
 
   ngOnInit() {
-    this.user = this._userService.getUser();
+    this._userService.getUser().subscribe(data => this.user = data);
   }
 
   isLoggedIn() {
