@@ -17,6 +17,9 @@ export class HomepageComponent implements OnInit {
     this._userService.getUser().subscribe(data => this.user = data);
   }
 
+
+
+
   isLoggedIn() {
     if (this.user == null) {
       return false;
