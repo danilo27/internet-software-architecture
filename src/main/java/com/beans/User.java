@@ -34,7 +34,12 @@ public class User {
 		this.listaOcenaPozBio = listaOcenaPozBio;
 		this.listaOcenaProjekcija = listaOcenaProjekcija;
 	}
-
+	public User(String username, String pass){
+		this.username=username;
+		this.pass=pass;
+	}
+	public User(){}
+	
 	public String getType() {
 		return type;
 	}
@@ -131,6 +136,8 @@ public class User {
 		this.listaOcenaProjekcija = listaOcenaProjekcija;
 	}
 	
-	
+	public String toString(){
+		return username;
+	} 
 	
 }

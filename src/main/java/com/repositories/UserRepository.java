@@ -9,7 +9,7 @@ import com.beans.User;
 @Repository
 public interface UserRepository extends MongoRepository<User, String> {
 
-//    public User findByName(String name);
-//    public List<User> findByLastname(String lastname);
+    public User findByUsername(String name);
+    public List<User> findByLastname(String lastname);
 
 }
