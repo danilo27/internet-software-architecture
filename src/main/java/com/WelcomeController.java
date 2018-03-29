@@ -13,6 +13,7 @@ import com.beans.User;
 public class WelcomeController {
 	@GetMapping("/hello")
 	public String sayHello(){
+		System.out.println("dosao dovde");
 		return "{\"message\":\"hey\"}";
 	}
 }

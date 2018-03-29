@@ -9,23 +9,20 @@ import { UserServiceService } from '../user-service.service';
 })
 export class HomepageComponent implements OnInit {
 
-  public user = null;
+  public user = '{"name":"vlada"}';
+  
 
   constructor(private _userService: UserServiceService) { }
 
   ngOnInit() {
-    this._userService.getUser().subscribe(data => this.user = data);
+    //this._userService.getUser().subscribe(data => this.user = data);
   }
 
 
 
 
   isLoggedIn() {
-    if (this.user == null) {
-      return false;
-    } else {
-      return true;
-    }
+    return true;
   }
 
 }

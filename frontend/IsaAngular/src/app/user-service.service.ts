@@ -11,7 +11,7 @@ const httpOptions = {
 @Injectable()
 export class UserServiceService {
 
-  public user = null;
+  public user;
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +22,7 @@ export class UserServiceService {
 
   setUser() {
     this.user = this.http.get<IUser>('assets/data/test.json');
+
     console.log(this.user);
   }
 

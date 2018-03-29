@@ -1,3 +1,25 @@
-<p>
-  fanpage works!
-</p>
+<div>
+	<nav>
+		<button (click)="zvanicnaProdavnica()">Zvanicna prodavnica</button>
+		<button (click)="polovniOglasi()">Oglasi</button>
+	</nav>
+</div>
+
+					   
+
+
+
+<div *ngIf="isOglasi() then oglasiDiv; else zvanicniRekvizitiDiv;"></div>
+
+<ng-template #zvanicniRekvizitiDiv>
+	<div *ngFor = "let r of zvanicniRekviziti">
+		<app-rekvizit [rekvizit]="r" [username]="user"  (childEvent)="rezervisanRekvizit($event)" ></app-rekvizit>
+		</div>
+</ng-template>
+ 
+<ng-template #oglasiDiv>
+	<div *ngFor = "let o of oglasi">
+		<app-oglas [oglas]="o"></app-oglas>
+	</div>
+</ng-template>
+
