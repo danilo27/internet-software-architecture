@@ -38,13 +38,21 @@ public class UserController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void guestLogin(
+	public String guestLogin(
 			@RequestBody User user, HttpServletResponse response,HttpSession session) throws Exception {
-
-		if(userRepository.findOne(user.getUsername()) != null) {
-			System.out.println("User nadjen, login proceed!");
+		
+		System.out.println("-------------All users-----------");
+		for (User u : userRepository.findAll()) {
+			System.out.println(u);
+		}
+		System.out.println("---------------------------------");
+		
+		if(userRepository.findByUsername(user.getUsername()) != null) {
+			System.out.println("User pronadjen, logovanje...");
+			return "{\"username\":\""+user.getUsername()+"\"}";
 		} else {
 			System.out.println("User ne postoji!");
+			return "{\"username\":\"\"}";
 		}
 	}
 	

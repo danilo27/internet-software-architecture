@@ -12,19 +12,34 @@ const httpOptions = {
 export class UserServiceService {
 
   public user;
+  private user;
+  private loggedIn;
+  username : string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+      this.loggedIn = false;
+  }
 
+  setLoggedIn(){
+      this.loggedIn = true;
+  }
+
+  getLoggedIn(){
+      return this.loggedIn;
+  }
 
   getUser(): Observable<IUser> {
     return this.user;
   }
 
   setUser() {
-    this.user = this.http.get<IUser>('assets/data/test.json');
-
-    console.log(this.user);
+    //this.user = this.http.get<IUser>('assets/data/test.json');
+    this.loggedIn = true;
+    //console.log(this.user);
   }
 
+  getUsername(){
+      return this.username;
+  }
 
 }
