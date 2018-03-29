@@ -13,10 +13,24 @@ import com.beans.User;
 import com.repositories.UserRepository;
 
 @SpringBootApplication
-public class Application{
+public class Application implements CommandLineRunner{
+
+	@Autowired
+	private UserRepository repository;
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(Application.class, args);
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		repository.deleteAll();
+
+		repository.save(new User("danilo", "danilo"));
+		repository.save(new User("admin", "admin"));
+		
+		
 
 	}
 
