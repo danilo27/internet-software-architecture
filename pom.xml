@@ -42,13 +42,49 @@
         </dependency>
     </dependencies>
 
+
+
     <build>
+    	<pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+            
+            
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>ng</executable>
+                    <workingDirectory>frontend/IsaAngular</workingDirectory>
+                    <arguments>
+                        <argument>build</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            
         </plugins>
+        </pluginManagement>
+        
+        
     </build>
 
     <repositories>
