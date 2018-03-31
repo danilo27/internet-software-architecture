@@ -8,6 +8,7 @@ import { UserServiceService } from '../user-service.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   constructor(
@@ -15,35 +16,32 @@ export class LoginComponent implements OnInit {
       private http: HttpClient,
       private _userService: UserServiceService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  username: string;
+  email: string;
 
   loginUser(e) {
       e.preventDefault();
 
-      var username = e.target.elements[0].value;
+      var email = e.target.elements[0].value;
       var password = e.target.elements[1].value;
 
       var user = {
-          username: username,
+          email: email,
           password: password
       }
-      console.log(username,password);
+      //console.log(email,password);
 
       this.http.post('/login', user).subscribe(data => {
-      if(data['username'] != ''){
+      //if(data['email'] != ''){
+      if(data != null){
+        console.log(data);
         this._userService.setLoggedIn();
         this.router.navigate(['userpage']);
-        this._userService.username = data['username'];
+        this._userService.email = data['email'];
+        this._userService.friends = data['friends'];
       }
-
     })
-
-
-
     return false;
   }
-
 }

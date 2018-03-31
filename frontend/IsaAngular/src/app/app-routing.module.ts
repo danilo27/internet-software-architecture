@@ -9,6 +9,8 @@ import { FanpageComponent } from './fanpage/fanpage.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TheatresComponent } from './theatres/theatres.component';
 import { UserpageComponent } from './userpage/userpage.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ActivationPageComponent} from './activation-page/activation-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'fanpage', component: FanpageComponent},
   { path: 'theatres', component: TheatresComponent},
   { path: 'userpage', component: UserpageComponent},
+  { path: 'userprofile', component: UserprofileComponent},
+  { path: 'activation-page', component: ActivationPageComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -35,5 +39,6 @@ export const RoutingComponents = [
   FanpageComponent,
   TheatresComponent,
   UserpageComponent,
-  PageNotFoundComponent
+  PageNotFoundComponent,
+  ActivationPageComponent
 ];

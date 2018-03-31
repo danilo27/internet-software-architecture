@@ -14,7 +14,8 @@ export class UserServiceService {
   public user;
   private user;
   private loggedIn;
-  username : string;
+  email : string;
+  friends: string[] = [];
 
   constructor(private http: HttpClient) {
       this.loggedIn = false;
@@ -38,8 +39,12 @@ export class UserServiceService {
     //console.log(this.user);
   }
 
-  getUsername(){
-      return this.username;
+  getEmail(){
+      return this.email;
+  }
+
+  getFriends(){
+      return this.friends;
   }
 
 }

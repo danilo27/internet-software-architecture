@@ -25,10 +25,11 @@ public class Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		repository.deleteAll();
-
-		repository.save(new User("danilo", "danilo"));
-		repository.save(new User("admin", "admin"));
+//initial
+//		repository.deleteAll();
+//
+//		repository.save(new User("danilo", "danilo"));
+//		repository.save(new User("admin", "admin"));
 		
 		
 

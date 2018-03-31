@@ -10,7 +10,7 @@ import { UserServiceService } from '../user-service.service';
 export class HomepageComponent implements OnInit {
 
   public user = '{"name":"vlada"}';
-  
+
 
   constructor(private _userService: UserServiceService) { }
 

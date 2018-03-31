@@ -1,21 +1,18 @@
-<form action="">
+<form  (submit)="register($event)">
   <div class="container">
 
     <div id="login-box">
      <div class="left">
        <h1>Sign up</h1>
 
-       <label for="username"><b>Username</b></label>
-       <input type="text" placeholder="Enter Username" name="username" required><br>
+       <label for="email"><b>Email</b></label>
+       <input type="text" placeholder="Enter Email" name="email" required><br>
 
        <label for="psw"><b>Password</b></label>
        <input type="password" placeholder="Enter Password" name="psw" required><br>
 
        <label for="psw-repeat"><b>Repeat Password</b></label>
        <input type="password" placeholder="Repeat Password" name="psw-repeat" required><br>
-
-       <label for="email"><b>Email</b></label>
-       <input type="text" placeholder="Enter Email" name="email" required><br>
 
        <label for="name"><b>First Name</b></label>
        <input type="text" placeholder="Enter your first name" name="name" required><br>
@@ -31,7 +28,6 @@
 
        <input type="submit" name="signup_submit" value="Sign up" />
      </div>
-
 
    </div>
 
