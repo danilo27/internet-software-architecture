@@ -19,8 +19,6 @@ export class RekvizitComponent implements OnInit {
     }
 
     rezervisiZvanicni(){
-        console.log(this.rekvizit.naziv,this.username);
         this._rekvizitiService.rezervisiZvanicniRekvizit(this.rekvizit.naziv,this.username);
-        this.childEvent.emit(this.rekvizit.naziv);
     }
 }

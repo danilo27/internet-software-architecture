@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.beans.PolovniRekvizit;
 import com.beans.RezervacijaRekvizita;
+import com.beans.User;
 
 @RestController
 public class RekvizitController {
 	
 	@GetMapping("/getZvanicniRekviziti")
 	public String getRekviziti() {
-		System.out.println("jel ovo ispise?");
 		return "[" + 
 				"  {\"naziv\": \"Star Wars solja\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30}," + 
 				"  {\"naziv\": \"Lord of The Rings privezak\", \"opis\": \"privezak za kljuceve\",\"slika\": \"none\",\"cena\": 800.30}," + 
@@ -28,7 +29,6 @@ public class RekvizitController {
 	
 	@GetMapping("/getPolovniRekviziti")
 	public String getPolovniRekviziti() {
-		System.out.println("jel ovo ispise? 2");
 		return "[{\"naziv\": \"Star Wars solja\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30,\"username\":\"vlada\",\"datumIsteka\":\"29-04-2018\"}]";
 	}
 	
@@ -41,6 +41,31 @@ public class RekvizitController {
 		System.out.println(rezRek.getImeKorisnika() + rezRek.getImeRekvizita());
 	}
 	
+	
+	@RequestMapping(
+			value = "/posaljiOglasNaProveru",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(value=HttpStatus.OK)
+	public void posaljiOglasNaProveru(@RequestBody PolovniRekvizit oglas, HttpServletResponse response,HttpSession session) {
+		System.out.println("iz servera: ");
+		System.out.println(oglas.toString());
+	}
+	
+	@RequestMapping(
+			value = "/getAktivniOglasi",
+			method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(value=HttpStatus.OK)
+	public String getAktivniOglasi(@RequestBody User user, HttpServletResponse response,HttpSession session) {
+		if(user.getUsername().equals("vlada")) {
+			return "[{\"naziv\": \"Vladin oglas\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30,\"username\":\"vlada\",\"datumIsteka\":\"29-04-2018\"}]";
+			
+		}else {
+			return "[{\"naziv\": \"Ne vladin oglas\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30,\"username\":\"vlada\",\"datumIsteka\":\"29-04-2018\"}]";
+			
+		}
+	}
 	
 	
 }

@@ -55,5 +55,12 @@ public class PolovniRekvizit {
 		this.username = username;
 		this.datumIsteka = datumIsteka;
 	}
+	@Override
+	public String toString() {
+		return "PolovniRekvizit [naziv=" + naziv + ", opis=" + opis + ", slika=" + slika + ", cena=" + cena
+				+ ", username=" + username + ", datumIsteka=" + datumIsteka + "]";
+	}
+	
+	public PolovniRekvizit() {}
 	
 }

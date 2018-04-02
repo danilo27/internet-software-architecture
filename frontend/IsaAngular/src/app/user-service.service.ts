@@ -11,7 +11,6 @@ const httpOptions = {
 @Injectable()
 export class UserServiceService {
 
-  public user;
   private user;
   private loggedIn;
   username : string;

@@ -9,17 +9,38 @@
 
 
 
-<div *ngIf="isOglasi() then oglasiDiv; else zvanicniRekvizitiDiv;"></div>
-
-<ng-template #zvanicniRekvizitiDiv>
-	<div *ngFor = "let r of zvanicniRekviziti">
-		<app-rekvizit [rekvizit]="r" [username]="user"  (childEvent)="rezervisanRekvizit($event)" ></app-rekvizit>
+<div [ngSwitch]="state">
+	<div *ngSwitchCase="'zvanicni'">
+		<div *ngFor = "let r of zvanicniRekviziti">
+			<app-rekvizit [rekvizit]="r" [username]="user"></app-rekvizit>
 		</div>
-</ng-template>
- 
-<ng-template #oglasiDiv>
-	<div *ngFor = "let o of oglasi">
-		<app-oglas [oglas]="o"></app-oglas>
 	</div>
-</ng-template>
+ 
+	<div *ngSwitchCase="'oglasi'">
+		<nav>
+			<button (click)="noviOglas()">Novi oglas</button>
+			<button (click)="aktivniOglasi()">Aktivni oglasi</button>
+		</nav>
+		<div *ngFor = "let o of oglasi">
+			<app-oglas [oglas]="o"></app-oglas>
+		</div>
+	</div>
+
+	<div *ngSwitchCase="'noviOglas'">
+		<div>
+			<h3>Naziv oglasa</h3>
+			<input #nazivOglasa type="text">
+			<h3>Opis oglasa</h3>
+			<textarea #opisOglasa rows="10" cols="30"></textarea>
+			<h3>Slika oglasa</h3>
+			<input type='file' (change)="onSelectFile($event)">
+			<h3>Cena oglasa</h3>
+			<input #cenaOglasa type="number">
+			<h3>Datum isteka oglasa</h3>
+			<input #datumOglasa type="date">
+			<button (click)="postaviOglas(nazivOglasa.value,opisOglasa.value,slikaOglasa.value,cenaOglasa.value,datumOglasa.value)">Postavi oglas</button>
+		</div>
+	</div>
+</div>
+
 
