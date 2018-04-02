@@ -1,4 +1,24 @@
-<p>
-  userpage works!
-  Hello {{ username }}
-</p>
+Hello {{ email }}! <br>
+<div>
+  Istorija poseta pozorista i bioskopa:
+  <ul>
+  <li *ngFor="let visit of visits">
+      {{visit}}
+  </li>
+</ul>
+</div>
+
+<nav>
+	<a routerLink="/cinemas">Cinemas</a>
+	<a routerLink="/theatres">Theatres</a>
+    <a routerLink="/userprofile">My Profile</a>
+</nav>
+
+<div>
+    Friends:
+<ol>
+<li *ngFor="let friend of friends">
+    {{friend}}
+</li>
+</ol>
+</div>

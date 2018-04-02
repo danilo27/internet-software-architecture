@@ -6,18 +6,32 @@ import { UserServiceService } from '../user-service.service';
   styleUrls: ['./userpage.component.css']
 })
 export class UserpageComponent implements OnInit {
-  constructor(private user: UserServiceService) {
 
+  constructor(private user: UserServiceService) {
+        // this.friends = user.friends;
 
   }
-  get username():string {
-      return this.user.username;
+    get email():string {
+      return this.user.email;
     }
-    set username(value: string) {
-      this.user.username = value;
+    set email(value: string) {
+      this.user.email = value;
     }
-  ngOnInit() {
 
+    get friends():Array<string> {
+        return this.user.friends;
+    }
+
+    set friends(value: Array<string>){
+        this.user.friends = value;
+    }
+
+
+  ngOnInit() {
+    console.log(this.user);
+    console.log(this.user.friends);
+    console.log(this.email);
+    console.log(this.user.email);
   }
 
 }

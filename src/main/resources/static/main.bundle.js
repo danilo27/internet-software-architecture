@@ -17,6 +17,69 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 /***/ }),
 
+/***/ "./src/app/activation-page/activation-page.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/activation-page/activation-page.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  Activation link is sent to {{ email }} \n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/activation-page/activation-page.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivationPageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ActivationPageComponent = /** @class */ (function () {
+    function ActivationPageComponent(user) {
+        this.user = user;
+    }
+    Object.defineProperty(ActivationPageComponent.prototype, "email", {
+        get: function () {
+            return this.user.email;
+        },
+        set: function (value) {
+            this.user.email = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ActivationPageComponent.prototype.ngOnInit = function () {
+    };
+    ActivationPageComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-activation-page',
+            template: __webpack_require__("./src/app/activation-page/activation-page.component.html"),
+            styles: [__webpack_require__("./src/app/activation-page/activation-page.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */]])
+    ], ActivationPageComponent);
+    return ActivationPageComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -33,12 +96,16 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__ = __webpack_require__("./src/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__ = __webpack_require__("./src/app/theatres/theatres.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__ = __webpack_require__("./src/app/userpage/userpage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__userprofile_userprofile_component__ = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__ = __webpack_require__("./src/app/activation-page/activation-page.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -58,6 +125,8 @@ var routes = [
     { path: 'fanpage', component: __WEBPACK_IMPORTED_MODULE_6__fanpage_fanpage_component__["a" /* FanpageComponent */] },
     { path: 'theatres', component: __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__["a" /* TheatresComponent */] },
     { path: 'userpage', component: __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__["a" /* UserpageComponent */] },
+    { path: 'userprofile', component: __WEBPACK_IMPORTED_MODULE_10__userprofile_userprofile_component__["a" /* UserprofileComponent */] },
+    { path: 'activation-page', component: __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__["a" /* ActivationPageComponent */] },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -80,7 +149,8 @@ var RoutingComponents = [
     __WEBPACK_IMPORTED_MODULE_6__fanpage_fanpage_component__["a" /* FanpageComponent */],
     __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__["a" /* TheatresComponent */],
     __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__["a" /* UserpageComponent */],
-    __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */]
+    __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
+    __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__["a" /* ActivationPageComponent */]
 ];
 
 
@@ -152,8 +222,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__header_header_component__ = __webpack_require__("./src/app/header/header.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__authguard_guard__ = __webpack_require__("./src/app/authguard.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__ = __webpack_require__("./src/app/userpage/userpage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__userprofile_userprofile_component__ = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,18 +238,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-
-var appRoutes = [
-    {
-        path: '',
-        component: __WEBPACK_IMPORTED_MODULE_8__login_login_component__["a" /* LoginComponent */]
-    },
-    {
-        path: 'userpage',
-        canActivate: [__WEBPACK_IMPORTED_MODULE_6__authguard_guard__["a" /* AuthguardGuard */]],
-        component: __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__["a" /* UserpageComponent */]
-    }
-];
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -189,7 +246,8 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_5__header_header_component__["a" /* HeaderComponent */],
-                __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["b" /* RoutingComponents */]
+                __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["b" /* RoutingComponents */],
+                __WEBPACK_IMPORTED_MODULE_8__userprofile_userprofile_component__["a" /* UserprofileComponent */],
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -403,7 +461,7 @@ module.exports = ""
 /***/ "./src/app/homepage/homepage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\t\r\n\t<div *ngIf=\"isLoggedIn() then userpagebutton; else loginpagebutton;\"></div>\r\n\t<ng-template #loginpagebutton>\r\n\t\t<a routerLink=\"/login\">Login</a>\r\n\t</ng-template>\r\n\t<ng-template #userpagebutton>\r\n\t\t<a routerLink=\"/userpage\">Userpage</a>\r\n\t\t{{user.name}}\r\n\t</ng-template>\r\n</nav>\r\n\r\n<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n</nav>\r\n\r\n<nav>\r\n\t<div *ngIf=\"isLoggedIn() then fanpagebutton\"></div>\r\n\t<ng-template #fanpagebutton>\r\n\t\t<a routerLink=\"/fanpage\">Fanpage</a>\r\n\t</ng-template>\r\n\t\r\n</nav>\r\n"
+module.exports = "<nav>\r\n\t<div *ngIf=\"isLoggedIn() then userpagebutton; else loginpagebutton;\"></div>\r\n\t<ng-template #loginpagebutton>\r\n\t\t<a routerLink=\"/login\">Login</a>\r\n\t</ng-template>\r\n\t<ng-template #userpagebutton>\r\n\t\t<a routerLink=\"/userpage\">Userpage</a>\r\n\t\t{{user.name}}\r\n\t</ng-template>\r\n</nav>\r\n\r\n<nav>\r\n\t<a routerLink=\"/cinemas\">Cinema</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n</nav>\r\n\r\n<nav>\r\n\t<div *ngIf=\"isLoggedIn() then fanpagebutton\"></div>\r\n\t<ng-template #fanpagebutton>\r\n\t\t<a routerLink=\"/fanpage\">Fanpage</a>\r\n\t</ng-template>\r\n\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -467,7 +525,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto:400
 /***/ "./src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n\n\t<form (submit)=\"loginUser($event)\">\n\t  <div class=\"container\">\n\n\n\n\n\t    <div id=\"login-box\">\n\t     <div class=\"left\">\n\t       <h1>Sign in</h1>\n\n\t       <label for=\"username\"><b>Username</b></label>\n\t       <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required><br>\n\n\t       <label for=\"psw\"><b>Password</b></label>\n\t       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\n\n\n\t\t   <input type=\"submit\" name=\"signup_submit\" value=\"Sign in\" />\n\t   \t\t</div>\n\n\n\t   </div>\n\n\t  </div>\n\t</form>\n\n\n\tDon't have an account?\n\t<button routerLink=\"/register\">Register</button>\n</div>\n"
+module.exports = "\n<div>\n\n\t<form (submit)=\"loginUser($event)\">\n\t  <div class=\"container\">\n\n\n\n\n\t    <div id=\"login-box\">\n\t     <div class=\"left\">\n\t       <h1>Sign in</h1>\n\n\t       <label for=\"email\"><b>Username</b></label>\n\t       <input type=\"text\" placeholder=\"Enter Username\" name=\"email\" required><br>\n\n\t       <label for=\"psw\"><b>Password</b></label>\n\t       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\n\n\n\t\t   <input type=\"submit\" name=\"signup_submit\" value=\"Sign in\" />\n\t\t   <br><br><br>\n\t\t   <br> <br>\n\t\t   Don't have an account?\n\t\t   <button routerLink=\"/register\">Register</button>\n\t\t\t</div>\n\n\n\t   </div>\n\n\t  </div>\n\t</form>\n\n\n\n</div>\n"
 
 /***/ }),
 
@@ -499,23 +557,25 @@ var LoginComponent = /** @class */ (function () {
         this.http = http;
         this._userService = _userService;
     }
-    LoginComponent.prototype.ngOnInit = function () {
-    };
+    LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.loginUser = function (e) {
         var _this = this;
         e.preventDefault();
-        var username = e.target.elements[0].value;
+        var email = e.target.elements[0].value;
         var password = e.target.elements[1].value;
         var user = {
-            username: username,
+            email: email,
             password: password
         };
-        console.log(username, password);
+        //console.log(email,password);
         this.http.post('/login', user).subscribe(function (data) {
-            if (data['username'] != '') {
+            //if(data['email'] != ''){
+            if (data != null) {
+                console.log(data);
                 _this._userService.setLoggedIn();
                 _this.router.navigate(['userpage']);
-                _this._userService.username = data['username'];
+                _this._userService.email = data['email'];
+                _this._userService.friends = data['friends'];
             }
         });
         return false;
@@ -597,7 +657,7 @@ module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto:400
 /***/ "./src/app/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form action=\"\">\n  <div class=\"container\">\n\n    <div id=\"login-box\">\n     <div class=\"left\">\n       <h1>Sign up</h1>\n\n       <label for=\"username\"><b>Username</b></label>\n       <input type=\"text\" placeholder=\"Enter Username\" name=\"username\" required><br>\n\n       <label for=\"psw\"><b>Password</b></label>\n       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\n\n       <label for=\"psw-repeat\"><b>Repeat Password</b></label>\n       <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required><br>\n\n       <label for=\"email\"><b>Email</b></label>\n       <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required><br>\n\n       <label for=\"name\"><b>First Name</b></label>\n       <input type=\"text\" placeholder=\"Enter your first name\" name=\"name\" required><br>\n\n       <label for=\"lastname\"><b>Last Name</b></label>\n       <input type=\"text\" placeholder=\"Enter your last name\" name=\"lastname\" required><br>\n\n       <label for=\"city\"><b>City</b></label>\n       <input type=\"text\" placeholder=\"Enter your city\" name=\"city\" required><br>\n\n       <label for=\"phone\"><b>Phone Number</b></label>\n       <input type=\"text\" placeholder=\"Enter your phone number\" name=\"phoneNumber\" required><br>\n\n       <input type=\"submit\" name=\"signup_submit\" value=\"Sign up\" />\n     </div>\n\n\n   </div>\n\n  </div>\n</form>\n"
+module.exports = "<form  (submit)=\"register($event)\">\n  <div class=\"container\">\n\n    <div id=\"login-box\">\n     <div class=\"left\">\n       <h1>Sign up</h1>\n\n       <label for=\"email\"><b>Email</b></label>\n       <input type=\"text\" placeholder=\"Enter Email\" name=\"email\" required><br>\n\n       <label for=\"psw\"><b>Password</b></label>\n       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\n\n       <label for=\"psw-repeat\"><b>Repeat Password</b></label>\n       <input type=\"password\" placeholder=\"Repeat Password\" name=\"psw-repeat\" required><br>\n\n       <label for=\"name\"><b>First Name</b></label>\n       <input type=\"text\" placeholder=\"Enter your first name\" name=\"name\" required><br>\n\n       <label for=\"lastname\"><b>Last Name</b></label>\n       <input type=\"text\" placeholder=\"Enter your last name\" name=\"lastname\" required><br>\n\n       <label for=\"city\"><b>City</b></label>\n       <input type=\"text\" placeholder=\"Enter your city\" name=\"city\" required><br>\n\n       <label for=\"phone\"><b>Phone Number</b></label>\n       <input type=\"text\" placeholder=\"Enter your phone number\" name=\"phoneNumber\" required><br>\n\n       <input type=\"submit\" name=\"signup_submit\" value=\"Sign up\" />\n     </div>\n\n   </div>\n\n  </div>\n</form>\n"
 
 /***/ }),
 
@@ -607,6 +667,9 @@ module.exports = "<form action=\"\">\n  <div class=\"container\">\n\n    <div id
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -617,10 +680,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent() {
+    function RegisterComponent(router, http, _userService) {
+        this.router = router;
+        this.http = http;
+        this._userService = _userService;
     }
-    RegisterComponent.prototype.ngOnInit = function () {
+    RegisterComponent.prototype.ngOnInit = function () { };
+    RegisterComponent.prototype.register = function (e) {
+        var _this = this;
+        e.preventDefault();
+        if (!isNaN(parseFloat(e.target.elements[6].value)) && isFinite(e.target.elements[6].value)) {
+            var email = e.target.elements[0].value;
+            var password = e.target.elements[1].value;
+            var password_repeat = e.target.elements[2].value;
+            var name = e.target.elements[3].value;
+            var lname = e.target.elements[4].value;
+            var city = e.target.elements[5].value;
+            var phoneNumber = e.target.elements[6].value;
+            var new_user = {
+                email: email,
+                password: password,
+                password_repeat: password_repeat,
+                name: name,
+                lname: lname,
+                city: city,
+                phoneNumber: phoneNumber
+            };
+            this.http.post('/register', new_user).subscribe(function (data) {
+                _this.router.navigate(['activation']);
+            });
+        }
+        return false;
     };
     RegisterComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -628,7 +722,9 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/register/register.component.html"),
             styles: [__webpack_require__("./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__user_service_service__["a" /* UserServiceService */]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -711,6 +807,7 @@ var httpOptions = {
 var UserServiceService = /** @class */ (function () {
     function UserServiceService(http) {
         this.http = http;
+        this.friends = [];
         this.loggedIn = false;
     }
     UserServiceService.prototype.setLoggedIn = function () {
@@ -727,8 +824,11 @@ var UserServiceService = /** @class */ (function () {
         this.loggedIn = true;
         //console.log(this.user);
     };
-    UserServiceService.prototype.getUsername = function () {
-        return this.username;
+    UserServiceService.prototype.getEmail = function () {
+        return this.email;
+    };
+    UserServiceService.prototype.getFriends = function () {
+        return this.friends;
     };
     UserServiceService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
@@ -751,7 +851,7 @@ module.exports = ""
 /***/ "./src/app/userpage/userpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  userpage works!\n  Hello {{ username }}\n</p>\n"
+module.exports = "Hello {{ email }}! <br>\n<div>\n  Istorija poseta pozorista i bioskopa:\n  <ul>\n  <li *ngFor=\"let visit of visits\">\n      {{visit}}\n  </li>\n</ul>\n</div>\n\n<nav>\n\t<a routerLink=\"/cinemas\">Cinemas</a>\n\t<a routerLink=\"/theatres\">Theatres</a>\n    <a routerLink=\"/userprofile\">My Profile</a>\n</nav>\n\n<div>\n    Friends:\n<ol>\n<li *ngFor=\"let friend of friends\">\n    {{friend}}\n</li>\n</ol>\n</div>\n\n<hr>\n\n<div>\n    Friends:\n<ol>\n<li *ngFor=\"let friend of friends\">\n    {{friend}}\n</li>\n</ol>\n</div>\n"
 
 /***/ }),
 
@@ -775,19 +875,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var UserpageComponent = /** @class */ (function () {
     function UserpageComponent(user) {
+        // this.friends = user.friends;
         this.user = user;
     }
-    Object.defineProperty(UserpageComponent.prototype, "username", {
+    Object.defineProperty(UserpageComponent.prototype, "email", {
         get: function () {
-            return this.user.username;
+            return this.user.email;
         },
         set: function (value) {
-            this.user.username = value;
+            this.user.email = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(UserpageComponent.prototype, "friends", {
+        get: function () {
+            return this.user.friends;
+        },
+        set: function (value) {
+            this.user.friends = value;
         },
         enumerable: true,
         configurable: true
     });
     UserpageComponent.prototype.ngOnInit = function () {
+        console.log(this.user);
+        console.log(this.user.friends);
+        console.log(this.email);
+        console.log(this.user.email);
     };
     UserpageComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -798,6 +913,56 @@ var UserpageComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */]])
     ], UserpageComponent);
     return UserpageComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/userprofile/userprofile.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/userprofile/userprofile.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  userprofile works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/userprofile/userprofile.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserprofileComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var UserprofileComponent = /** @class */ (function () {
+    function UserprofileComponent() {
+    }
+    UserprofileComponent.prototype.ngOnInit = function () {
+    };
+    UserprofileComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-userprofile',
+            template: __webpack_require__("./src/app/userprofile/userprofile.component.html"),
+            styles: [__webpack_require__("./src/app/userprofile/userprofile.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], UserprofileComponent);
+    return UserprofileComponent;
 }());
 
 

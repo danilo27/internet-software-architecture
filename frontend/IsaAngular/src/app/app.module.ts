@@ -16,19 +16,10 @@ import { UserpageComponent } from './userpage/userpage.component';
 import { OglasComponent } from './oglas/oglas.component';
 
 import {RouterModule, Routes} from '@angular/router';
+import { ActivationPageComponent } from './activation-page/activation-page.component';
+import {RegisterComponent}from './register/register.component';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
-const appRoutes:Routes = [
-    {
-        path: '',
-        component: LoginComponent
-    },
-    {
-        path: 'userpage',
-        canActivate:[AuthguardGuard],
-        component: UserpageComponent
-
-    }
-]
 
 @NgModule({
   declarations: [
@@ -36,7 +27,8 @@ const appRoutes:Routes = [
     HeaderComponent,
     RoutingComponents,
     RekvizitComponent,
-    OglasComponent
+    OglasComponent,
+    UserprofileComponent,
   ],
   imports: [
     BrowserModule,

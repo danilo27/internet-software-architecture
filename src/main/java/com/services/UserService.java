@@ -14,9 +14,13 @@ import com.repositories.UserRepository;
 @Service
 public class UserService implements UserInterface{
 
-    @Autowired
     private UserRepository userRepository;
-
+    
+    @Autowired
+    public UserService(UserRepository userRepository) { 
+      this.userRepository = userRepository;
+    }
+    
 	@Override
 	public Collection<User> findAll() {
 		// TODO Auto-generated method stub
@@ -40,7 +44,17 @@ public class UserService implements UserInterface{
 		// TODO Auto-generated method stub
 		
 	}
-
-    
+	
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
+	
+	public User findByConfirmationToken(String confirmationToken) {
+		return userRepository.findByConfirmationToken(confirmationToken);
+	}
+	
+	public void saveUser(User user) {
+		userRepository.save(user);
+	}
 }
 
