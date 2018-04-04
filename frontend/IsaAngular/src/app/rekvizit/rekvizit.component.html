@@ -1,7 +1,10 @@
 <div>
+	<h3>Naziv: </h3>
 	{{rekvizit.naziv}}<br>
+	<h3>Opis: </h3>
 	{{rekvizit.opis}}<br>
-	{{rekvizit.slika}}<br>
+	<img src="{{fileUpload}}" alt="{{fileUpload}}" style="max-width:350px" />
+	<h3>Cena: </h3>
 	{{rekvizit.cena}}<br>
 	<button (click)="rezervisiZvanicni()">Rezervisi</button>
 </div>

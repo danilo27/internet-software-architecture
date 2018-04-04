@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { RekvizitiService } from "../rekviziti.service";
+import { UploadFileService } from "../upload-file.service";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-rekvizit',
@@ -10,9 +12,10 @@ export class RekvizitComponent implements OnInit {
 
     @Input('rekvizit') public rekvizit; 
     @Input('username') public username;
+    @Input('fileUpload') fileUpload: string;
     
-    @Output() public childEvent = new EventEmitter();
     
+
     constructor(private _rekvizitiService: RekvizitiService) { }
 
     ngOnInit() {
@@ -21,4 +24,5 @@ export class RekvizitComponent implements OnInit {
     rezervisiZvanicni(){
         this._rekvizitiService.rezervisiZvanicniRekvizit(this.rekvizit.naziv,this.username);
     }
+
 }

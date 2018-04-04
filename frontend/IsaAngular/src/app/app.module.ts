@@ -19,6 +19,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { ActivationPageComponent } from './activation-page/activation-page.component';
 import {RegisterComponent}from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { UploadFileService } from "./upload-file.service";
+
 
 
 @NgModule({
@@ -28,14 +30,14 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     RoutingComponents,
     RekvizitComponent,
     OglasComponent,
-    UserprofileComponent,
+    UserprofileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [UserServiceService,RekvizitiService, AuthguardGuard],
+  providers: [UserServiceService,RekvizitiService, AuthguardGuard, UploadFileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

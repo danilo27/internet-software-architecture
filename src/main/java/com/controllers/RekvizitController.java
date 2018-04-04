@@ -22,9 +22,9 @@ public class RekvizitController {
 	@GetMapping("/getZvanicniRekviziti")
 	public String getRekviziti() {
 		return "[" + 
-				"  {\"naziv\": \"Star Wars solja\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30}," + 
-				"  {\"naziv\": \"Lord of The Rings privezak\", \"opis\": \"privezak za kljuceve\",\"slika\": \"none\",\"cena\": 800.30}," + 
-				"  {\"naziv\": \"Harry Potter carobni stap\", \"opis\": \"carobni stap iz filma\",\"slika\": \"none\",\"cena\": 2410.30}]";
+				"  {\"naziv\": \"Hogwarts Express Drzac Knjiga\", \"opis\": \"Harry Potter drzac za knjige\",\"slika\": \"harry-potter-voz-drzac-knjiga.jpg\",\"cena\": 15000.00}," + 
+				"  {\"naziv\": \"Privezak Štit Kapetana Amerike\", \"opis\": \"Privezak u obliku stita iz filma Kapetan Amerika\",\"slika\": \"stit-kapetan-amerika-privezak.jpg\",\"cena\": 800.00}," + 
+				"  {\"naziv\": \"Stormtrooper 3D Šolja\", \"opis\": \" Solja u obliku kacige stormtroopera iz filma Star Wars\",\"slika\": \"stormtrooper-solja-star-wars.jpg\",\"cena\": 2410.00}]";
 	}
 	
 	@GetMapping("/getPolovniRekviziti")
@@ -58,7 +58,7 @@ public class RekvizitController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
 	public String getAktivniOglasi(@RequestBody User user, HttpServletResponse response,HttpSession session) {
-		if(user.getUsername().equals("vlada")) {
+		if(user.getName().equals("vlada")) {
 			return "[{\"naziv\": \"Vladin oglas\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30,\"username\":\"vlada\",\"datumIsteka\":\"29-04-2018\"}]";
 			
 		}else {
