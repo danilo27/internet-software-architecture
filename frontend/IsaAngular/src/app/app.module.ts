@@ -17,9 +17,13 @@ import { OglasComponent } from './oglas/oglas.component';
 
 import {RouterModule, Routes} from '@angular/router';
 import { ActivationPageComponent } from './activation-page/activation-page.component';
-import {RegisterComponent}from './register/register.component';
+import {RegisterComponent} from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UploadFileService } from "./upload-file.service";
+
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { MapToIterableComponent } from './map-to-iterable/map-to-iterable.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -30,7 +34,9 @@ import { UploadFileService } from "./upload-file.service";
     RoutingComponents,
     RekvizitComponent,
     OglasComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    UpdateUserComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

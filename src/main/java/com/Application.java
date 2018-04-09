@@ -1,6 +1,7 @@
 package com;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
@@ -32,10 +33,53 @@ public class Application implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 //initial
-//		repository.deleteAll();
+		repository.deleteAll();
 //
 //		repository.save(new User("danilo", "danilo"));
 //		repository.save(new User("admin", "admin"));
+		
+		repository.save(new User("regular", "ae", "ae", "ae", "ae", "ae",
+				4323, new ArrayList<String>(Arrays.asList("a","b","c")), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "ae", new ArrayList<String>()				));
+		
+		repository.save(new User("regular", "de", "de", "de", "de", "de",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "de", new ArrayList<String>()				));
+		
+		repository.save(new User("regular", "pas", "danilo@danilo", "Danilo", "Bujisa", "Novi Sad",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "coda", new ArrayList<String>()				));
+		
+		repository.save(new User("regular", "pas", "rose@rose", "Rose", "N", "Ohio",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "thug", new ArrayList<String>()	 ));
+		
+		repository.save(new User("regular", "pas", "tony@tony", "Tony", "F", "Miami",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "el", new ArrayList<String>()	 ));
+		
+		repository.save(new User("regular", "a", "a", "a", "a", "a",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "a", new ArrayList<String>()	 ));
+		
+		repository.save(new User("regular", "b", "b", "b", "b", "b",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "b", new ArrayList<String>()	 ));
+		
+		repository.save(new User("regular", "c", "c", "c", "c", "c",
+				2131, new ArrayList<String>(), new ArrayList<String>(),
+				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
+				new ArrayList<String>(), "c", new ArrayList<String>()	 ));
+		
+		
+		
 		storageService.deleteAll();
 		storageService.init();
 		

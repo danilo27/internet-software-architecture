@@ -3,8 +3,11 @@ package com.beans;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document(collection="users")
 public class User {
 	private String type;
+	private String username;
 	private String password;
 	private String passwordRepeat;
 	private String email;
@@ -14,16 +17,34 @@ public class User {
 	private int phoneNumber;
 	private ArrayList<String> friends;
 	private ArrayList<String> listaZahteva;
+	private ArrayList<String> listaPoslatihZahteva;
+	public ArrayList<String> getListaPoslatihZahteva() {
+		return listaPoslatihZahteva;
+	}
+
+	public void setListaPoslatihZahteva(ArrayList<String> listaPoslatihZahteva) {
+		this.listaPoslatihZahteva = listaPoslatihZahteva;
+	}
+
 	private ArrayList<String> listaIstorijaPoseta;
 	private HashMap<String,Integer> listaOcenaPozBio;
 	private HashMap<String,Integer> listaOcenaProjekcija;
 	private boolean enabled;
 	private String confirmationToken;
+	private String loggedInEmail;
 	
+	public String getLoggedInEmail() {
+		return loggedInEmail;
+	}
+
+	public void setLoggedInEmail(String loggedInEmail) {
+		this.loggedInEmail = loggedInEmail;
+	}
+
 	public User(String type, String pass, String email, String name, String lastname, String city,
 			int phoneNumber, ArrayList<String> listaPrijatelja, ArrayList<String> listaZahteva,
 			HashMap<String, Integer> listaOcenaPozBio, HashMap<String, Integer> listaOcenaProjekcija, 
-			ArrayList<String> listaIstorijaPoseta
+			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva
 			) {
 		super();
 		this.type = type;
@@ -39,8 +60,19 @@ public class User {
 		this.listaOcenaPozBio = listaOcenaPozBio;
 		this.listaOcenaProjekcija = listaOcenaProjekcija;
 		this.enabled = false;
+		this.loggedInEmail = email;
+		this.username = username;
+		this.listaPoslatihZahteva = listaPoslatihZahteva;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 	public ArrayList<String> getListaIstorijaPoseta() {
 		return listaIstorijaPoseta;
 	}

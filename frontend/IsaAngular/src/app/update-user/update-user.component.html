@@ -1,0 +1,35 @@
+<form  (submit)="update($event)">
+  <div class="container">
+
+    <div id="login-box">
+     <div class="left">
+       <h2>Enter details you want to change</h2>
+
+       <label for="email"><b>Email:{{email}}</b></label>
+       <input type="text" placeholder="Enter new Email" name="email"><br>
+
+       <label for="psw"><b>New password</b></label>
+       <input type="password" placeholder="Enter new Password" name="psw"><br>
+
+       <label for="psw-repeat"><b>Confirm new Password</b></label>
+       <input type="password" placeholder="Enter new Password again" name="psw-repeat" ><br>
+
+       <label for="name"><b>First Name: {{name}}</b></label>
+       <input type="text" placeholder="Enter your first name" name="name"><br>
+
+       <label for="lastname"><b>Last Name: {{lastname}}</b></label>
+       <input type="text" placeholder="Enter your last name" name="lastname"><br>
+
+       <label for="city"><b>City:{{city}}</b></label>
+       <input type="text" placeholder="Enter your new city" name="city"><br>
+
+       <label for="phone"><b>Phone Number:{{phoneNumber}}</b></label>
+       <input type="text" placeholder="Enter new phone number" name="phoneNumber"><br>
+
+       <input type="submit" name="update_submit" value="Update details" />
+     </div>
+
+   </div>
+
+  </div>
+</form>

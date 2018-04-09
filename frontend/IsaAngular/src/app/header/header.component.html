@@ -1,3 +1,15 @@
 <div>
 	<button routerLink="/homepage">Home</button>
 </div>
+
+<nav>
+	<div *ngIf="isLoggedIn() then userpagebutton; else loginpagebutton;"></div>
+	<ng-template #loginpagebutton>
+		<a routerLink="/login">Login</a>
+	</ng-template>
+	<ng-template #userpagebutton>
+		<strong><a routerLink="/users/{{getUsername()}}">{{getUsername()}} </a></strong>
+		<a routerLink="/logout">Logout</a>
+
+	</ng-template>
+</nav>

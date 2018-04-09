@@ -36,10 +36,16 @@ export class LoginComponent implements OnInit {
       //if(data['email'] != ''){
       if(data != null){
         console.log(data);
+        
         this._userService.setLoggedIn();
         this.router.navigate(['userpage']);
         this._userService.email = data['email'];
         this._userService.friends = data['friends'];
+        this._userService.name = data['name'];
+        this._userService.lastname = data['lastname'];
+        this._userService.city = data['city'];
+        this._userService.phoneNumber = data['phoneNumber'];
+        this._userService.username = data['username'];
       }
     })
     return false;

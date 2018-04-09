@@ -11,6 +11,10 @@ import { TheatresComponent } from './theatres/theatres.component';
 import { UserpageComponent } from './userpage/userpage.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { ActivationPageComponent} from './activation-page/activation-page.component';
+import { UpdateUserComponent} from './update-user/update-user.component';
+
+import { AuthguardGuard} from './authguard.guard';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -20,9 +24,12 @@ const routes: Routes = [
   { path: 'cinemas', component: CinemasComponent},
   { path: 'fanpage', component: FanpageComponent},
   { path: 'theatres', component: TheatresComponent},
-  { path: 'userpage', component: UserpageComponent},
+  { path: 'userpage', canActivate: [AuthguardGuard], component: UserpageComponent},
   { path: 'userprofile', component: UserprofileComponent},
   { path: 'activation-page', component: ActivationPageComponent},
+  { path: 'logout', component: LogoutComponent},
+  { path: 'update-user', component: UpdateUserComponent},
+  { path: 'users/:username', component: UserprofileComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -77,6 +77,12 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		
+		 <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
 		<dependency>
   			<groupId>com.nulab-inc</groupId>
   			<artifactId>zxcvbn</artifactId>
@@ -92,6 +98,7 @@
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
+                
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <executions>
                     <execution>
@@ -100,6 +107,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+    <addResources>true</addResources>
+</configuration>
             </plugin>
             
             

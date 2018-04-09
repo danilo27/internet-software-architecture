@@ -46,7 +46,9 @@ public class RegisterController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
 	public String processRegistrationForm( @RequestBody User user, HttpServletRequest request) {
-			if(userService.findByEmail(user.getEmail()) == null) {
+		//CHECK IF EMAIL AND USERNAME ARE VALID	
+    	
+    	if(userService.findByEmail(user.getEmail()) == null) {
 				if(user.getPassword().equals(user.getPasswordRepeat())){
 					userService.saveUser(
 							new User("regular",
@@ -60,9 +62,38 @@ public class RegisterController {
 							         new ArrayList<String>(),
 							         new HashMap<String, Integer>(),
 							         new HashMap<String, Integer>(),
+							         new ArrayList<String>(),
+							         user.getUsername(),
 							         new ArrayList<String>()
 									));
 					System.out.println("New user. Sending mail to " + user.getEmail());
+					
+					user.setEnabled(false);
+				      
+				    user.setConfirmationToken(UUID.randomUUID().toString());
+				        
+				    userService.saveUser(user);
+						
+					String appUrl = request.getScheme() + "://" + request.getServerName();
+					
+					//dodato kasnije zbog exception-a
+					System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
+					////////////////////////////////////
+					
+					SimpleMailMessage registrationEmail = new SimpleMailMessage();
+					registrationEmail.setTo(user.getEmail());
+					registrationEmail.setTo("tarmiricmiisa@gmail.com");
+					registrationEmail.setSubject("Registration Confirmation");
+					registrationEmail.setText("Activate your account by clicking the link below:\n"
+							+ appUrl + "8080/login?token=" + user.getConfirmationToken());
+					registrationEmail.setFrom("tarmiricmiisa@gmail.com");
+
+					String[] to = { user.getEmail() };
+					EmailService2.sendFromGMail("tarmiricmiisa","lozinkalozinka",to,"Activation Link","To confirm your e-mail address, please click the link below:\n"
+							+ appUrl + ":8080/login?token=" + user.getConfirmationToken());
+					
+
+					System.out.println("Mail sent.");
 					
 				}
 				
@@ -71,28 +102,7 @@ public class RegisterController {
 				
 			}
 			
-		    user.setEnabled(false);
-		      
-		    user.setConfirmationToken(UUID.randomUUID().toString());
-		        
-		    userService.saveUser(user);
-				
-			String appUrl = request.getScheme() + "://" + request.getServerName();
-			
-			SimpleMailMessage registrationEmail = new SimpleMailMessage();
-			registrationEmail.setTo(user.getEmail());
-			registrationEmail.setTo("tarmiricmiisa@gmail.com");
-			registrationEmail.setSubject("Registration Confirmation");
-			registrationEmail.setText("Activate your account by clicking the link below:\n"
-					+ appUrl + "8080/login?token=" + user.getConfirmationToken());
-			registrationEmail.setFrom("tarmiricmiisa@gmail.com");
-
-			String[] to = { user.getEmail() };
-			EmailService2.sendFromGMail("tarmiricmiisa","lozinkalozinka",to,"Activation Link","To confirm your e-mail address, please click the link below:\n"
-					+ appUrl + ":8080/login?token=" + user.getConfirmationToken());
-			
-
-			System.out.println("Mail sent.");
+		    
 			
 			return "";
 	}

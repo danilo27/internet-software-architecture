@@ -34,6 +34,7 @@ public class LoginActController {
 				return "forward:/index";
 			} else { // Token found
 				modelAndView.addObject("confirmationToken", user.getConfirmationToken());
+				
 				user.setEnabled(true);
 				System.out.println("User enabled.");
 				//login?**

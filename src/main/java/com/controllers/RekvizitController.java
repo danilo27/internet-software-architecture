@@ -58,7 +58,8 @@ public class RekvizitController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
 	public String getAktivniOglasi(@RequestBody User user, HttpServletResponse response,HttpSession session) {
-		if(user.getName().equals("vlada")) {
+
+		if(user.getEmail().equals("vlada")) {
 			return "[{\"naziv\": \"Vladin oglas\", \"opis\": \"solja za kafu\",\"slika\": \"none\",\"cena\": 290.30,\"username\":\"vlada\",\"datumIsteka\":\"29-04-2018\"}]";
 			
 		}else {

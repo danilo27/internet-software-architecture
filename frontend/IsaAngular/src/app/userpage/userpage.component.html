@@ -1,3 +1,5 @@
+
+
 Hello {{ email }}! <br>
 <div>
   Istorija poseta pozorista i bioskopa:
@@ -11,14 +13,19 @@ Hello {{ email }}! <br>
 <nav>
 	<a routerLink="/cinemas">Cinemas</a>
 	<a routerLink="/theatres">Theatres</a>
-    <a routerLink="/userprofile">My Profile</a>
+    <a routerLink="/users/{{getUsername()}}">My Profile</a>
 </nav>
 
 <div>
-    Friends:
+
+<h3>My friends</h3>
+<button (click)="sortByName($event)"  >Sort by name</button>
+<button (click)="sortByLastname($event)" >Sort by lastname</button>
+<a routerLink="/users/{{getUsername()}}">See all options</a>
 <ol>
-<li *ngFor="let friend of friends">
-    {{friend}}
-</li>
-</ol>
+  <li *ngFor="let friend of my_friends_list">
+  <a routerLink="/users/{{friend.username}}">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>
+<button (click)="removeFriend($event)" name={{friend.email}}  >Remove</button>
+  </li>
+  </ol>
 </div>
