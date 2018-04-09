@@ -23,8 +23,7 @@ public class UserService implements UserInterface{
     
 	@Override
 	public Collection<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return userRepository.findAll();
 	}
 
 	@Override
@@ -49,12 +48,20 @@ public class UserService implements UserInterface{
 		return userRepository.findByEmail(email);
 	}
 	
+	public User findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
+	
 	public User findByConfirmationToken(String confirmationToken) {
 		return userRepository.findByConfirmationToken(confirmationToken);
 	}
 	
 	public void saveUser(User user) {
 		userRepository.save(user);
+	}
+	
+	public User findByLoggedInEmail(String loggedInEmail){
+		return userRepository.findByLoggedInEmail(loggedInEmail);
 	}
 }
 

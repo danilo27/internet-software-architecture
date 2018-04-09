@@ -17,9 +17,20 @@ import { OglasComponent } from './oglas/oglas.component';
 
 import {RouterModule, Routes} from '@angular/router';
 import { ActivationPageComponent } from './activation-page/activation-page.component';
-import {RegisterComponent}from './register/register.component';
+import {RegisterComponent} from './register/register.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UploadFileService } from "./upload-file.service";
+
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RezervacijaComponent } from './rezervacija/rezervacija.component';
+
+
+import { AgmCoreModule } from '@agm/core';
+
+import { FormsModule } from '@angular/forms';
+import { PozivniceComponent } from './pozivnice/pozivnice.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 
@@ -30,12 +41,24 @@ import { UploadFileService } from "./upload-file.service";
     RoutingComponents,
     RekvizitComponent,
     OglasComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    UpdateUserComponent,
+    LogoutComponent,
+    RezervacijaComponent,
+    PozivniceComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
+    AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyAL7fctJPUvG52w9R2KjlVbcoHAG1CRlzs'
+      }),
+
+    FormsModule
+
   ],
   providers: [UserServiceService,RekvizitiService, AuthguardGuard, UploadFileService],
   bootstrap: [AppComponent]

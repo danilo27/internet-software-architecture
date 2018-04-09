@@ -1,24 +1,278 @@
-Hello {{ email }}! <br>
-<div>
-  Istorija poseta pozorista i bioskopa:
-  <ul>
-  <li *ngFor="let visit of visits">
-      {{visit}}
+<hr>
+
+<div [ngSwitch]="usertype">
+
+<div *ngSwitchCase="'regular'">
+
+<div [ngSwitch]="what">
+
+
+
+
+<button (click)="cinemas_button()">Cinemas</button>
+<button (click)="theatres_button()">Theatres</button>
+<button (click)="istorija()">History</button>
+<button (click)="friends_button()">My Friends</button>
+<button (click)="lista_rezervacija()">Reservations</button>
+<button (click)="lista_pozivnica()">Invitations</button>
+<button (click)="my_profile_button()">My profile</button>
+
+<div *ngSwitchCase="'history'">
+
+ <h3> Istorija poseta pozorista i bioskopa: </h3>
+  <ol>
+  <li *ngFor="let r of hist">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD<br></b>
   </li>
-</ul>
+  </ol>
+
 </div>
 
-<nav>
-	<a routerLink="/cinemas">Cinemas</a>
-	<a routerLink="/theatres">Theatres</a>
-    <a routerLink="/userprofile">My Profile</a>
-</nav>
+<div *ngSwitchCase="'friends'">
 
-<div>
-    Friends:
+<h3>My friends</h3>
+<button (click)="sortByName($event)"  >Sort by name</button>
+<button (click)="sortByLastname($event)" >Sort by lastname</button>
+<a routerLink="/users/{{getUsername()}}">See all options</a>
 <ol>
-<li *ngFor="let friend of friends">
-    {{friend}}
-</li>
-</ol>
+  <li *ngFor="let friend of my_friends_list">
+  <a routerLink="/users/{{friend.username}}">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>
+<button (click)="removeFriend($event)" name={{friend.username}}  >Remove</button>
+  </li>
+  </ol>
+</div>
+
+
+<div *ngSwitchCase="'reservations'">
+
+<h3>My reservations</h3>
+
+<ol>
+  <li *ngFor="let r of res">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+  <b>Confirmed arrivals:</b>
+  <ul>
+  <li *ngFor="let s of r.potvrdjeni">
+  	{{s}}
+	</li>
+  </ul>
+   <b>Waiting for response:</b><ul>
+  <li *ngFor="let s of r.invited_friends">
+  	{{s}}
+	</li>
+  </ul>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+ 
+<div *ngIf="r.narucilac == user.username;  then ifcondition"></div>
+<div *ngIf="r.narucilac != user.username;  then if2condition"></div>
+  <ng-template #ifcondition><button (click)="removeRes($event)" name={{r.idRez}} >Cancel Reservation</button></ng-template>  
+ <ng-template #if2condition><b>Invited by {{r.narucilac}}</b></ng-template>  
+  </li>
+  </ol>
+
+</div>
+
+
+<div *ngSwitchCase="'invitations'">
+
+<h3>Pending reservations</h3>
+
+<ol>
+  <li *ngFor="let r of inv">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+  <b>Confirmed arrivals:</b>
+  <ul>
+  <li *ngFor="let s of r.potvrdjeni">
+  	{{s}}
+	</li>
+  </ul>
+   <b>Waiting for response:</b><ul>
+  <li *ngFor="let s of r.invited_friends">
+  	{{s}}
+	</li>
+  </ul>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+<button (click)="acceptRes($event)" name={{r.idRez}}  >Accept Invitation</button>
+<button (click)="declineRes($event)" name={{r.idRez}}  >Decline Invitation</button>
+  </li>
+  </ol>
+
+</div>
+
+
+
+
+
+
+
+<div *ngSwitchCase="'cinemas'">
+<hr>
+
+<button (click)="sortBioByName()">Sort by Name</button>
+<button (click)="sortBioByCity()">Sort by City</button>
+<button (click)="sortBioByDistance()">Sort by Distance</button>
+
+<h3>Cinemas</h3>
+
+ <form (submit)="findBio($event)">
+ 		Search cinemas:
+ 		<input type="text" placeholder="Enter cinema's name" name="keyword" />
+		<input type="submit" name="findBio" value="Search" />
+</form>
+
+<div [ngSwitch]="all_or_found_bio">
+
+<div *ngSwitchCase="'all_bio'">
+
+<ol>
+  <li *ngFor="let bio of bios_list">
+  <a routerLink="/rezervisi/{{bio.name}}">{{bio['name']}}</a>
+
+  </li>
+  </ol>
+
+</div>
+
+<div *ngSwitchCase="'found_bio'">
+
+</div>
+
+</div>
+
+</div>
+
+<div *ngSwitchCase="'theatres'">
+<hr>
+<button (click)="sortPozByName()">Sort by Name</button>
+<button (click)="sortPozByCity()">Sort by City</button>
+<button (click)="sortPozByDistance()">Sort by Distance</button>
+
+<h3>Theatres</h3>
+
+ <form (submit)="findPoz($event)">
+ 		Search theatres:
+ 		<input type="text" placeholder="Enter theathre's name" name="keyword" />
+		<input type="submit" name="findPoz" value="Search" />
+</form>
+
+<div [ngSwitch]="all_or_found_poz">
+
+<div *ngSwitchCase="'all_poz'">
+
+<ol>
+  <li *ngFor="let poz of poz_list">
+  <a routerLink="/rezervisi/{{poz.name}}">{{poz.name}}</a>
+
+  </li>
+  </ol>
+
+</div>
+
+<div *ngSwitchCase="'all_bio'">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div *ngSwitchCase="'sysAdmin'">
+
+	<div [ngSwitch]="admin_what">
+
+	<button (click)="register_cinemas_button()">Register Cinema/Theatre</button>
+	<button (click)="add_admin_button()">Add new admin</button>
+
+	<div *ngSwitchCase="'register_cinemas'">
+		<h3>Register new cinema/theatre</h3>
+		<hr>
+		<h4>Venue type</h4>
+		<input type="radio" name="venueType" #cinemaBtn checked> Cinema<br>
+  		<input type="radio" name="venueType" #theatreBtn> Theatre<br>
+		<h4>Venue name</h4>
+		<input type="text" #venueName>
+		<h4>Admin</h4>
+		<div class="dropdown">
+    		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Admins
+    		<span class="caret"></span></button>
+    		<ul class="dropdown-menu">
+      			<li class="dropdown-header">Venue Admins</li>
+      			<li *ngFor="let a of admins" (click)="chosenAdmin(a.username)">
+  					{{a.username}} 
+	  			</li>
+    		</ul>
+		</div>
+		<h4>Venue location</h4>
+		
+		
+		
+		
+		
+		<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="onChoseLocation($event)">
+  			<agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen"></agm-marker>
+		</agm-map>
+		
+		
+		
+		
+		
+		
+		<hr>
+		<button (click)="registerVenue(cinemaBtn.checked,venueName.value)">OK</button>
+	</div>
+
+
+	<div *ngSwitchCase="'add_admin'">
+		<h3>Add new admin</h3>
+		<hr>
+		<h4>Admin type</h4>
+		<input type="radio" name="adminType" #sysadmin checked> System admin<br>
+  		<input type="radio" name="adminType" #fanadmin> Fan zone admin<br>
+		<h4>Admin name</h4>
+		<input type="text" #adminname>
+		<button (click)="addAdmin(sysadmin.checked,adminname.value)">Upgrade</button>
+	</div>
+
+	</div>
+</div>
+
+
+
 </div>

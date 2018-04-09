@@ -1,3 +1,116 @@
-<p>
-  userprofile works!
-</p>
+<div [ngSwitch]="whose">
+
+<div *ngSwitchCase="'mine'">
+
+
+<div [ngSwitch]="current">
+	
+	<button (click)="details()">My Details</button>
+	<button (click)="my_friends()">My Friends</button>
+	<button (click)="pending_friend_requests()">Friend Requests</button>
+	<button (click)="find_friends_div()">Find new friends</button>
+	
+	<div *ngSwitchCase="'details'">
+		 <h3>{{name}}'s details:</h3>
+		<ul>
+		    <li>{{email}}</li>
+		    <li>{{name}}</li>
+		    <li>{{lastname}}</li>
+		    <li>{{city}}</li>
+		    <li>{{phoneNumber}}</li>
+		</ul>
+		
+		<a routerLink="/update-user">Update my details</a>
+	</div>
+
+	
+	
+	
+	<div *ngSwitchCase="'my_friends'">
+
+		<h3>My friends</h3>
+		 <ol>
+		   <li *ngFor="let friend of my_friends_list">
+		   <a routerLink="/users/{{friend.username}}">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>
+			<button (click)="removeFriend($event)" name={{friend.username}}  >Remove</button>
+    	    </li>
+    	    </ol>
+	</div>	
+	
+	
+	
+	
+	<div *ngSwitchCase="'pending_friend_requests'">
+	 
+		<h3>Requests</h3>
+		 <ol>
+		   <li *ngFor="let friend of pending_friends_requests">
+		   <a routerLink="/userprofile">{{friend}}</a>
+		   <button (click)="acceptFR($event)" name={{friend}}  >Accept</button>
+		  	 <button (click)="declineFR($event)" name={{friend}}  >Decline</button>
+	                
+					
+    	    </li>
+    	    </ol>
+    	    
+	</div>	
+	
+	
+	
+	
+	<div *ngSwitchCase="'find_friends'">
+		<h3>Find new friends</h3>
+		Search friends by their name, last name, or both:<br>
+	    <form (submit)="find_friends($event)">
+		Name:<input type="text" placeholder="Enter Name" name="name" />
+	    Lastname:<input type="text" placeholder="Enter Lastname" name="lastname" />
+		<input type="submit" name="find_friends" value="Find" />
+	    </form>
+	</div>
+
+
+	<div *ngSwitchCase="'friends_results'">
+
+        
+    	    <h4>Search results:</h4>
+    	    
+    	    <ol>
+
+    	    <li *ngFor="let friend of found_friends_list">
+    	    <a routerLink="/users/{{friend[1]}}">{{friend[0]}}, {{friend[3]}}, {{friend[4]}}</a>
+    	        
+    	        	
+    	        	
+	                <div *ngIf="friend[2]== 'ne';  then if1condition"></div>
+	                 <div *ngIf="friend[2]== 'poslat';  then if2condition"></div>   
+	               <div *ngIf="friend[2]== 'vec';  then if3condition"></div>
+	                <div *ngIf="friend[2]== 'primljen';  then if4condition"></div>
+	                <ng-template #if1condition><button (click)="add_friend($event)"   name={{friend[1]}}  >Add</button></ng-template>  
+					<ng-template #if2condition><button (click)="cancelFR($event)" name={{friend[1]}} >Cancel Request</button></ng-template> 
+					<ng-template #if3condition><button (click)="removeFriend($event)"   name={{friend[1]}}  >Remove</button></ng-template>  	
+					<ng-template #if4condition><button (click)="declineFR($event)"   name={{friend[1]}}  >Decline</button></ng-template>  			
+    	    
+    	    </li>
+
+    	    </ol>
+      
+	</div>
+
+</div>
+</div>
+
+<div *ngSwitchCase="'other'">
+	 <h3>{{name}}'s profile</h3>
+		
+		{{name}}'s details:
+		<ul>
+		    <li>{{email}}</li>
+		    <li>{{name}}</li>
+		    <li>{{lastname}}</li>
+		    <li>{{city}}</li>
+		    <li>{{phoneNumber}}</li>
+		</ul>
+</div>
+
+
+</div>

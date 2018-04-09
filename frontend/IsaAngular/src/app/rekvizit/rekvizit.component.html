@@ -7,4 +7,8 @@
 	<h3>Cena: </h3>
 	{{rekvizit.cena}}<br>
 	<button (click)="rezervisiZvanicni()">Rezervisi</button>
+	<div *ngIf="isAdmin()">
+		<button (click)="ukloniZvanicni()">Ukloni</button>
+		<button (click)="izmeniZvanicni()">Izmeni</button>
+	</div>
 </div>

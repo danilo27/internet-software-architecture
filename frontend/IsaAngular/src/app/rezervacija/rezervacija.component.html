@@ -1,0 +1,228 @@
+<h3>
+  Reservation
+</h3>
+<h4>
+{{name}}
+</h4>
+{{poz_bio.adress}}
+{{poz_bio.city}}
+
+<hr>
+
+<div [ngSwitch]="what" >
+
+<div *ngSwitchCase="'sve'">
+
+<ul>
+  <li *ngFor="let projekcija of poz_bio.listaProjekcija">
+      <button (click)="projekcija_button($event)" name={{projekcija.nazivProjekcije}}  >{{projekcija.nazivProjekcije}}</button>
+      <br>
+      Genre: {{projekcija.zanr}}
+      <br>
+      Director: {{projekcija.imeReditelja}}
+      <br>
+      Actors: 
+      <ul>
+      <li *ngFor="let glumac of projekcija.listaGlumaca">
+      	{{glumac}}
+      </li>
+      </ul>
+  </li>
+</ul>
+
+</div>
+
+<div *ngSwitchCase="'izabrana_projekcija'">
+	<button (click)="projekcija_button($event)" name={{izabrana_projekcija}}  >{{izabrana_projekcija}}</button>
+	<div *ngFor="let projekcija of poz_bio.listaProjekcija">
+		<div *ngIf="projekcija.nazivProjekcije == izabrana_projekcija; then showDates"></div>
+		<ng-template #showDates> 
+			
+			<ul>
+		  		<li *ngFor="let datum of projekcija.listaDatumaProjekcije">
+					<button (click)="datum_button($event)" name={{datum.datum}}  >{{datum.datum}}</button>
+		  		</li>
+		    </ul>
+	    </ng-template>
+    </div>
+</div>
+
+<div *ngSwitchCase="'izabran_datum'">
+    <button (click)="projekcija_button($event)" name={{izabrana_projekcija}}  >{{izabrana_projekcija}}</button>>
+	 <button (click)="datum_button($event)" name={{izabran_datum}}  >{{izabran_datum}}</button>
+	
+	<div *ngFor="let projekcija of poz_bio.listaProjekcija">
+		<div *ngIf="projekcija.nazivProjekcije == izabrana_projekcija; then showDates"></div>
+		<ng-template #showDates> 
+			<div *ngFor="let datum of projekcija.listaDatumaProjekcije">
+				<div *ngIf="datum.datum == izabran_datum; then showTermine"></div>
+				<ng-template #showTermine> 
+					<ul>
+				  		<li *ngFor="let termin of datum.listaTermina">
+							<button (click)="termin_button($event)" name="{{termin.termin}}-{{termin.sala}}-{{termin.cena}}"  >{{termin.termin}}<br>Sala {{termin.sala}}<br>{{termin.cena}} din</button>
+				  		</li>
+		    		</ul>
+				</ng-template>
+				
+			</div>
+	    </ng-template>
+    </div>
+</div>
+
+<div *ngSwitchCase="'izabran_termin'">
+ <button (click)="projekcija_button($event)" name={{izabrana_projekcija}}  >{{izabrana_projekcija}}</button>>
+  <button (click)="datum_button($event)" name={{izabran_datum}}  >{{izabran_datum}}</button>>
+<strong>{{termin}} Sala {{sala}}</strong><br>
+	<div *ngFor="let projekcija of poz_bio.listaProjekcija">
+		<div *ngIf="projekcija.nazivProjekcije == izabrana_projekcija; then showDates"></div>
+		<ng-template #showDates> 
+			<div *ngFor="let datum of projekcija.listaDatumaProjekcije">
+				<div *ngIf="datum.datum == izabran_datum; then showTermine"></div>
+				<ng-template #showTermine> 
+					<div *ngFor="let terminf of datum.listaTermina">
+						<div *ngIf="terminf.termin == termin; then terminFine"></div>
+						<ng-template #terminFine> 
+							
+							<div *ngIf="terminf.sala == sala; then salaFine"></div>
+							<ng-template #salaFine> 
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<div class="container" style="background-color:black">
+								    <main class="innerContainer">
+								        <div class="movie">
+								            <h3 class="movieTitle">{{izabrana_projekcija}}</h3>
+								            <div class="movieDetails"> {{termin}} Sala {{sala}}</div>
+								        </div>
+								
+								
+								        <div class="legend">
+								            <span class="glyphicon glyphicon-stop freeSeat"></span> FREE
+								            <span class="glyphicon glyphicon-ban-circle reservedSeat padding-left"></span> TAKEN
+								            <span class="glyphicon glyphicon-ok-sign selectedSeat padding-left"></span> SELECTED                
+								        </div>
+								
+								        <p class="font14 marginTop5">SCREEN</p>
+								        <div class="screen"></div>
+								
+								
+								        <div *ngFor="let row of rows" >
+								            <span class="seat" *ngFor="let col of cols" (click)="seatClicked(row + col)" 
+								                    [ngSwitch]="getStatus(row + col)">
+								                <span *ngSwitchCase="'selected'" class="glyphicon glyphicon-ok-sign selectedSeat"></span>
+								                <span *ngSwitchCase="'reserved'" class="glyphicon glyphicon-ban-circle reservedSeat"></span>
+								                <span *ngSwitchDefault class="glyphicon glyphicon-stop freeSeat"></span>
+								            </span>
+								        </div>
+								
+								      
+								        <div *ngIf="selected.length > 0" class="font14 marginTB10">
+								            <div class="wordWrap">SEATS RESERVED : {{selected.length}} </div>
+								            <div>PRICE : {{ticketPrice}} * {{selected.length}} = {{currency}}.{{ticketPrice*selected.length}} </div>
+								            <div>TOTAL : {{currency}}.{{ticketPrice * selected.length}}</div>
+								        </div>
+								
+								        
+								        <div class="buttonBar marginTop5">
+								            <button (click)="clearSelected()" [disabled]="selected.length === 0" class="btn btn-default btn-sm">Reset</button>
+								            <button (click)="showSelected()" [disabled]="selected.length === 0" class="btn btn-success btn-sm">Buy Tickets</button>
+								        	
+								        	<button (click)="inviteFriendsDiv()" [disabled]="selected.length < 2" class="btn btn-success btn-sm">Invite friends</button>
+								        	
+								        </div>    
+								        
+								        <div *ngIf="calling_friends == true;  then if1condition"></div>
+								        <div *ngIf="called_friends == true;  then if2condition"></div>
+								            <ng-template #if1condition>
+								             <div>
+									            	<div style="margin: 0 auto;
+																				    width: 300px;
+																				    height: 200px;
+																				    overflow: auto;">
+															<br>Invite friends
+															 <ol>
+															   <li *ngFor="let friend of my_friends_list">
+																   <input [(ngModel)]="friend.checked" (ngModelChange)="changed()" type="checkbox" />
+																   <a routerLink="/users/{{friend.username}}">
+																   		{{friend.email}}, {{friend.name}}, {{friend.lastname}}
+																   	</a>
+																
+													    	    </li>
+													    	 </ol>
+											    	 </div>
+										    	 </div>
+										    	 <div>
+										    	 	<button [disabled]="selected.length <= selected_friends_count" (click)="doneInviting($event)" class="btn btn-success btn-sm">Done</button>
+										    	 </div>
+								            </ng-template>
+								            <ng-template #if2condition>
+								            	<br>Invited Friends
+								            	<div style="margin: 0 auto;
+																				    width: 300px;
+																				    height: 200px;
+																				    overflow: auto;">
+								            	<ol>
+												   <li *ngFor="let i_friend of invited_friends">
+														{{i_friend.email}}, {{i_friend.name}}, {{i_friend.lastname}}
+												   </li>
+												</ol>
+												</div>
+								            </ng-template>  
+								    </main>     
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							</ng-template>
+						</ng-template>
+					</div>
+				</ng-template>
+				
+			</div>
+	    </ng-template>
+    </div>
+</div>
+
+</div>

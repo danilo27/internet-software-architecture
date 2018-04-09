@@ -1,9 +1,51 @@
-<div>
+<div class="oglas-div">
+	<h3>Naziv oglasa</h3>
 	{{oglas.naziv}}<br>
+	<h3>Opis oglasa</h3>
 	{{oglas.opis}}<br>
-	{{oglas.slika}}<br>
+	<img src="{{fileUpload}}" alt="{{fileUpload}}" style="max-width:350px" />
+	<h3>Cena</h3>
 	{{oglas.cena}}<br>
+	<h3>Korisnik</h3>
 	{{oglas.username}}<br>
+	<h3>Datum isteka</h3>
 	{{oglas.datumIsteka}}<br>
-	<button>Daj ponudu</button>
 </div>
+
+
+<div *ngIf="isMode() then ponude; else provera"></div>
+	
+<ng-template #ponude>
+	<div class="ponude-div">
+		<div class="lista-ponuda">
+ 			<div *ngFor="let p of oglas.ponude">
+ 				Username: {{p.username}} ponuda: {{p.cena}}
+ 			</div>	
+ 		</div>
+		
+		<div *ngIf="isUser() then odaberi; else ponudi"></div>
+	
+		<ng-template #ponudi>
+			<div class="korisnikova-ponuda">
+				Vasa trenutna ponuda: {{trenutnaPonuda}} <br>
+				<input type="number" #cenaLicitacije>
+				<button (click)="licitiraj(cenaLicitacije.value)">Licitiraj</button>
+			</div>
+		</ng-template>
+	
+		<ng-template #odaberi>
+			Zaustavi licitaciju i odaberi najvecu ponudu
+			<button (click)="odaberiPonudu()">Ok</button>
+		</ng-template>
+		
+	</div>
+</ng-template>
+
+<ng-template #provera>
+	<div>
+		<nav>
+			<button (click)="prihvacenOglas()">Prihvati</button>
+			<button (click)="odbijenOglas()">Odbij</button>
+		</nav>
+	</div>
+</ng-template>
