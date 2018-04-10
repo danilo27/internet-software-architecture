@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit {
         this._userService.city = data['city'];
         this._userService.phoneNumber = data['phoneNumber'];
         this._userService.username = data['username'];
+        this._userService.utype = data['type'];
+        
+        this._userService.setUser(data);
       }
     })
     return false;

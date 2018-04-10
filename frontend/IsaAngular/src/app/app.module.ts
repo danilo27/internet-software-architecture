@@ -22,7 +22,6 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UploadFileService } from "./upload-file.service";
 
 import { UpdateUserComponent } from './update-user/update-user.component';
-import { MapToIterableComponent } from './map-to-iterable/map-to-iterable.component';
 import { LogoutComponent } from './logout/logout.component';
 
 

@@ -640,6 +640,8 @@ var LoginComponent = /** @class */ (function () {
                 _this._userService.city = data['city'];
                 _this._userService.phoneNumber = data['phoneNumber'];
                 _this._userService.username = data['username'];
+                _this._userService.utype = data['type'];
+                _this._userService.setUser(data);
             }
         });
         return false;
@@ -1260,10 +1262,10 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.getUser = function () {
         return this.user;
     };
-    UserServiceService.prototype.setUser = function () {
-        //this.user = this.http.get<IUser>('assets/data/test.json');
+    UserServiceService.prototype.setUser = function (data) {
+        this.user = data; //this.http.get<IUser>('/getDetailsByUsername/'+this.username);
         this.loggedIn = true;
-        //console.log(this.user);
+        console.log('user set', this.user.username);
     };
     UserServiceService.prototype.getEmail = function () {
         return this.email;
@@ -1355,10 +1357,7 @@ var UserpageComponent = /** @class */ (function () {
         return this.user.getUsername();
     };
     UserpageComponent.prototype.ngOnInit = function () {
-        console.log(this.user);
-        console.log(this.user.friends);
-        console.log(this.email);
-        console.log(this.user.email);
+        console.log('user set on userpage', this.user.getUser());
         this.my_friends();
     };
     UserpageComponent.prototype.my_friends = function () {
@@ -1456,9 +1455,7 @@ var UserprofileComponent = /** @class */ (function () {
     UserprofileComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.params.subscribe(function (params) {
-            // PARAMS CHANGED .. TO SOMETHING REALLY COOL HERE ..
-            // for example extract the id..
-            _this.ciji = params['username']; // (+) converts string 'id' to a number
+            _this.ciji = params['username'];
             if (_this.user.username === _this.route.snapshot.params.username) {
                 _this.whose = "mine";
             }

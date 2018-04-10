@@ -21,6 +21,7 @@ export class UserServiceService {
   phoneNumber: number;
   city: string;
   username: string;
+  utype: string;
 
   
 private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
@@ -52,11 +53,12 @@ private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
     return this.user;
   }
 
-  setUser() {
-    //this.user = this.http.get<IUser>('assets/data/test.json');
+  setUser(data) {
+                
+    this.user = data;//this.http.get<IUser>('/getDetailsByUsername/'+this.username);
     this.loggedIn = true;
 
-    //console.log(this.user);
+    console.log('user set', this.user.username);
   }
 
   getEmail(){

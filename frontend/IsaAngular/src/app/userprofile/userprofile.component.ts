@@ -55,10 +55,8 @@ export class UserprofileComponent implements OnInit {
   ngOnInit() {
      
     this.route.params.subscribe(params => {
-     // PARAMS CHANGED .. TO SOMETHING REALLY COOL HERE ..
 
-     // for example extract the id..
-     this.ciji = params['username']; // (+) converts string 'id' to a number
+     this.ciji = params['username']; 
     
       if(this.user.username === this.route.snapshot.params.username)
       {

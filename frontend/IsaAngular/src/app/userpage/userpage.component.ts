@@ -38,10 +38,7 @@ export class UserpageComponent implements OnInit {
       return this.user.getUsername();
       }
   ngOnInit() {
-    console.log(this.user);
-    console.log(this.user.friends);
-    console.log(this.email);
-    console.log(this.user.email);
+    console.log('user set on userpage', this.user.getUser());
     this.my_friends();
   }
   

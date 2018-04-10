@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection="users")
 public class User {
-	private String type;
+	private String utype;
 	private String username;
 	private String password;
 	private String passwordRepeat;
@@ -47,7 +47,7 @@ public class User {
 			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva
 			) {
 		super();
-		this.type = type;
+		this.utype = type;
 		this.password = pass;
 		this.email = email;
 		this.name = name;
@@ -105,12 +105,12 @@ public class User {
 	}
 	public User(){}
 	
-	public String getType() {
-		return type;
+	public String getUtype() {
+		return utype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setUtype(String type) {
+		this.utype = type;
 	}
 
 	public String getPassword() {
