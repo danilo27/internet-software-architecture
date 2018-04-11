@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute} from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 @Component({
   selector: 'app-userpage',
   templateUrl: './userpage.component.html',
@@ -11,7 +11,7 @@ export class UserpageComponent implements OnInit {
   public what: string;
   
   constructor(private user: UserServiceService,
-  private http: HttpClient,
+  private http: HttpClient,private router:Router,
                 private route: ActivatedRoute) {
         // this.friends = user.friends;
 
@@ -52,7 +52,19 @@ export class UserpageComponent implements OnInit {
   }
   
   lista_rezervacija(){
-  this.what = 'rezervations'
+  this.what = 'rezervations';
+  }
+  
+  cinemas_button(){
+  this.what = 'cinemas';
+  }
+  
+  theatres_button(){
+  this.what = 'theatres';
+  }
+  
+  my_profile_button(){
+  this.router.navigate(['users/'+this.user.username]);
   }
   
   my_friends(){
