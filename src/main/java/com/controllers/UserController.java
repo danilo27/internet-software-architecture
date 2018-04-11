@@ -51,7 +51,7 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.repositories.UserRepository;
-import com.services.EmailService2;
+import com.services.EmailService;
 import com.services.UserService;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;

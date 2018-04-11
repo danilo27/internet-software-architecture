@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.beans.User;
-import com.services.EmailService2;
+import com.services.EmailService;
 import com.services.UserService;
 
 @Controller
@@ -30,10 +30,10 @@ public class RegisterController {
 	
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	private UserService userService;
-	private EmailService2 emailService;
+	private EmailService emailService;
  
     @Autowired
-    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService, EmailService2 emailService) {
+    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserService userService, EmailService emailService) {
       
       this.bCryptPasswordEncoder = bCryptPasswordEncoder;
       this.userService = userService;
@@ -64,7 +64,8 @@ public class RegisterController {
 							         new HashMap<String, Integer>(),
 							         new ArrayList<String>(),
 							         user.getUsername(),
-							         new ArrayList<String>()
+							         new ArrayList<String>(),
+							         new ArrayList<String>()	
 									));
 					System.out.println("New user. Sending mail to " + user.getEmail());
 					
@@ -89,7 +90,7 @@ public class RegisterController {
 					registrationEmail.setFrom("tarmiricmiisa@gmail.com");
 
 					String[] to = { user.getEmail() };
-					EmailService2.sendFromGMail("tarmiricmiisa","lozinkalozinka",to,"Activation Link","To confirm your e-mail address, please click the link below:\n"
+					EmailService.sendFromGMail("tarmiricmiisa","lozinkalozinka",to,"Activation Link","To confirm your e-mail address, please click the link below:\n"
 							+ appUrl + ":8080/login?token=" + user.getConfirmationToken());
 					
 

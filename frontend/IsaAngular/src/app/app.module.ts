@@ -23,6 +23,7 @@ import { UploadFileService } from "./upload-file.service";
 
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { LogoutComponent } from './logout/logout.component';
+import { RezervacijaComponent } from './rezervacija/rezervacija.component';
 
 
 
@@ -35,7 +36,8 @@ import { LogoutComponent } from './logout/logout.component';
     OglasComponent,
     UserprofileComponent,
     UpdateUserComponent,
-    LogoutComponent
+    LogoutComponent,
+    RezervacijaComponent
   ],
   imports: [
     BrowserModule,

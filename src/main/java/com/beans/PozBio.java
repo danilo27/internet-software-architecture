@@ -2,6 +2,8 @@ package com.beans;
 
 import java.util.ArrayList;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+//@Document(collection="pozbios")
 public class PozBio {
 	private String type;
 	private String name;

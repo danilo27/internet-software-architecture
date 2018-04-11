@@ -8,7 +8,8 @@ import {ActivatedRoute} from '@angular/router'
   styleUrls: ['./userpage.component.css']
 })
 export class UserpageComponent implements OnInit {
-
+  public what: string;
+  
   constructor(private user: UserServiceService,
   private http: HttpClient,
                 private route: ActivatedRoute) {
@@ -42,6 +43,18 @@ export class UserpageComponent implements OnInit {
     this.my_friends();
   }
   
+  friends_button(){
+    this.what='friends';
+  }
+  
+  istorija(){
+  this.what ='history';
+  }
+  
+  lista_rezervacija(){
+  this.what = 'rezervations'
+  }
+  
   my_friends(){
   
     this.http.get('/find_my_friends/'+this.user.email).subscribe(data => {
@@ -53,6 +66,16 @@ export class UserpageComponent implements OnInit {
        
       }
     })
+  }
+  
+  removeFriend(event) {
+     console.log(event.target.name);
+
+      this.http.get('/removeFriend/'+this.user.email+"/"+event.target.name).subscribe(data => {
+
+     this.my_friends();
+    })
+    return false;
   }
   
   sortByName(){

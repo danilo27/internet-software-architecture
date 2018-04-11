@@ -225,6 +225,7 @@ var userprofile_component_1 = __webpack_require__("./src/app/userprofile/userpro
 var upload_file_service_1 = __webpack_require__("./src/app/upload-file.service.ts");
 var update_user_component_1 = __webpack_require__("./src/app/update-user/update-user.component.ts");
 var logout_component_1 = __webpack_require__("./src/app/logout/logout.component.ts");
+var rezervacija_component_1 = __webpack_require__("./src/app/rezervacija/rezervacija.component.ts");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -238,7 +239,8 @@ var AppModule = /** @class */ (function () {
                 oglas_component_1.OglasComponent,
                 userprofile_component_1.UserprofileComponent,
                 update_user_component_1.UpdateUserComponent,
-                logout_component_1.LogoutComponent
+                logout_component_1.LogoutComponent,
+                rezervacija_component_1.RezervacijaComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule,
@@ -1038,6 +1040,56 @@ exports.RekvizitiService = RekvizitiService;
 
 /***/ }),
 
+/***/ "./src/app/rezervacija/rezervacija.component.css":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "./src/app/rezervacija/rezervacija.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  rezervacija works!\n</p>\n"
+
+/***/ }),
+
+/***/ "./src/app/rezervacija/rezervacija.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+var RezervacijaComponent = /** @class */ (function () {
+    function RezervacijaComponent() {
+    }
+    RezervacijaComponent.prototype.ngOnInit = function () {
+    };
+    RezervacijaComponent = __decorate([
+        core_1.Component({
+            selector: 'app-rezervacija',
+            template: __webpack_require__("./src/app/rezervacija/rezervacija.component.html"),
+            styles: [__webpack_require__("./src/app/rezervacija/rezervacija.component.css")]
+        }),
+        __metadata("design:paramtypes", [])
+    ], RezervacijaComponent);
+    return RezervacijaComponent;
+}());
+exports.RezervacijaComponent = RezervacijaComponent;
+
+
+/***/ }),
+
 /***/ "./src/app/theatres/theatres.component.css":
 /***/ (function(module, exports) {
 
@@ -1303,7 +1355,7 @@ module.exports = ""
 /***/ "./src/app/userpage/userpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n\r\nHello {{ email }}! <br>\r\n<div>\r\n  Istorija poseta pozorista i bioskopa:\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n    <a routerLink=\"/users/{{getUsername()}}\">My Profile</a>\r\n</nav>\r\n\r\n<div>\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n"
+module.exports = "<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n    <a routerLink=\"/users/{{getUsername()}}\">My Profile</a>\r\n</nav>\r\n\r\n<hr>\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -1360,6 +1412,15 @@ var UserpageComponent = /** @class */ (function () {
         console.log('user set on userpage', this.user.getUser());
         this.my_friends();
     };
+    UserpageComponent.prototype.friends_button = function () {
+        this.what = 'friends';
+    };
+    UserpageComponent.prototype.istorija = function () {
+        this.what = 'history';
+    };
+    UserpageComponent.prototype.lista_rezervacija = function () {
+        this.what = 'rezervations';
+    };
     UserpageComponent.prototype.my_friends = function () {
         var _this = this;
         this.http.get('/find_my_friends/' + this.user.email).subscribe(function (data) {
@@ -1368,6 +1429,14 @@ var UserpageComponent = /** @class */ (function () {
                 _this.my_friends_list = data;
             }
         });
+    };
+    UserpageComponent.prototype.removeFriend = function (event) {
+        var _this = this;
+        console.log(event.target.name);
+        this.http.get('/removeFriend/' + this.user.email + "/" + event.target.name).subscribe(function (data) {
+            _this.my_friends();
+        });
+        return false;
     };
     UserpageComponent.prototype.sortByName = function () {
         var _this = this;
@@ -1407,7 +1476,7 @@ exports.UserpageComponent = UserpageComponent;
 /***/ "./src/app/userprofile/userprofile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngSwitch]=\"whose\">\r\n\r\n<div *ngSwitchCase=\"'mine'\">\r\n\r\n\r\n<div [ngSwitch]=\"current\">\r\n\t<button (click)=\"details()\">My Details</button>\r\n\t<div *ngSwitchCase=\"'details'\">\r\n\t\t {{name}}'s profile\r\n\t\t\r\n\t\tMy details:\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n\t\t\r\n\t\t<a routerLink=\"/update-user\">Update my details</a>\r\n\t</div>\r\n\r\n\t<hr>\r\n\t\r\n\t<button (click)=\"my_friends()\">My Friends</button>\r\n\t<div *ngSwitchCase=\"'my_friends'\">\r\n\r\n\t\t<h3>My friends</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of my_friends_list\">\r\n\t\t   <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n\t\t\t<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n    \t    </li>\r\n    \t    </ol>\r\n\t</div>\t\r\n\t\r\n\t<hr>\r\n\t\r\n\t<button (click)=\"pending_friend_requests()\">Friend Requests</button>\r\n\t<div *ngSwitchCase=\"'pending_friend_requests'\">\r\n\t \r\n\t\t<h3>Requests</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of pending_friends_requests\">\r\n\t\t   <a routerLink=\"/userprofile\">{{friend}}</a>\r\n\t\t   <button (click)=\"acceptFR($event)\" name={{friend}}  >Accept</button>\r\n\t\t  \t <button (click)=\"declineFR($event)\" name={{friend}}  >Decline</button>\r\n\t                \r\n\t\t\t\t\t\r\n    \t    </li>\r\n    \t    </ol>\r\n    \t    \r\n\t</div>\t\r\n\t\r\n\t<hr>\r\n\t\r\n\t<button (click)=\"find_friends_div()\">Find new friends</button>\r\n\t<div *ngSwitchCase=\"'find_friends'\">\r\n\t\t<h3>Find new friends</h3>\r\n\t\tSearch friends by their name, last name, or both:<br>\r\n\t    <form (submit)=\"find_friends($event)\">\r\n\t\tName:<input type=\"text\" placeholder=\"Enter Name\" name=\"name\" />\r\n\t    Lastname:<input type=\"text\" placeholder=\"Enter Lastname\" name=\"lastname\" />\r\n\t\t<input type=\"submit\" name=\"find_friends\" value=\"Find\" />\r\n\t    </form>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'friends_results'\">\r\n\r\n        \r\n    \t    <h4>Search results:</h4>\r\n    \t    \r\n    \t    <ol>\r\n\r\n    \t    <li *ngFor=\"let friend of found_friends_list\">\r\n    \t    <a routerLink=\"/users/{{friend[1]}}\">{{friend[0]}}, {{friend[3]}}, {{friend[4]}}</a>\r\n    \t        \r\n    \t        \t\r\n    \t        \t\r\n\t                <div *ngIf=\"friend[2]== 'ne';  then if1condition\"></div>\r\n\t                 <div *ngIf=\"friend[2]== 'poslat';  then if2condition\"></div>   \r\n\t               <div *ngIf=\"friend[2]== 'vec';  then if3condition\"></div>\r\n\t                <div *ngIf=\"friend[2]== 'primljen';  then if4condition\"></div>\r\n\t                <ng-template #if1condition><button (click)=\"add_friend($event)\"   name={{friend[0]}}  >Add</button></ng-template>  \r\n\t\t\t\t\t<ng-template #if2condition><button (click)=\"cancelFR($event)\" name={{friend[0]}} >Cancel Request</button></ng-template> \r\n\t\t\t\t\t<ng-template #if3condition><button (click)=\"removeFriend($event)\"   name={{friend[0]}}  >Remove</button></ng-template>  \t\r\n\t\t\t\t\t<ng-template #if4condition><button (click)=\"declineFR($event)\"   name={{friend[0]}}  >Decline</button></ng-template>  \t\t\t\r\n    \t    \r\n    \t    </li>\r\n\r\n    \t    </ol>\r\n      \r\n\t</div>\r\n\r\n</div>\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'other'\">\r\n\t <h3>{{name}}'s profile</h3>\r\n\t\t\r\n\t\t{{name}}'s details:\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n</div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div [ngSwitch]=\"whose\">\r\n\r\n<div *ngSwitchCase=\"'mine'\">\r\n\r\n\r\n<div [ngSwitch]=\"current\">\r\n\t<button (click)=\"details()\">My Details</button>\r\n\t<button (click)=\"my_friends()\">My Friends</button>\r\n\t<button (click)=\"pending_friend_requests()\">Friend Requests</button>\r\n\t<button (click)=\"find_friends_div()\">Find new friends</button>\r\n\t\r\n\t<div *ngSwitchCase=\"'details'\">\r\n\t\t <h3>{{name}}'s details:</h3>\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n\t\t\r\n\t\t<a routerLink=\"/update-user\">Update my details</a>\r\n\t</div>\r\n\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'my_friends'\">\r\n\r\n\t\t<h3>My friends</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of my_friends_list\">\r\n\t\t   <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n\t\t\t<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n    \t    </li>\r\n    \t    </ol>\r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'pending_friend_requests'\">\r\n\t \r\n\t\t<h3>Requests</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of pending_friends_requests\">\r\n\t\t   <a routerLink=\"/userprofile\">{{friend}}</a>\r\n\t\t   <button (click)=\"acceptFR($event)\" name={{friend}}  >Accept</button>\r\n\t\t  \t <button (click)=\"declineFR($event)\" name={{friend}}  >Decline</button>\r\n\t                \r\n\t\t\t\t\t\r\n    \t    </li>\r\n    \t    </ol>\r\n    \t    \r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'find_friends'\">\r\n\t\t<h3>Find new friends</h3>\r\n\t\tSearch friends by their name, last name, or both:<br>\r\n\t    <form (submit)=\"find_friends($event)\">\r\n\t\tName:<input type=\"text\" placeholder=\"Enter Name\" name=\"name\" />\r\n\t    Lastname:<input type=\"text\" placeholder=\"Enter Lastname\" name=\"lastname\" />\r\n\t\t<input type=\"submit\" name=\"find_friends\" value=\"Find\" />\r\n\t    </form>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'friends_results'\">\r\n\r\n        \r\n    \t    <h4>Search results:</h4>\r\n    \t    \r\n    \t    <ol>\r\n\r\n    \t    <li *ngFor=\"let friend of found_friends_list\">\r\n    \t    <a routerLink=\"/users/{{friend[1]}}\">{{friend[0]}}, {{friend[3]}}, {{friend[4]}}</a>\r\n    \t        \r\n    \t        \t\r\n    \t        \t\r\n\t                <div *ngIf=\"friend[2]== 'ne';  then if1condition\"></div>\r\n\t                 <div *ngIf=\"friend[2]== 'poslat';  then if2condition\"></div>   \r\n\t               <div *ngIf=\"friend[2]== 'vec';  then if3condition\"></div>\r\n\t                <div *ngIf=\"friend[2]== 'primljen';  then if4condition\"></div>\r\n\t                <ng-template #if1condition><button (click)=\"add_friend($event)\"   name={{friend[0]}}  >Add</button></ng-template>  \r\n\t\t\t\t\t<ng-template #if2condition><button (click)=\"cancelFR($event)\" name={{friend[0]}} >Cancel Request</button></ng-template> \r\n\t\t\t\t\t<ng-template #if3condition><button (click)=\"removeFriend($event)\"   name={{friend[0]}}  >Remove</button></ng-template>  \t\r\n\t\t\t\t\t<ng-template #if4condition><button (click)=\"declineFR($event)\"   name={{friend[0]}}  >Decline</button></ng-template>  \t\t\t\r\n    \t    \r\n    \t    </li>\r\n\r\n    \t    </ol>\r\n      \r\n\t</div>\r\n\r\n</div>\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'other'\">\r\n\t <h3>{{name}}'s profile</h3>\r\n\t\t\r\n\t\t{{name}}'s details:\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n</div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 

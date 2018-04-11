@@ -5,10 +5,12 @@
 
 <div [ngSwitch]="current">
 	<button (click)="details()">My Details</button>
+	<button (click)="my_friends()">My Friends</button>
+	<button (click)="pending_friend_requests()">Friend Requests</button>
+	<button (click)="find_friends_div()">Find new friends</button>
+	
 	<div *ngSwitchCase="'details'">
-		 {{name}}'s profile
-		
-		My details:
+		 <h3>{{name}}'s details:</h3>
 		<ul>
 		    <li>{{email}}</li>
 		    <li>{{name}}</li>
@@ -20,9 +22,9 @@
 		<a routerLink="/update-user">Update my details</a>
 	</div>
 
-	<hr>
 	
-	<button (click)="my_friends()">My Friends</button>
+	
+	
 	<div *ngSwitchCase="'my_friends'">
 
 		<h3>My friends</h3>
@@ -34,9 +36,9 @@
     	    </ol>
 	</div>	
 	
-	<hr>
 	
-	<button (click)="pending_friend_requests()">Friend Requests</button>
+	
+	
 	<div *ngSwitchCase="'pending_friend_requests'">
 	 
 		<h3>Requests</h3>
@@ -52,9 +54,9 @@
     	    
 	</div>	
 	
-	<hr>
 	
-	<button (click)="find_friends_div()">Find new friends</button>
+	
+	
 	<div *ngSwitchCase="'find_friends'">
 		<h3>Find new friends</h3>
 		Search friends by their name, last name, or both:<br>

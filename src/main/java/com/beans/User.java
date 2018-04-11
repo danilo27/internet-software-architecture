@@ -18,6 +18,16 @@ public class User {
 	private ArrayList<String> friends;
 	private ArrayList<String> listaZahteva;
 	private ArrayList<String> listaPoslatihZahteva;
+	private ArrayList<String> listaProjekcija;
+	
+	public ArrayList<String> getListaProjekcija() {
+		return listaProjekcija;
+	}
+
+	public void setListaProjekcija(ArrayList<String> listaProjekcija) {
+		this.listaProjekcija = listaProjekcija;
+	}
+
 	public ArrayList<String> getListaPoslatihZahteva() {
 		return listaPoslatihZahteva;
 	}
@@ -44,7 +54,8 @@ public class User {
 	public User(String type, String pass, String email, String name, String lastname, String city,
 			int phoneNumber, ArrayList<String> listaPrijatelja, ArrayList<String> listaZahteva,
 			HashMap<String, Integer> listaOcenaPozBio, HashMap<String, Integer> listaOcenaProjekcija, 
-			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva
+			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva,
+			ArrayList<String> listaProjekcija
 			) {
 		super();
 		this.utype = type;
@@ -63,6 +74,7 @@ public class User {
 		this.loggedInEmail = email;
 		this.username = username;
 		this.listaPoslatihZahteva = listaPoslatihZahteva;
+		this.listaProjekcija = listaProjekcija;
 	}
 	
 	public String getUsername() {

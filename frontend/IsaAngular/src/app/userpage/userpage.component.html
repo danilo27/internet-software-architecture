@@ -1,8 +1,25 @@
+<nav>
+	<a routerLink="/cinemas">Cinemas</a>
+	<a routerLink="/theatres">Theatres</a>
+    <a routerLink="/users/{{getUsername()}}">My Profile</a>
+</nav>
+
+<hr>
+
+<div [ngSwitch]="what">
 
 
-Hello {{ email }}! <br>
+
+
+
+<button (click)="istorija()">History</button>
+<button (click)="friends_button()">My Friends</button>
+<button (click)="lista_rezervacija()">Reservations</button>
+
+<div *ngSwitchCase="'history'">
+
 <div>
-  Istorija poseta pozorista i bioskopa:
+ <h3> Istorija poseta pozorista i bioskopa: </h3>
   <ul>
   <li *ngFor="let visit of visits">
       {{visit}}
@@ -10,13 +27,9 @@ Hello {{ email }}! <br>
 </ul>
 </div>
 
-<nav>
-	<a routerLink="/cinemas">Cinemas</a>
-	<a routerLink="/theatres">Theatres</a>
-    <a routerLink="/users/{{getUsername()}}">My Profile</a>
-</nav>
+</div>
 
-<div>
+<div *ngSwitchCase="'friends'">
 
 <h3>My friends</h3>
 <button (click)="sortByName($event)"  >Sort by name</button>
@@ -28,4 +41,13 @@ Hello {{ email }}! <br>
 <button (click)="removeFriend($event)" name={{friend.email}}  >Remove</button>
   </li>
   </ol>
+</div>
+
+
+<div *ngSwitchCase="'reservations'">
+
+<h3>My reservations</h3>
+
+</div>
+
 </div>
