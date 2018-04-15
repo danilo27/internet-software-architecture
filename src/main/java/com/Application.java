@@ -63,7 +63,7 @@ public class Application implements CommandLineRunner{
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "el", new ArrayList<String>(), new ArrayList<String>()		 ));
 		
-		repository.save(new User("regular", "a", "a", "a", "a", "a",
+		repository.save(new User("admin", "a", "a", "a", "a", "a",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "a", new ArrayList<String>(), new ArrayList<String>()	 ));

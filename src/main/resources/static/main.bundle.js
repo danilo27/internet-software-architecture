@@ -27,15 +27,17 @@ module.exports = ""
 /***/ "./src/app/activation-page/activation-page.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  Activation link is sent to {{ email }} \r\n</p>\r\n"
+module.exports = "<p>\n  Activation link is sent to {{ email }} \n</p>\n"
 
 /***/ }),
 
 /***/ "./src/app/activation-page/activation-page.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivationPageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,9 +47,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
 var ActivationPageComponent = /** @class */ (function () {
     function ActivationPageComponent(user) {
         this.user = user;
@@ -65,85 +66,100 @@ var ActivationPageComponent = /** @class */ (function () {
     ActivationPageComponent.prototype.ngOnInit = function () {
     };
     ActivationPageComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-activation-page',
             template: __webpack_require__("./src/app/activation-page/activation-page.component.html"),
             styles: [__webpack_require__("./src/app/activation-page/activation-page.component.css")]
         }),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */]])
     ], ActivationPageComponent);
     return ActivationPageComponent;
 }());
-exports.ActivationPageComponent = ActivationPageComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/app-routing.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RoutingComponents; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__homepage_homepage_component__ = __webpack_require__("./src/app/homepage/homepage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__login_login_component__ = __webpack_require__("./src/app/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__register_register_component__ = __webpack_require__("./src/app/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cinemas_cinemas_component__ = __webpack_require__("./src/app/cinemas/cinemas.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__fanpage_fanpage_component__ = __webpack_require__("./src/app/fanpage/fanpage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__ = __webpack_require__("./src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__ = __webpack_require__("./src/app/theatres/theatres.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__ = __webpack_require__("./src/app/userpage/userpage.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__userprofile_userprofile_component__ = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__ = __webpack_require__("./src/app/activation-page/activation-page.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__update_user_update_user_component__ = __webpack_require__("./src/app/update-user/update-user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__authguard_guard__ = __webpack_require__("./src/app/authguard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__logout_logout_component__ = __webpack_require__("./src/app/logout/logout.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var homepage_component_1 = __webpack_require__("./src/app/homepage/homepage.component.ts");
-var login_component_1 = __webpack_require__("./src/app/login/login.component.ts");
-var register_component_1 = __webpack_require__("./src/app/register/register.component.ts");
-var cinemas_component_1 = __webpack_require__("./src/app/cinemas/cinemas.component.ts");
-var fanpage_component_1 = __webpack_require__("./src/app/fanpage/fanpage.component.ts");
-var page_not_found_component_1 = __webpack_require__("./src/app/page-not-found/page-not-found.component.ts");
-var theatres_component_1 = __webpack_require__("./src/app/theatres/theatres.component.ts");
-var userpage_component_1 = __webpack_require__("./src/app/userpage/userpage.component.ts");
-var userprofile_component_1 = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
-var activation_page_component_1 = __webpack_require__("./src/app/activation-page/activation-page.component.ts");
-var update_user_component_1 = __webpack_require__("./src/app/update-user/update-user.component.ts");
-var authguard_guard_1 = __webpack_require__("./src/app/authguard.guard.ts");
-var logout_component_1 = __webpack_require__("./src/app/logout/logout.component.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var routes = [
     { path: '', redirectTo: '/homepage', pathMatch: 'full' },
-    { path: 'homepage', component: homepage_component_1.HomepageComponent },
-    { path: 'login', component: login_component_1.LoginComponent },
-    { path: 'register', component: register_component_1.RegisterComponent },
-    { path: 'cinemas', component: cinemas_component_1.CinemasComponent },
-    { path: 'fanpage', component: fanpage_component_1.FanpageComponent },
-    { path: 'theatres', component: theatres_component_1.TheatresComponent },
-    { path: 'userpage', canActivate: [authguard_guard_1.AuthguardGuard], component: userpage_component_1.UserpageComponent },
-    { path: 'userprofile', component: userprofile_component_1.UserprofileComponent },
-    { path: 'activation-page', component: activation_page_component_1.ActivationPageComponent },
-    { path: 'logout', component: logout_component_1.LogoutComponent },
-    { path: 'update-user', component: update_user_component_1.UpdateUserComponent },
-    { path: 'users/:username', component: userprofile_component_1.UserprofileComponent },
-    { path: '**', component: page_not_found_component_1.PageNotFoundComponent }
+    { path: 'homepage', component: __WEBPACK_IMPORTED_MODULE_2__homepage_homepage_component__["a" /* HomepageComponent */] },
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__login_login_component__["a" /* LoginComponent */] },
+    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_4__register_register_component__["a" /* RegisterComponent */] },
+    { path: 'cinemas', component: __WEBPACK_IMPORTED_MODULE_5__cinemas_cinemas_component__["a" /* CinemasComponent */] },
+    { path: 'fanpage', component: __WEBPACK_IMPORTED_MODULE_6__fanpage_fanpage_component__["a" /* FanpageComponent */] },
+    { path: 'theatres', component: __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__["a" /* TheatresComponent */] },
+    { path: 'userpage', canActivate: [__WEBPACK_IMPORTED_MODULE_13__authguard_guard__["a" /* AuthguardGuard */]], component: __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__["a" /* UserpageComponent */] },
+    { path: 'userprofile', component: __WEBPACK_IMPORTED_MODULE_10__userprofile_userprofile_component__["a" /* UserprofileComponent */] },
+    { path: 'activation-page', component: __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__["a" /* ActivationPageComponent */] },
+    { path: 'logout', component: __WEBPACK_IMPORTED_MODULE_14__logout_logout_component__["a" /* LogoutComponent */] },
+    { path: 'update-user', component: __WEBPACK_IMPORTED_MODULE_12__update_user_update_user_component__["a" /* UpdateUserComponent */] },
+    { path: 'users/:username', component: __WEBPACK_IMPORTED_MODULE_10__userprofile_userprofile_component__["a" /* UserprofileComponent */] },
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
     AppRoutingModule = __decorate([
-        core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
-            exports: [router_1.RouterModule]
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
+            imports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */].forRoot(routes)],
+            exports: [__WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* RouterModule */]]
         })
     ], AppRoutingModule);
     return AppRoutingModule;
 }());
-exports.AppRoutingModule = AppRoutingModule;
-exports.RoutingComponents = [
-    homepage_component_1.HomepageComponent,
-    login_component_1.LoginComponent,
-    register_component_1.RegisterComponent,
-    cinemas_component_1.CinemasComponent,
-    fanpage_component_1.FanpageComponent,
-    theatres_component_1.TheatresComponent,
-    userpage_component_1.UserpageComponent,
-    page_not_found_component_1.PageNotFoundComponent,
-    activation_page_component_1.ActivationPageComponent
+
+var RoutingComponents = [
+    __WEBPACK_IMPORTED_MODULE_2__homepage_homepage_component__["a" /* HomepageComponent */],
+    __WEBPACK_IMPORTED_MODULE_3__login_login_component__["a" /* LoginComponent */],
+    __WEBPACK_IMPORTED_MODULE_4__register_register_component__["a" /* RegisterComponent */],
+    __WEBPACK_IMPORTED_MODULE_5__cinemas_cinemas_component__["a" /* CinemasComponent */],
+    __WEBPACK_IMPORTED_MODULE_6__fanpage_fanpage_component__["a" /* FanpageComponent */],
+    __WEBPACK_IMPORTED_MODULE_8__theatres_theatres_component__["a" /* TheatresComponent */],
+    __WEBPACK_IMPORTED_MODULE_9__userpage_userpage_component__["a" /* UserpageComponent */],
+    __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
+    __WEBPACK_IMPORTED_MODULE_11__activation_page_activation_page_component__["a" /* ActivationPageComponent */]
 ];
 
 
@@ -164,10 +180,11 @@ module.exports = "<app-header></app-header>\n\n<router-outlet></router-outlet>\n
 /***/ }),
 
 /***/ "./src/app/app.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,14 +194,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
     }
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("./src/app/app.component.html"),
             styles: [__webpack_require__("./src/app/app.component.css")]
@@ -193,76 +209,94 @@ var AppComponent = /** @class */ (function () {
     ], AppComponent);
     return AppComponent;
 }());
-exports.AppComponent = AppComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/app.module.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_routing_module__ = __webpack_require__("./src/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("./src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__header_header_component__ = __webpack_require__("./src/app/header/header.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__authguard_guard__ = __webpack_require__("./src/app/authguard.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__rekviziti_service__ = __webpack_require__("./src/app/rekviziti.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__rekvizit_rekvizit_component__ = __webpack_require__("./src/app/rekvizit/rekvizit.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__oglas_oglas_component__ = __webpack_require__("./src/app/oglas/oglas.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__userprofile_userprofile_component__ = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__upload_file_service__ = __webpack_require__("./src/app/upload-file.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__update_user_update_user_component__ = __webpack_require__("./src/app/update-user/update-user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__logout_logout_component__ = __webpack_require__("./src/app/logout/logout.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__rezervacija_rezervacija_component__ = __webpack_require__("./src/app/rezervacija/rezervacija.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var platform_browser_1 = __webpack_require__("./node_modules/@angular/platform-browser/esm5/platform-browser.js");
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var app_routing_module_1 = __webpack_require__("./src/app/app-routing.module.ts");
-var app_component_1 = __webpack_require__("./src/app/app.component.ts");
-var header_component_1 = __webpack_require__("./src/app/header/header.component.ts");
-var authguard_guard_1 = __webpack_require__("./src/app/authguard.guard.ts");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
-var rekviziti_service_1 = __webpack_require__("./src/app/rekviziti.service.ts");
-var rekvizit_component_1 = __webpack_require__("./src/app/rekvizit/rekvizit.component.ts");
-var oglas_component_1 = __webpack_require__("./src/app/oglas/oglas.component.ts");
-var userprofile_component_1 = __webpack_require__("./src/app/userprofile/userprofile.component.ts");
-var upload_file_service_1 = __webpack_require__("./src/app/upload-file.service.ts");
-var update_user_component_1 = __webpack_require__("./src/app/update-user/update-user.component.ts");
-var logout_component_1 = __webpack_require__("./src/app/logout/logout.component.ts");
-var rezervacija_component_1 = __webpack_require__("./src/app/rezervacija/rezervacija.component.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
-        core_1.NgModule({
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                app_component_1.AppComponent,
-                header_component_1.HeaderComponent,
-                app_routing_module_1.RoutingComponents,
-                rekvizit_component_1.RekvizitComponent,
-                oglas_component_1.OglasComponent,
-                userprofile_component_1.UserprofileComponent,
-                update_user_component_1.UpdateUserComponent,
-                logout_component_1.LogoutComponent,
-                rezervacija_component_1.RezervacijaComponent
+                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_5__header_header_component__["a" /* HeaderComponent */],
+                __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["b" /* RoutingComponents */],
+                __WEBPACK_IMPORTED_MODULE_9__rekvizit_rekvizit_component__["a" /* RekvizitComponent */],
+                __WEBPACK_IMPORTED_MODULE_10__oglas_oglas_component__["a" /* OglasComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__userprofile_userprofile_component__["a" /* UserprofileComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__update_user_update_user_component__["a" /* UpdateUserComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__logout_logout_component__["a" /* LogoutComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__rezervacija_rezervacija_component__["a" /* RezervacijaComponent */]
             ],
             imports: [
-                platform_browser_1.BrowserModule,
-                app_routing_module_1.AppRoutingModule,
-                http_1.HttpClientModule
+                __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+                __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */]
             ],
-            providers: [user_service_service_1.UserServiceService, rekviziti_service_1.RekvizitiService, authguard_guard_1.AuthguardGuard, upload_file_service_1.UploadFileService],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [__WEBPACK_IMPORTED_MODULE_7__user_service_service__["a" /* UserServiceService */], __WEBPACK_IMPORTED_MODULE_8__rekviziti_service__["a" /* RekvizitiService */], __WEBPACK_IMPORTED_MODULE_6__authguard_guard__["a" /* AuthguardGuard */], __WEBPACK_IMPORTED_MODULE_12__upload_file_service__["a" /* UploadFileService */]],
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
 }());
-exports.AppModule = AppModule;
+
 
 
 /***/ }),
 
 /***/ "./src/app/authguard.guard.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthguardGuard; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -272,10 +306,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
+
 var AuthguardGuard = /** @class */ (function () {
     function AuthguardGuard(user, router) {
         this.user = user;
@@ -288,12 +321,12 @@ var AuthguardGuard = /** @class */ (function () {
         return this.user.getLoggedIn();
     };
     AuthguardGuard = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService, router_1.Router])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__user_service_service__["a" /* UserServiceService */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
     ], AuthguardGuard);
     return AuthguardGuard;
 }());
-exports.AuthguardGuard = AuthguardGuard;
+
 
 
 /***/ }),
@@ -313,10 +346,11 @@ module.exports = "<p>\n  cinemas works!\n</p>\n"
 /***/ }),
 
 /***/ "./src/app/cinemas/cinemas.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CinemasComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -326,15 +360,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
 var CinemasComponent = /** @class */ (function () {
     function CinemasComponent() {
     }
     CinemasComponent.prototype.ngOnInit = function () {
     };
     CinemasComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-cinemas',
             template: __webpack_require__("./src/app/cinemas/cinemas.component.html"),
             styles: [__webpack_require__("./src/app/cinemas/cinemas.component.css")]
@@ -343,7 +376,7 @@ var CinemasComponent = /** @class */ (function () {
     ], CinemasComponent);
     return CinemasComponent;
 }());
-exports.CinemasComponent = CinemasComponent;
+
 
 
 /***/ }),
@@ -351,22 +384,27 @@ exports.CinemasComponent = CinemasComponent;
 /***/ "./src/app/fanpage/fanpage.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "li {\n\tborder-bottom: 1px solid gray;\n}"
 
 /***/ }),
 
 /***/ "./src/app/fanpage/fanpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n\t<nav>\r\n\t\t<button (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\r\n\t\t<button (click)=\"polovniOglasi()\">Oglasi</button>\r\n\t</nav>\r\n</div>\r\n\r\n\t\t\t\t\t   \r\n\r\n\r\n\r\n<div [ngSwitch]=\"state\">\r\n\t<div *ngSwitchCase=\"'zvanicni'\">\r\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\r\n\t\t\t<div *ngFor = \"let f of fileUploads\">\r\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\r\n\t\t\t\t\t<app-rekvizit [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\r\n\t\t\t\t</div>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t\r\n\t</div>\r\n \r\n\t<div *ngSwitchCase=\"'oglasi'\">\r\n\t\t<nav>\r\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\r\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\r\n\t\t</nav>\r\n\t\t<div *ngFor = \"let o of oglasi\">\r\n\t\t\t<app-oglas [oglas]=\"o\"></app-oglas>\r\n\t\t</div>\r\n\t</div>\r\n\r\n\t<div *ngSwitchCase=\"'noviOglas'\">\r\n\t\t<div>\r\n\t\t\t<h3>Naziv oglasa</h3>\r\n\t\t\t<input #nazivOglasa type=\"text\">\r\n\t\t\t<h3>Opis oglasa</h3>\r\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\r\n\t\t\t<h3>Slika oglasa</h3>\r\n\t\t\t\r\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\r\n\t\t\t\r\n\t\t\t<h3>Cena oglasa</h3>\r\n\t\t\t<input #cenaOglasa type=\"number\">\r\n\t\t\t<h3>Datum isteka oglasa</h3>\r\n\t\t\t<input #datumOglasa type=\"date\">\r\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\r\n\t\t</div>\r\n\t</div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"dropdown\">\n    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Notifikacije\n    <span class=\"caret\"></span></button>\n    <ul class=\"dropdown-menu\">\n      <li class=\"dropdown-header\">Ponude</li>\n      <li *ngFor=\"let n of notifikacije\">\n  \t\t\t{{n.sadrzaj}} <button (click)=\"seen(n.naziv)\">OK</button>\n\t  </li>\n    </ul>\n</div>\n\n\n<div>\n\t<nav>\n\t\t<button (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\n\t\t<button (click)=\"polovniOglasi()\">Oglasi</button>\n\t</nav>\n</div>\n\n\n<div [ngSwitch]=\"state\">\n\t<div *ngSwitchCase=\"'zvanicni'\">\n\t\t<div *ngIf=\"isAdmin()\">\n\t\t\t<nav>\n\t\t\t\t<button (click)=\"noviZvanicniRekvizit()\">Novi rekvizit</button>\n\t\t\t\t<button (click)=\"pregledajOglase()\">Oglasi za proveru</button>\n\t\t\t</nav>\n\t\t</div>\n\t\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\n\t\t\t\t\t<app-rekvizit (izmenaEvent)=\"izmena($event)\" [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t</div>\n \n\t<div *ngSwitchCase=\"'oglasi'\">\n\t\t<nav>\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\n\t\t</nav>\n\t\t<div *ngFor = \"let o of oglasi\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f'></app-oglas>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div *ngSwitchCase=\"'noviOglas'\">\n\t\t<div>\n\t\t\t<h3>Naziv oglasa</h3>\n\t\t\t<input #nazivOglasa type=\"text\">\n\t\t\t<h3>Opis oglasa</h3>\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\n\t\t\t<h3>Slika oglasa</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena oglasa</h3>\n\t\t\t<input #cenaOglasa type=\"number\">\n\t\t\t<h3>Datum isteka oglasa</h3>\n\t\t\t<input #datumOglasa type=\"date\">\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'noviRekvizit'\">\n\t\t<div>\n\t\t\t<h3>Naziv rekvizita</h3>\n\t\t\t<input #nazivRekvizita type=\"text\" value=\"{{nazivRek}}\" >\n\t\t\t<h3>Opis rekvizita</h3>\n\t\t\t<textarea #opisRekvizita rows=\"10\" cols=\"30\" value=\"{{opisRek}}\"></textarea>\n\t\t\t<h3>Slika rekvizita</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena rekvizita</h3>\n\t\t\t<input #cenaRekvizita type=\"number\" value=\"{{cenaRek}}\">\n\t\t\t\n\t\t\t<div *ngIf=\"isMode() then postavi else izmeni;\"></div>\n\t\t\t\n\t\t\t<ng-template #postavi>\n\t\t\t\t<button (click)=\"postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Postavi rekvizit</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t\t<ng-template #izmeni>\n\t\t\t\t<button (click)=\"izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Izmeni rekvizit</button>\n\t\t\t\t<button (click)=\"odustani()\">Odustani</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'proveraOglasa'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiZaProveru\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'aktivniOglasi'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiKorisnika\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
 
 /***/ }),
 
 /***/ "./src/app/fanpage/fanpage.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FanpageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rekviziti_service__ = __webpack_require__("./src/app/rekviziti.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__upload_file_service__ = __webpack_require__("./src/app/upload-file.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -376,12 +414,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var rekviziti_service_1 = __webpack_require__("./src/app/rekviziti.service.ts");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
-var upload_file_service_1 = __webpack_require__("./src/app/upload-file.service.ts");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+
+
+
+
+
 var FanpageComponent = /** @class */ (function () {
     function FanpageComponent(_rekvizitiService, _userService, _uploadService) {
         this._rekvizitiService = _rekvizitiService;
@@ -390,18 +427,25 @@ var FanpageComponent = /** @class */ (function () {
         this.zvanicniRekviziti = null;
         this.oglasi = null;
         this.oglasiKorisnika = null;
-        this.user = "vlada";
+        this.oglasiZaProveru = null;
+        this.user = null;
+        this.notifikacije = null;
         this.state = "zvanicni";
+        this.nazivRek = "";
+        this.opisRek = "";
+        this.slikaRek = "";
+        this.cenaRek = "";
+        this.mode = false;
     }
     FanpageComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._rekvizitiService.getZvanicniRekviziti().subscribe(function (data) { return _this.zvanicniRekviziti = data; });
         this._rekvizitiService.getPolovniRekviziti().subscribe(function (data) { return _this.oglasi = data; });
         this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
-        console.log('fileUploads:');
-        console.log(this.fileUploads);
-        //        this._rekvizitiService.getAktivniOglasi(this.user).subscribe(data => this.oglasiKorisnika = data);
-        //this._userService.getUser().subscribe(data => this.user = data);
+        this.user = this._userService.getUser();
+        console.log('user ' + this.user.username + " type " + this.user.utype);
+        this._rekvizitiService.getAktivniOglasi(this.user).subscribe(function (data) { return _this.oglasiKorisnika = data; });
+        this._rekvizitiService.getNotifikacije(this.user).subscribe(function (data) { return _this.notifikacije = data; });
     };
     FanpageComponent.prototype.zvanicnaProdavnica = function () {
         var _this = this;
@@ -417,15 +461,17 @@ var FanpageComponent = /** @class */ (function () {
     FanpageComponent.prototype.aktivniOglasi = function () {
         this.state = "aktivniOglasi";
     };
+    FanpageComponent.prototype.noviZvanicniRekvizit = function () {
+        this.state = "noviRekvizit";
+    };
     FanpageComponent.prototype.postaviOglas = function (nazivOglasa, opisOglasa, cenaOglasa, datumOglasa) {
         var _this = this;
-        var slikaOglasa = "testSlikeValjda";
-        console.log('postavljen oglas :');
-        console.log(nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, datumOglasa);
-        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, this.user, datumOglasa);
+        var slikaOglasa = this.selectedFiles.item(0).name;
+        var ponude = [];
+        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, this.user, datumOglasa, ponude);
         this.currentFileUpload = this.selectedFiles.item(0);
         this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
-            if (event instanceof http_1.HttpResponse) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
                 console.log('File is completely uploaded!');
             }
         });
@@ -433,27 +479,101 @@ var FanpageComponent = /** @class */ (function () {
         this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
         this.state = "zvanicni";
     };
+    FanpageComponent.prototype.postaviRekvizit = function (nazivRekvizita, opisRekvizita, cenaRekvizita) {
+        var _this = this;
+        var slikaRekvizita = this.selectedFiles.item(0).name;
+        console.log(slikaRekvizita);
+        this._rekvizitiService.postaviRekvizit(nazivRekvizita, opisRekvizita, slikaRekvizita, cenaRekvizita);
+        this.currentFileUpload = this.selectedFiles.item(0);
+        this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
+            if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
+                console.log('File is completely uploaded!');
+            }
+        });
+        this.selectedFiles = undefined;
+        this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
+        this.state = "zvanicni";
+    };
+    FanpageComponent.prototype.izmeniRekvizit = function (nazivRekvizita, opisRekvizita, cenaRekvizita) {
+        var _this = this;
+        var slikaRekvizita = this.slikaRek;
+        var slikaPromenjena = false;
+        if (this.selectedFiles) {
+            if (this.selectedFiles.item(0).name != this.slikaRek) {
+                slikaRekvizita = this.selectedFiles.item(0).name;
+                slikaPromenjena = true;
+            }
+        }
+        this._rekvizitiService.izmeniRekvizit(nazivRekvizita, opisRekvizita, slikaRekvizita, cenaRekvizita);
+        if (slikaPromenjena) {
+            this.currentFileUpload = this.selectedFiles.item(0);
+            this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
+                if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
+                    console.log('File is completely uploaded!');
+                }
+            });
+            this.selectedFiles = undefined;
+            this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
+        }
+        this.nazivRek = "";
+        this.opisRek = "";
+        this.slikaRek = "";
+        this.cenaRek = "";
+        this.mode = false;
+        this.state = "zvanicni";
+    };
     FanpageComponent.prototype.onSelectFile = function (event) {
         this.selectedFiles = event.target.files;
     };
     FanpageComponent.prototype.isImage = function (r, file) {
-        console.log(r);
-        console.log(file);
         return file.includes(r);
     };
+    FanpageComponent.prototype.isAdmin = function () {
+        if (this.user.utype == "admin") {
+            return true;
+        }
+        return false;
+    };
+    FanpageComponent.prototype.pregledajOglase = function () {
+        var _this = this;
+        this._rekvizitiService.getOglasiZaProveru().subscribe(function (data) { return _this.oglasiZaProveru = data; });
+        this.state = "proveraOglasa";
+    };
+    FanpageComponent.prototype.izmena = function (rekvizit) {
+        this.mode = true;
+        this.nazivRek = rekvizit.naziv;
+        this.opisRek = rekvizit.opis;
+        this.slikaRek = rekvizit.slika;
+        this.cenaRek = rekvizit.cena;
+        this.state = "noviRekvizit";
+    };
+    FanpageComponent.prototype.isMode = function () {
+        return !this.mode;
+    };
+    FanpageComponent.prototype.odustani = function () {
+        this.nazivRek = "";
+        this.opisRek = "";
+        this.slikaRek = "";
+        this.cenaRek = "";
+        this.mode = false;
+        this.state = "zvanicni";
+    };
+    FanpageComponent.prototype.seen = function (naziv) {
+        console.log(naziv);
+    };
     FanpageComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-fanpage',
             template: __webpack_require__("./src/app/fanpage/fanpage.component.html"),
             styles: [__webpack_require__("./src/app/fanpage/fanpage.component.css")]
         }),
-        __metadata("design:paramtypes", [rekviziti_service_1.RekvizitiService,
-            user_service_service_1.UserServiceService,
-            upload_file_service_1.UploadFileService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__rekviziti_service__["a" /* RekvizitiService */],
+            __WEBPACK_IMPORTED_MODULE_2__user_service_service__["a" /* UserServiceService */],
+            __WEBPACK_IMPORTED_MODULE_3__upload_file_service__["a" /* UploadFileService */]])
     ], FanpageComponent);
     return FanpageComponent;
 }());
-exports.FanpageComponent = FanpageComponent;
+
 
 
 /***/ }),
@@ -473,10 +593,12 @@ module.exports = "<div>\r\n\t<button routerLink=\"/homepage\">Home</button>\r\n<
 /***/ }),
 
 /***/ "./src/app/header/header.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HeaderComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -486,18 +608,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
 var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(_userService) {
         this._userService = _userService;
-        this.user = null;
         this.loggedIn = false;
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._userService.getUser().subscribe(function (data) { return _this.user = data; });
     };
     HeaderComponent.prototype.isLoggedIn = function () {
         return this._userService.getLoggedIn();
@@ -506,16 +624,16 @@ var HeaderComponent = /** @class */ (function () {
         return this._userService.getUsername();
     };
     HeaderComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-header',
             template: __webpack_require__("./src/app/header/header.component.html"),
             styles: [__webpack_require__("./src/app/header/header.component.css")]
         }),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */]])
     ], HeaderComponent);
     return HeaderComponent;
 }());
-exports.HeaderComponent = HeaderComponent;
+
 
 
 /***/ }),
@@ -535,10 +653,12 @@ module.exports = "<nav>\r\n\t<div *ngIf=\"isLoggedIn() then userpagebutton; else
 /***/ }),
 
 /***/ "./src/app/homepage/homepage.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomepageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -548,33 +668,30 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
 var HomepageComponent = /** @class */ (function () {
     function HomepageComponent(_userService) {
         this._userService = _userService;
-        // public user = '{"name":"vlada"}';
         this.user = null;
     }
     HomepageComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._userService.getUser().subscribe(function (data) { return _this.user = data; });
+        this.user = this._userService.getUser();
     };
     HomepageComponent.prototype.isLoggedIn = function () {
         return this._userService.getLoggedIn();
     };
     HomepageComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-homepage',
             template: __webpack_require__("./src/app/homepage/homepage.component.html"),
             styles: [__webpack_require__("./src/app/homepage/homepage.component.css")]
         }),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */]])
     ], HomepageComponent);
     return HomepageComponent;
 }());
-exports.HomepageComponent = HomepageComponent;
+
 
 
 /***/ }),
@@ -582,22 +699,26 @@ exports.HomepageComponent = HomepageComponent;
 /***/ "./src/app/login/login.component.css":
 /***/ (function(module, exports) {
 
-module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);\r\n*:focus {\r\n  outline: none;\r\n}\r\n#login-box {\r\n    margin: auto;\r\n      width: 50%;\r\n\r\n  height: 880px;\r\n  background: #FFF;\r\n\r\n}\r\nh1 {\r\n  margin: 0 0 20px 0;\r\n  font-weight: 300;\r\n  font-size: 28px;\r\n}\r\ninput[type=\"text\"],\r\ninput[type=\"password\"] {\r\n  display: block;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  margin-bottom: 20px;\r\n  padding: 4px;\r\n  width: 220px;\r\n  height: 32px;\r\n  border: none;\r\n  border-bottom: 1px solid #AAA;\r\n  font-family: 'Roboto', sans-serif;\r\n  font-weight: 400;\r\n  font-size: 15px;\r\n  -webkit-transition: 0.2s ease;\r\n  transition: 0.2s ease;\r\n}\r\ninput[type=\"text\"]:focus,\r\ninput[type=\"password\"]:focus {\r\n  border-bottom: 2px solid #16a085;\r\n  color: #16a085;\r\n  -webkit-transition: 0.2s ease;\r\n  transition: 0.2s ease;\r\n}\r\ninput[type=\"submit\"] {\r\n  margin-top: 28px;\r\n  width: 120px;\r\n  height: 32px;\r\n  background: #16a085;\r\n  border: none;\r\n  border-radius: 2px;\r\n  color: #FFF;\r\n  font-family: 'Roboto', sans-serif;\r\n  font-weight: 500;\r\n  text-transform: uppercase;\r\n  -webkit-transition: 0.1s ease;\r\n  transition: 0.1s ease;\r\n  cursor: pointer;\r\n}\r\ninput[type=\"submit\"]:hover,\r\ninput[type=\"submit\"]:focus {\r\n  opacity: 0.8;\r\n  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);\r\n          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);\r\n  -webkit-transition: 0.1s ease;\r\n  transition: 0.1s ease;\r\n}\r\ninput[type=\"submit\"]:active {\r\n  opacity: 1;\r\n  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);\r\n          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);\r\n  -webkit-transition: 0.1s ease;\r\n  transition: 0.1s ease;\r\n}\r\n"
+module.exports = "@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);\n*:focus {\n  outline: none;\n}\n#login-box {\n    margin: auto;\n      width: 50%;\n\n  height: 880px;\n  background: #FFF;\n\n}\nh1 {\n  margin: 0 0 20px 0;\n  font-weight: 300;\n  font-size: 28px;\n}\ninput[type=\"text\"],\ninput[type=\"password\"] {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  margin-bottom: 20px;\n  padding: 4px;\n  width: 220px;\n  height: 32px;\n  border: none;\n  border-bottom: 1px solid #AAA;\n  font-family: 'Roboto', sans-serif;\n  font-weight: 400;\n  font-size: 15px;\n  -webkit-transition: 0.2s ease;\n  transition: 0.2s ease;\n}\ninput[type=\"text\"]:focus,\ninput[type=\"password\"]:focus {\n  border-bottom: 2px solid #16a085;\n  color: #16a085;\n  -webkit-transition: 0.2s ease;\n  transition: 0.2s ease;\n}\ninput[type=\"submit\"] {\n  margin-top: 28px;\n  width: 120px;\n  height: 32px;\n  background: #16a085;\n  border: none;\n  border-radius: 2px;\n  color: #FFF;\n  font-family: 'Roboto', sans-serif;\n  font-weight: 500;\n  text-transform: uppercase;\n  -webkit-transition: 0.1s ease;\n  transition: 0.1s ease;\n  cursor: pointer;\n}\ninput[type=\"submit\"]:hover,\ninput[type=\"submit\"]:focus {\n  opacity: 0.8;\n  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);\n          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);\n  -webkit-transition: 0.1s ease;\n  transition: 0.1s ease;\n}\ninput[type=\"submit\"]:active {\n  opacity: 1;\n  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);\n          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);\n  -webkit-transition: 0.1s ease;\n  transition: 0.1s ease;\n}\n"
 
 /***/ }),
 
 /***/ "./src/app/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div>\r\n\r\n\t<form (submit)=\"loginUser($event)\">\r\n\t  <div class=\"container\">\r\n\r\n\r\n\r\n\r\n\t    <div id=\"login-box\">\r\n\t     <div class=\"left\">\r\n\t       <h1>Sign in</h1>\r\n\r\n\t       <label for=\"email\"><b>Username</b></label>\r\n\t       <input type=\"text\" placeholder=\"Enter Username\" name=\"email\" required><br>\r\n\r\n\t       <label for=\"psw\"><b>Password</b></label>\r\n\t       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\r\n\r\n\r\n\t\t   <input type=\"submit\" name=\"signup_submit\" value=\"Sign in\" />\r\n\t\t   <br><br><br>\r\n\t\t   <br> <br>\r\n\t\t   Don't have an account?\r\n\t\t   <button routerLink=\"/register\">Register</button>\r\n\t\t\t</div>\r\n\r\n\r\n\t   </div>\r\n\r\n\t  </div>\r\n\t</form>\r\n\r\n\r\n\r\n</div>\r\n"
+module.exports = "\n<div>\n\n\t<form (submit)=\"loginUser($event)\">\n\t  <div class=\"container\">\n\n\n\n\n\t    <div id=\"login-box\">\n\t     <div class=\"left\">\n\t       <h1>Sign in</h1>\n\n\t       <label for=\"email\"><b>Username</b></label>\n\t       <input type=\"text\" placeholder=\"Enter Username\" name=\"email\" required><br>\n\n\t       <label for=\"psw\"><b>Password</b></label>\n\t       <input type=\"password\" placeholder=\"Enter Password\" name=\"psw\" required><br>\n\n\n\t\t   <input type=\"submit\" name=\"signup_submit\" value=\"Sign in\" />\n\t\t   <br><br><br>\n\t\t   <br> <br>\n\t\t   Don't have an account?\n\t\t   <button routerLink=\"/register\">Register</button>\n\t\t\t</div>\n\n\n\t   </div>\n\n\t  </div>\n\t</form>\n\n\n\n</div>\n"
 
 /***/ }),
 
 /***/ "./src/app/login/login.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -607,11 +728,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
+
+
 var LoginComponent = /** @class */ (function () {
     function LoginComponent(router, http, _userService) {
         this.router = router;
@@ -649,18 +769,18 @@ var LoginComponent = /** @class */ (function () {
         return false;
     };
     LoginComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-login',
             template: __webpack_require__("./src/app/login/login.component.html"),
             styles: [__webpack_require__("./src/app/login/login.component.css")]
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            http_1.HttpClient,
-            user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__user_service_service__["a" /* UserServiceService */]])
     ], LoginComponent);
     return LoginComponent;
 }());
-exports.LoginComponent = LoginComponent;
+
 
 
 /***/ }),
@@ -680,10 +800,14 @@ module.exports = "<p>\n  logout works!\n</p>\n"
 /***/ }),
 
 /***/ "./src/app/logout/logout.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -693,11 +817,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
+
+
 var LogoutComponent = /** @class */ (function () {
     function LogoutComponent(router, http, _userService) {
         this.router = router;
@@ -709,18 +832,18 @@ var LogoutComponent = /** @class */ (function () {
         this.router.navigate(['login']);
     };
     LogoutComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-logout',
             template: __webpack_require__("./src/app/logout/logout.component.html"),
             styles: [__webpack_require__("./src/app/logout/logout.component.css")]
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            http_1.HttpClient,
-            user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__user_service_service__["a" /* UserServiceService */]])
     ], LogoutComponent);
     return LogoutComponent;
 }());
-exports.LogoutComponent = LogoutComponent;
+
 
 
 /***/ }),
@@ -728,22 +851,25 @@ exports.LogoutComponent = LogoutComponent;
 /***/ "./src/app/oglas/oglas.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "div.oglas-div {\n\tfloat: left;\n\tbackground-color: lightgreen;\n    width: 350px;\n    height: 400px;\n    overflow: scroll;\n}\n\ndiv.ponude-div {\n\tbackground-color: lightblue;\n    width: 250px;\n    height: 400px;\n    overflow: scroll;\n}\n\ndiv.lista-ponuda {\n\twidth: 250px;\n    height: 300px;\n    overflow: scroll;\n}\n\ndiv.korisnikova-ponuda {\n\twidth: 250px;\n    height: 100px;\n}"
 
 /***/ }),
 
 /***/ "./src/app/oglas/oglas.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n\t{{oglas.naziv}}<br>\r\n\t{{oglas.opis}}<br>\r\n\t{{oglas.slika}}<br>\r\n\t{{oglas.cena}}<br>\r\n\t{{oglas.username}}<br>\r\n\t{{oglas.datumIsteka}}<br>\r\n\t<button>Daj ponudu</button>\r\n</div>\r\n"
+module.exports = "<div class=\"oglas-div\">\n\t<h3>Naziv oglasa</h3>\n\t{{oglas.naziv}}<br>\n\t<h3>Opis oglasa</h3>\n\t{{oglas.opis}}<br>\n\t<img src=\"{{fileUpload}}\" alt=\"{{fileUpload}}\" style=\"max-width:350px\" />\n\t<h3>Cena</h3>\n\t{{oglas.cena}}<br>\n\t<h3>Korisnik</h3>\n\t{{oglas.username}}<br>\n\t<h3>Datum isteka</h3>\n\t{{oglas.datumIsteka}}<br>\n</div>\n\n\n<div *ngIf=\"isMode() then ponude; else provera\"></div>\n\t\n<ng-template #ponude>\n\t<div class=\"ponude-div\">\n\t\t<div class=\"lista-ponuda\">\n \t\t\t<div *ngFor=\"let p of oglas.ponude\">\n \t\t\t\tUsername: {{p.username}} ponuda: {{p.cena}}\n \t\t\t</div>\t\n \t\t</div>\n\t\t\n\t\t<div *ngIf=\"isUser() then odaberi; else ponudi\"></div>\n\t\n\t\t<ng-template #ponudi>\n\t\t\t<div class=\"korisnikova-ponuda\">\n\t\t\t\tVasa trenutna ponuda: {{trenutnaPonuda}} <br>\n\t\t\t\t<input type=\"number\" #cenaLicitacije>\n\t\t\t\t<button (click)=\"licitiraj(cenaLicitacije.value)\">Licitiraj</button>\n\t\t\t</div>\n\t\t</ng-template>\n\t\n\t\t<ng-template #odaberi>\n\t\t\tZaustavi licitaciju i odaberi najvecu ponudu\n\t\t\t<button (click)=\"odaberiPonudu()\">Ok</button>\n\t\t</ng-template>\n\t\t\n\t</div>\n</ng-template>\n\n<ng-template #provera>\n\t<div>\n\t\t<nav>\n\t\t\t<button (click)=\"prihvacenOglas()\">Prihvati</button>\n\t\t\t<button (click)=\"odbijenOglas()\">Odbij</button>\n\t\t</nav>\n\t</div>\n</ng-template>\n"
 
 /***/ }),
 
 /***/ "./src/app/oglas/oglas.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OglasComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rekviziti_service__ = __webpack_require__("./src/app/rekviziti.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -753,28 +879,81 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
+
+
 var OglasComponent = /** @class */ (function () {
-    function OglasComponent() {
+    function OglasComponent(_rekvizitiService, _userService) {
+        this._rekvizitiService = _rekvizitiService;
+        this._userService = _userService;
+        this.trenutnaPonuda = 0;
+        this.user = null;
     }
     OglasComponent.prototype.ngOnInit = function () {
+        this.user = this._userService.getUser();
+        var postoji = false;
+        for (var _i = 0, _a = this.oglas.ponude; _i < _a.length; _i++) {
+            var ponuda = _a[_i];
+            if (ponuda.username == this.user.username) {
+                this.trenutnaPonuda = ponuda.cena;
+                postoji = true;
+            }
+        }
+        if (!postoji) {
+            this.trenutnaPonuda = 0;
+        }
+    };
+    OglasComponent.prototype.licitiraj = function (cenaLicitacije) {
+        this._rekvizitiService.posaljiPonudu(this.user.username, cenaLicitacije, this.oglas.naziv);
+        this.trenutnaPonuda = cenaLicitacije;
+    };
+    OglasComponent.prototype.isUser = function () {
+        if (this.user.username == this.oglas.username) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    OglasComponent.prototype.odaberiPonudu = function () {
+        this._rekvizitiService.odaberiPonudu(this.oglas);
+    };
+    OglasComponent.prototype.isMode = function () {
+        if (this.user.utype == 'regular') {
+            console.log('jel dodje dovde makar nekad u true?');
+            return true;
+        }
+        else {
+            console.log('jel dodje dovde makar nekad u false?');
+            return false;
+        }
+    };
+    OglasComponent.prototype.prihvacenOglas = function () {
+        this._rekvizitiService.prihvacenOglas(this.oglas);
+    };
+    OglasComponent.prototype.odbijenOglas = function () {
+        this._rekvizitiService.odbijenOglas(this.oglas);
     };
     __decorate([
-        core_1.Input('oglas'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('oglas'),
         __metadata("design:type", Object)
     ], OglasComponent.prototype, "oglas", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('fileUpload'),
+        __metadata("design:type", String)
+    ], OglasComponent.prototype, "fileUpload", void 0);
     OglasComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-oglas',
             template: __webpack_require__("./src/app/oglas/oglas.component.html"),
             styles: [__webpack_require__("./src/app/oglas/oglas.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__rekviziti_service__["a" /* RekvizitiService */],
+            __WEBPACK_IMPORTED_MODULE_2__user_service_service__["a" /* UserServiceService */]])
     ], OglasComponent);
     return OglasComponent;
 }());
-exports.OglasComponent = OglasComponent;
+
 
 
 /***/ }),
@@ -794,10 +973,11 @@ module.exports = "<h3>\n\tPage Not Found!\n</h3>\n"
 /***/ }),
 
 /***/ "./src/app/page-not-found/page-not-found.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageNotFoundComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -807,15 +987,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
 var PageNotFoundComponent = /** @class */ (function () {
     function PageNotFoundComponent() {
     }
     PageNotFoundComponent.prototype.ngOnInit = function () {
     };
     PageNotFoundComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-page-not-found',
             template: __webpack_require__("./src/app/page-not-found/page-not-found.component.html"),
             styles: [__webpack_require__("./src/app/page-not-found/page-not-found.component.css")]
@@ -824,7 +1003,7 @@ var PageNotFoundComponent = /** @class */ (function () {
     ], PageNotFoundComponent);
     return PageNotFoundComponent;
 }());
-exports.PageNotFoundComponent = PageNotFoundComponent;
+
 
 
 /***/ }),
@@ -844,10 +1023,14 @@ module.exports = "<form  (submit)=\"register($event)\">\r\n  <div class=\"contai
 /***/ }),
 
 /***/ "./src/app/register/register.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -857,11 +1040,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
+
+
 var RegisterComponent = /** @class */ (function () {
     function RegisterComponent(router, http, _userService) {
         this.router = router;
@@ -898,18 +1080,18 @@ var RegisterComponent = /** @class */ (function () {
         return false;
     };
     RegisterComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-register',
             template: __webpack_require__("./src/app/register/register.component.html"),
             styles: [__webpack_require__("./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            http_1.HttpClient,
-            user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__user_service_service__["a" /* UserServiceService */]])
     ], RegisterComponent);
     return RegisterComponent;
 }());
-exports.RegisterComponent = RegisterComponent;
+
 
 
 /***/ }),
@@ -924,15 +1106,18 @@ module.exports = ""
 /***/ "./src/app/rekvizit/rekvizit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n\t<h3>Naziv: </h3>\r\n\t{{rekvizit.naziv}}<br>\r\n\t<h3>Opis: </h3>\r\n\t{{rekvizit.opis}}<br>\r\n\t<img src=\"{{fileUpload}}\" alt=\"{{fileUpload}}\" style=\"max-width:350px\" />\r\n\t<h3>Cena: </h3>\r\n\t{{rekvizit.cena}}<br>\r\n\t<button (click)=\"rezervisiZvanicni()\">Rezervisi</button>\r\n</div>\r\n"
+module.exports = "<div>\n\t<h3>Naziv: </h3>\n\t{{rekvizit.naziv}}<br>\n\t<h3>Opis: </h3>\n\t{{rekvizit.opis}}<br>\n\t<img src=\"{{fileUpload}}\" alt=\"{{fileUpload}}\" style=\"max-width:350px\" />\n\t<h3>Cena: </h3>\n\t{{rekvizit.cena}}<br>\n\t<button (click)=\"rezervisiZvanicni()\">Rezervisi</button>\n\t<div *ngIf=\"isAdmin()\">\n\t\t<button (click)=\"ukloniZvanicni()\">Ukloni</button>\n\t\t<button (click)=\"izmeniZvanicni()\">Izmeni</button>\n\t</div>\n</div>\n"
 
 /***/ }),
 
 /***/ "./src/app/rekvizit/rekvizit.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RekvizitComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rekviziti_service__ = __webpack_require__("./src/app/rekviziti.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -942,50 +1127,73 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var rekviziti_service_1 = __webpack_require__("./src/app/rekviziti.service.ts");
+
+
+
 var RekvizitComponent = /** @class */ (function () {
-    function RekvizitComponent(_rekvizitiService) {
+    function RekvizitComponent(_rekvizitiService, _userService) {
         this._rekvizitiService = _rekvizitiService;
+        this._userService = _userService;
+        this.user = null;
+        this.izmenaEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["v" /* EventEmitter */]();
     }
     RekvizitComponent.prototype.ngOnInit = function () {
+        this.user = this._userService.getUser();
     };
     RekvizitComponent.prototype.rezervisiZvanicni = function () {
         this._rekvizitiService.rezervisiZvanicniRekvizit(this.rekvizit.naziv, this.username);
     };
+    RekvizitComponent.prototype.ukloniZvanicni = function () {
+        this._rekvizitiService.ukloniZvanicni(this.rekvizit);
+    };
+    RekvizitComponent.prototype.izmeniZvanicni = function () {
+        this.izmenaEvent.emit(this.rekvizit);
+    };
+    RekvizitComponent.prototype.isAdmin = function () {
+        if (this.user.utype == "admin") {
+            return true;
+        }
+        return false;
+    };
     __decorate([
-        core_1.Input('rekvizit'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('rekvizit'),
         __metadata("design:type", Object)
     ], RekvizitComponent.prototype, "rekvizit", void 0);
     __decorate([
-        core_1.Input('username'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('username'),
         __metadata("design:type", Object)
     ], RekvizitComponent.prototype, "username", void 0);
     __decorate([
-        core_1.Input('fileUpload'),
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* Input */])('fileUpload'),
         __metadata("design:type", String)
     ], RekvizitComponent.prototype, "fileUpload", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* Output */])(),
+        __metadata("design:type", Object)
+    ], RekvizitComponent.prototype, "izmenaEvent", void 0);
     RekvizitComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-rekvizit',
             template: __webpack_require__("./src/app/rekvizit/rekvizit.component.html"),
             styles: [__webpack_require__("./src/app/rekvizit/rekvizit.component.css")]
         }),
-        __metadata("design:paramtypes", [rekviziti_service_1.RekvizitiService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__rekviziti_service__["a" /* RekvizitiService */],
+            __WEBPACK_IMPORTED_MODULE_2__user_service_service__["a" /* UserServiceService */]])
     ], RekvizitComponent);
     return RekvizitComponent;
 }());
-exports.RekvizitComponent = RekvizitComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/rekviziti.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RekvizitiService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -995,9 +1203,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
+
 var RekvizitiService = /** @class */ (function () {
     function RekvizitiService(http) {
         this.http = http;
@@ -1008,9 +1215,15 @@ var RekvizitiService = /** @class */ (function () {
     RekvizitiService.prototype.getPolovniRekviziti = function () {
         return this.http.get('/getPolovniRekviziti');
     };
-    //  getAktivniOglasi(user): Observable<IPolovniRekvizit[]>{
-    //      return this.http.post<IPolovniRekvizit[]>('/getAktivniOglasi',user);
-    //  }  
+    RekvizitiService.prototype.getOglasiZaProveru = function () {
+        return this.http.get('/getOglasiZaProveru');
+    };
+    RekvizitiService.prototype.getAktivniOglasi = function (user) {
+        return this.http.post('/getAktivniOglasi', user);
+    };
+    RekvizitiService.prototype.getNotifikacije = function (user) {
+        return this.http.post('/getNotifikacije', user);
+    };
     RekvizitiService.prototype.rezervisiZvanicniRekvizit = function (imeRekvizita, imeKorisnika) {
         var rezervacijaRekvizita = {
             imeRekvizita: imeRekvizita,
@@ -1018,24 +1231,63 @@ var RekvizitiService = /** @class */ (function () {
         };
         this.http.post('/rezervisiZvanicniRekvizit', rezervacijaRekvizita).subscribe(function (data) { });
     };
-    RekvizitiService.prototype.posaljiOglasNaProveru = function (nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, username, datumOglasa) {
+    RekvizitiService.prototype.posaljiOglasNaProveru = function (nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, user, datumOglasa, ponude) {
         var oglasZaProveru = {
             naziv: nazivOglasa,
             opis: opisOglasa,
             slika: slikaOglasa,
             cena: cenaOglasa,
-            username: username,
-            datumIsteka: datumOglasa
+            username: user.username,
+            datumIsteka: datumOglasa,
+            ponude: ponude
         };
         this.http.post('/posaljiOglasNaProveru', oglasZaProveru).subscribe(function (data) { });
     };
+    RekvizitiService.prototype.postaviRekvizit = function (nazivRekvizita, opisRekvizita, slikaRekvizita, cenaRekvizita) {
+        var rekvizit = {
+            naziv: nazivRekvizita,
+            opis: opisRekvizita,
+            slika: slikaRekvizita,
+            cena: cenaRekvizita
+        };
+        this.http.post('/postaviRekvizit', rekvizit).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.izmeniRekvizit = function (nazivRekvizita, opisRekvizita, slikaRekvizita, cenaRekvizita) {
+        var rekvizit = {
+            naziv: nazivRekvizita,
+            opis: opisRekvizita,
+            slika: slikaRekvizita,
+            cena: cenaRekvizita
+        };
+        this.http.post('/izmeniRekvizit', rekvizit).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.ukloniZvanicni = function (rekvizit) {
+        this.http.post('/ukloniZvanicni', rekvizit).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.posaljiPonudu = function (imeKorisnika, cenaLicitacije, nazivOglasa) {
+        var licitacija = {
+            username: imeKorisnika,
+            cena: cenaLicitacije,
+            oglas: nazivOglasa
+        };
+        this.http.post('/posaljiPonudu', licitacija).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.odaberiPonudu = function (oglas) {
+        this.http.post('/odaberiPonudu', oglas).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.prihvacenOglas = function (oglas) {
+        this.http.post('/prihvacenOglas', oglas).subscribe(function (data) { });
+    };
+    RekvizitiService.prototype.odbijenOglas = function (oglas) {
+        this.http.post('/odbijenOglas', oglas).subscribe(function (data) { });
+    };
     RekvizitiService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_common_http__["a" /* HttpClient */]])
     ], RekvizitiService);
     return RekvizitiService;
 }());
-exports.RekvizitiService = RekvizitiService;
+
 
 
 /***/ }),
@@ -1055,10 +1307,11 @@ module.exports = "<p>\n  rezervacija works!\n</p>\n"
 /***/ }),
 
 /***/ "./src/app/rezervacija/rezervacija.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RezervacijaComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1068,15 +1321,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
 var RezervacijaComponent = /** @class */ (function () {
     function RezervacijaComponent() {
     }
     RezervacijaComponent.prototype.ngOnInit = function () {
     };
     RezervacijaComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-rezervacija',
             template: __webpack_require__("./src/app/rezervacija/rezervacija.component.html"),
             styles: [__webpack_require__("./src/app/rezervacija/rezervacija.component.css")]
@@ -1085,7 +1337,7 @@ var RezervacijaComponent = /** @class */ (function () {
     ], RezervacijaComponent);
     return RezervacijaComponent;
 }());
-exports.RezervacijaComponent = RezervacijaComponent;
+
 
 
 /***/ }),
@@ -1105,10 +1357,11 @@ module.exports = "<p>\n  theatres works!\n</p>\n"
 /***/ }),
 
 /***/ "./src/app/theatres/theatres.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TheatresComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1118,15 +1371,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+
 var TheatresComponent = /** @class */ (function () {
     function TheatresComponent() {
     }
     TheatresComponent.prototype.ngOnInit = function () {
     };
     TheatresComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-theatres',
             template: __webpack_require__("./src/app/theatres/theatres.component.html"),
             styles: [__webpack_require__("./src/app/theatres/theatres.component.css")]
@@ -1135,7 +1387,7 @@ var TheatresComponent = /** @class */ (function () {
     ], TheatresComponent);
     return TheatresComponent;
 }());
-exports.TheatresComponent = TheatresComponent;
+
 
 
 /***/ }),
@@ -1148,10 +1400,14 @@ module.exports = "<form  (submit)=\"update($event)\">\n  <div class=\"container\
 /***/ }),
 
 /***/ "./src/app/update-user/update-user.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UpdateUserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1161,11 +1417,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
+
+
+
+
 var UpdateUserComponent = /** @class */ (function () {
     function UpdateUserComponent(router, http, user) {
         this.router = router;
@@ -1211,27 +1466,29 @@ var UpdateUserComponent = /** @class */ (function () {
         }
     };
     UpdateUserComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-update-user',
             template: __webpack_require__("./src/app/update-user/update-user.component.html"),
             styles: [__webpack_require__("./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            http_1.HttpClient,
-            user_service_service_1.UserServiceService])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_3__user_service_service__["a" /* UserServiceService */]])
     ], UpdateUserComponent);
     return UpdateUserComponent;
 }());
-exports.UpdateUserComponent = UpdateUserComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/app/upload-file.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UploadFileService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1241,9 +1498,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+
+
 var UploadFileService = /** @class */ (function () {
     function UploadFileService(http) {
         this.http = http;
@@ -1251,7 +1507,7 @@ var UploadFileService = /** @class */ (function () {
     UploadFileService.prototype.pushFileToStorage = function (file) {
         var formdata = new FormData();
         formdata.append('file', file);
-        var req = new http_1.HttpRequest('POST', '/post', formdata, {
+        var req = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["d" /* HttpRequest */]('POST', '/post', formdata, {
             reportProgress: true,
             responseType: 'text'
         });
@@ -1261,21 +1517,25 @@ var UploadFileService = /** @class */ (function () {
         return this.http.get('/getallfiles');
     };
     UploadFileService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], UploadFileService);
     return UploadFileService;
 }());
-exports.UploadFileService = UploadFileService;
+
 
 
 /***/ }),
 
 /***/ "./src/app/user-service.service.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserServiceService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs__ = __webpack_require__("./node_modules/rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1285,18 +1545,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var rxjs_1 = __webpack_require__("./node_modules/rxjs/Rx.js");
+
+
+
 var httpOptions = {
-    headers: new http_1.HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]({ 'Content-Type': 'application/json' })
 };
 var UserServiceService = /** @class */ (function () {
     function UserServiceService(http) {
         this.http = http;
         this.friends = [];
-        this._isLoggedIn = new rxjs_1.BehaviorSubject(false);
+        this._isLoggedIn = new __WEBPACK_IMPORTED_MODULE_2_rxjs__["BehaviorSubject"](false);
         this.loggedIn = false;
     }
     UserServiceService.prototype.setLoggedIn = function () {
@@ -1335,12 +1594,12 @@ var UserServiceService = /** @class */ (function () {
         return this.city;
     };
     UserServiceService = __decorate([
-        core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.HttpClient])
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], UserServiceService);
     return UserServiceService;
 }());
-exports.UserServiceService = UserServiceService;
+
 
 
 /***/ }),
@@ -1355,15 +1614,19 @@ module.exports = ""
 /***/ "./src/app/userpage/userpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n    <a routerLink=\"/users/{{getUsername()}}\">My Profile</a>\r\n</nav>\r\n\r\n<hr>\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n</div>"
+module.exports = "<hr>\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n<button (click)=\"cinemas_button()\">Cinemas</button>\r\n<button (click)=\"theatres_button()\">Theatres</button>\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n<button (click)=\"my_profile_button()\">My profile</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'cinemas'\">\r\n<hr>\r\n<button (click)=\"search_cinemas()\">Search Cinemas</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Cinemas</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'theatres'\">\r\n<hr>\r\n<button (click)=\"search_theatres()\">Search Theatres</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Theatres</h3>\r\n\r\n</div>\r\n\r\n</div>"
 
 /***/ }),
 
 /***/ "./src/app/userpage/userpage.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserpageComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1373,16 +1636,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+
+
+
+
 var UserpageComponent = /** @class */ (function () {
-    function UserpageComponent(user, http, route) {
+    function UserpageComponent(user, http, router, route) {
         // this.friends = user.friends;
         this.user = user;
         this.http = http;
+        this.router = router;
         this.route = route;
     }
     Object.defineProperty(UserpageComponent.prototype, "email", {
@@ -1421,6 +1684,15 @@ var UserpageComponent = /** @class */ (function () {
     UserpageComponent.prototype.lista_rezervacija = function () {
         this.what = 'rezervations';
     };
+    UserpageComponent.prototype.cinemas_button = function () {
+        this.what = 'cinemas';
+    };
+    UserpageComponent.prototype.theatres_button = function () {
+        this.what = 'theatres';
+    };
+    UserpageComponent.prototype.my_profile_button = function () {
+        this.router.navigate(['users/' + this.user.username]);
+    };
     UserpageComponent.prototype.my_friends = function () {
         var _this = this;
         this.http.get('/find_my_friends/' + this.user.email).subscribe(function (data) {
@@ -1457,18 +1729,18 @@ var UserpageComponent = /** @class */ (function () {
         });
     };
     UserpageComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-userpage',
             template: __webpack_require__("./src/app/userpage/userpage.component.html"),
             styles: [__webpack_require__("./src/app/userpage/userpage.component.css")]
         }),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService,
-            http_1.HttpClient,
-            router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* Router */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]])
     ], UserpageComponent);
     return UserpageComponent;
 }());
-exports.UserpageComponent = UserpageComponent;
+
 
 
 /***/ }),
@@ -1476,15 +1748,19 @@ exports.UserpageComponent = UserpageComponent;
 /***/ "./src/app/userprofile/userprofile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div [ngSwitch]=\"whose\">\r\n\r\n<div *ngSwitchCase=\"'mine'\">\r\n\r\n\r\n<div [ngSwitch]=\"current\">\r\n\t<button (click)=\"details()\">My Details</button>\r\n\t<button (click)=\"my_friends()\">My Friends</button>\r\n\t<button (click)=\"pending_friend_requests()\">Friend Requests</button>\r\n\t<button (click)=\"find_friends_div()\">Find new friends</button>\r\n\t\r\n\t<div *ngSwitchCase=\"'details'\">\r\n\t\t <h3>{{name}}'s details:</h3>\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n\t\t\r\n\t\t<a routerLink=\"/update-user\">Update my details</a>\r\n\t</div>\r\n\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'my_friends'\">\r\n\r\n\t\t<h3>My friends</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of my_friends_list\">\r\n\t\t   <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n\t\t\t<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n    \t    </li>\r\n    \t    </ol>\r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'pending_friend_requests'\">\r\n\t \r\n\t\t<h3>Requests</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of pending_friends_requests\">\r\n\t\t   <a routerLink=\"/userprofile\">{{friend}}</a>\r\n\t\t   <button (click)=\"acceptFR($event)\" name={{friend}}  >Accept</button>\r\n\t\t  \t <button (click)=\"declineFR($event)\" name={{friend}}  >Decline</button>\r\n\t                \r\n\t\t\t\t\t\r\n    \t    </li>\r\n    \t    </ol>\r\n    \t    \r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'find_friends'\">\r\n\t\t<h3>Find new friends</h3>\r\n\t\tSearch friends by their name, last name, or both:<br>\r\n\t    <form (submit)=\"find_friends($event)\">\r\n\t\tName:<input type=\"text\" placeholder=\"Enter Name\" name=\"name\" />\r\n\t    Lastname:<input type=\"text\" placeholder=\"Enter Lastname\" name=\"lastname\" />\r\n\t\t<input type=\"submit\" name=\"find_friends\" value=\"Find\" />\r\n\t    </form>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'friends_results'\">\r\n\r\n        \r\n    \t    <h4>Search results:</h4>\r\n    \t    \r\n    \t    <ol>\r\n\r\n    \t    <li *ngFor=\"let friend of found_friends_list\">\r\n    \t    <a routerLink=\"/users/{{friend[1]}}\">{{friend[0]}}, {{friend[3]}}, {{friend[4]}}</a>\r\n    \t        \r\n    \t        \t\r\n    \t        \t\r\n\t                <div *ngIf=\"friend[2]== 'ne';  then if1condition\"></div>\r\n\t                 <div *ngIf=\"friend[2]== 'poslat';  then if2condition\"></div>   \r\n\t               <div *ngIf=\"friend[2]== 'vec';  then if3condition\"></div>\r\n\t                <div *ngIf=\"friend[2]== 'primljen';  then if4condition\"></div>\r\n\t                <ng-template #if1condition><button (click)=\"add_friend($event)\"   name={{friend[0]}}  >Add</button></ng-template>  \r\n\t\t\t\t\t<ng-template #if2condition><button (click)=\"cancelFR($event)\" name={{friend[0]}} >Cancel Request</button></ng-template> \r\n\t\t\t\t\t<ng-template #if3condition><button (click)=\"removeFriend($event)\"   name={{friend[0]}}  >Remove</button></ng-template>  \t\r\n\t\t\t\t\t<ng-template #if4condition><button (click)=\"declineFR($event)\"   name={{friend[0]}}  >Decline</button></ng-template>  \t\t\t\r\n    \t    \r\n    \t    </li>\r\n\r\n    \t    </ol>\r\n      \r\n\t</div>\r\n\r\n</div>\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'other'\">\r\n\t <h3>{{name}}'s profile</h3>\r\n\t\t\r\n\t\t{{name}}'s details:\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n</div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div [ngSwitch]=\"whose\">\r\n\r\n<div *ngSwitchCase=\"'mine'\">\r\n\r\n\r\n<div [ngSwitch]=\"current\">\r\n\t\r\n\t<button (click)=\"details()\">My Details</button>\r\n\t<button (click)=\"my_friends()\">My Friends</button>\r\n\t<button (click)=\"pending_friend_requests()\">Friend Requests</button>\r\n\t<button (click)=\"find_friends_div()\">Find new friends</button>\r\n\t\r\n\t<div *ngSwitchCase=\"'details'\">\r\n\t\t <h3>{{name}}'s details:</h3>\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n\t\t\r\n\t\t<a routerLink=\"/update-user\">Update my details</a>\r\n\t</div>\r\n\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'my_friends'\">\r\n\r\n\t\t<h3>My friends</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of my_friends_list\">\r\n\t\t   <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n\t\t\t<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n    \t    </li>\r\n    \t    </ol>\r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'pending_friend_requests'\">\r\n\t \r\n\t\t<h3>Requests</h3>\r\n\t\t <ol>\r\n\t\t   <li *ngFor=\"let friend of pending_friends_requests\">\r\n\t\t   <a routerLink=\"/userprofile\">{{friend}}</a>\r\n\t\t   <button (click)=\"acceptFR($event)\" name={{friend}}  >Accept</button>\r\n\t\t  \t <button (click)=\"declineFR($event)\" name={{friend}}  >Decline</button>\r\n\t                \r\n\t\t\t\t\t\r\n    \t    </li>\r\n    \t    </ol>\r\n    \t    \r\n\t</div>\t\r\n\t\r\n\t\r\n\t\r\n\t\r\n\t<div *ngSwitchCase=\"'find_friends'\">\r\n\t\t<h3>Find new friends</h3>\r\n\t\tSearch friends by their name, last name, or both:<br>\r\n\t    <form (submit)=\"find_friends($event)\">\r\n\t\tName:<input type=\"text\" placeholder=\"Enter Name\" name=\"name\" />\r\n\t    Lastname:<input type=\"text\" placeholder=\"Enter Lastname\" name=\"lastname\" />\r\n\t\t<input type=\"submit\" name=\"find_friends\" value=\"Find\" />\r\n\t    </form>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'friends_results'\">\r\n\r\n        \r\n    \t    <h4>Search results:</h4>\r\n    \t    \r\n    \t    <ol>\r\n\r\n    \t    <li *ngFor=\"let friend of found_friends_list\">\r\n    \t    <a routerLink=\"/users/{{friend[1]}}\">{{friend[0]}}, {{friend[3]}}, {{friend[4]}}</a>\r\n    \t        \r\n    \t        \t\r\n    \t        \t\r\n\t                <div *ngIf=\"friend[2]== 'ne';  then if1condition\"></div>\r\n\t                 <div *ngIf=\"friend[2]== 'poslat';  then if2condition\"></div>   \r\n\t               <div *ngIf=\"friend[2]== 'vec';  then if3condition\"></div>\r\n\t                <div *ngIf=\"friend[2]== 'primljen';  then if4condition\"></div>\r\n\t                <ng-template #if1condition><button (click)=\"add_friend($event)\"   name={{friend[0]}}  >Add</button></ng-template>  \r\n\t\t\t\t\t<ng-template #if2condition><button (click)=\"cancelFR($event)\" name={{friend[0]}} >Cancel Request</button></ng-template> \r\n\t\t\t\t\t<ng-template #if3condition><button (click)=\"removeFriend($event)\"   name={{friend[0]}}  >Remove</button></ng-template>  \t\r\n\t\t\t\t\t<ng-template #if4condition><button (click)=\"declineFR($event)\"   name={{friend[0]}}  >Decline</button></ng-template>  \t\t\t\r\n    \t    \r\n    \t    </li>\r\n\r\n    \t    </ol>\r\n      \r\n\t</div>\r\n\r\n</div>\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'other'\">\r\n\t <h3>{{name}}'s profile</h3>\r\n\t\t\r\n\t\t{{name}}'s details:\r\n\t\t<ul>\r\n\t\t    <li>{{email}}</li>\r\n\t\t    <li>{{name}}</li>\r\n\t\t    <li>{{lastname}}</li>\r\n\t\t    <li>{{city}}</li>\r\n\t\t    <li>{{phoneNumber}}</li>\r\n\t\t</ul>\r\n</div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
 /***/ "./src/app/userprofile/userprofile.component.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserprofileComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__user_service_service__ = __webpack_require__("./src/app/user-service.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1494,11 +1770,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var user_service_service_1 = __webpack_require__("./src/app/user-service.service.ts");
-var router_1 = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
-var http_1 = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+
+
+
+
 var UserprofileComponent = /** @class */ (function () {
     function UserprofileComponent(user, http, route) {
         this.user = user;
@@ -1665,33 +1940,32 @@ var UserprofileComponent = /** @class */ (function () {
         return false;
     };
     UserprofileComponent = __decorate([
-        core_1.Component({
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-userprofile',
             template: __webpack_require__("./src/app/userprofile/userprofile.component.html"),
             styles: [__webpack_require__("./src/app/register/register.component.css")]
         }),
-        __metadata("design:paramtypes", [user_service_service_1.UserServiceService,
-            http_1.HttpClient,
-            router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__user_service_service__["a" /* UserServiceService */],
+            __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]])
     ], UserprofileComponent);
     return UserprofileComponent;
 }());
-exports.UserprofileComponent = UserprofileComponent;
+
 
 
 /***/ }),
 
 /***/ "./src/environments/environment.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.environment = {
+var environment = {
     production: false
 };
 
@@ -1699,19 +1973,22 @@ exports.environment = {
 /***/ }),
 
 /***/ "./src/main.ts":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__ = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_app_module__ = __webpack_require__("./src/app/app.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-var platform_browser_dynamic_1 = __webpack_require__("./node_modules/@angular/platform-browser-dynamic/esm5/platform-browser-dynamic.js");
-var app_module_1 = __webpack_require__("./src/app/app.module.ts");
-var environment_1 = __webpack_require__("./src/environments/environment.ts");
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+
+
+
+if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* enableProdMode */])();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1.AppModule)
+Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
 
 

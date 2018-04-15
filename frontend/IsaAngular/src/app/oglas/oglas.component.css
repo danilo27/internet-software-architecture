@@ -1,0 +1,25 @@
+div.oglas-div {
+	float: left;
+	background-color: lightgreen;
+    width: 350px;
+    height: 400px;
+    overflow: scroll;
+}
+
+div.ponude-div {
+	background-color: lightblue;
+    width: 250px;
+    height: 400px;
+    overflow: scroll;
+}
+
+div.lista-ponuda {
+	width: 250px;
+    height: 300px;
+    overflow: scroll;
+}
+
+div.korisnikova-ponuda {
+	width: 250px;
+    height: 100px;
+}
