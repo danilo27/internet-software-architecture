@@ -25,7 +25,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RezervacijaComponent } from './rezervacija/rezervacija.component';
 
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,10 @@ import { RezervacijaComponent } from './rezervacija/rezervacija.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmCoreModule.forRoot({
+        apiKey: 'AIzaSyAL7fctJPUvG52w9R2KjlVbcoHAG1CRlzs'
+      })
   ],
   providers: [UserServiceService,RekvizitiService, AuthguardGuard, UploadFileService],
   bootstrap: [AppComponent]

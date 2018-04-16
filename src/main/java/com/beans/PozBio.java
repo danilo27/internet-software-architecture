@@ -13,9 +13,15 @@ public class PozBio {
 	private ArrayList<Projekcija> listaProjekcija;
 	private double prosecnaOcena;
 	private int brojOcena;
+	private double latitude;
+	private double longitude;
+	private String adminName;
 	
+	
+
 	public PozBio(String type, String name, String adress, String opis, ArrayList<Sala> listaSala,
-			ArrayList<Projekcija> listaProjekcija, double prosecnaOcena, int brojOcena) {
+			ArrayList<Projekcija> listaProjekcija, double prosecnaOcena, int brojOcena, double latitude,
+			double longitude, String adminName) {
 		super();
 		this.type = type;
 		this.name = name;
@@ -25,6 +31,9 @@ public class PozBio {
 		this.listaProjekcija = listaProjekcija;
 		this.prosecnaOcena = prosecnaOcena;
 		this.brojOcena = brojOcena;
+		this.latitude = latitude;
+		this.longitude = longitude;
+		this.adminName = adminName;
 	}
 
 	public String getType() {
@@ -90,6 +99,42 @@ public class PozBio {
 	public void setBrojOcena(int brojOcena) {
 		this.brojOcena = brojOcena;
 	}
+	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
+	}
+
+	public PozBio() {}
+
+	@Override
+	public String toString() {
+		return "PozBio [type=" + type + ", name=" + name + ", adress=" + adress + ", opis=" + opis + ", listaSala="
+				+ listaSala + ", listaProjekcija=" + listaProjekcija + ", prosecnaOcena=" + prosecnaOcena
+				+ ", brojOcena=" + brojOcena + ", latitude=" + latitude + ", longitude=" + longitude + ", adminName="
+				+ adminName + "]";
+	}
+
+	
 	
 	
 	

@@ -140,4 +140,6 @@ public class RekvizitController {
 		rs.odbijenOglas(oglas);
 	}
 	
+	
+	
 }

@@ -235,12 +235,14 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__update_user_update_user_component__ = __webpack_require__("./src/app/update-user/update-user.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__logout_logout_component__ = __webpack_require__("./src/app/logout/logout.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__rezervacija_rezervacija_component__ = __webpack_require__("./src/app/rezervacija/rezervacija.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__agm_core__ = __webpack_require__("./node_modules/@agm/core/index.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -276,7 +278,10 @@ var AppModule = /** @class */ (function () {
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__app_routing_module__["a" /* AppRoutingModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */]
+                __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_16__agm_core__["a" /* AgmCoreModule */].forRoot({
+                    apiKey: 'AIzaSyAL7fctJPUvG52w9R2KjlVbcoHAG1CRlzs'
+                })
             ],
             providers: [__WEBPACK_IMPORTED_MODULE_7__user_service_service__["a" /* UserServiceService */], __WEBPACK_IMPORTED_MODULE_8__rekviziti_service__["a" /* RekvizitiService */], __WEBPACK_IMPORTED_MODULE_6__authguard_guard__["a" /* AuthguardGuard */], __WEBPACK_IMPORTED_MODULE_12__upload_file_service__["a" /* UploadFileService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
@@ -391,7 +396,7 @@ module.exports = "li {\n\tborder-bottom: 1px solid gray;\n}"
 /***/ "./src/app/fanpage/fanpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dropdown\">\n    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Notifikacije\n    <span class=\"caret\"></span></button>\n    <ul class=\"dropdown-menu\">\n      <li class=\"dropdown-header\">Ponude</li>\n      <li *ngFor=\"let n of notifikacije\">\n  \t\t\t{{n.sadrzaj}} <button (click)=\"seen(n.naziv)\">OK</button>\n\t  </li>\n    </ul>\n</div>\n\n\n<div>\n\t<nav>\n\t\t<button (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\n\t\t<button (click)=\"polovniOglasi()\">Oglasi</button>\n\t</nav>\n</div>\n\n\n<div [ngSwitch]=\"state\">\n\t<div *ngSwitchCase=\"'zvanicni'\">\n\t\t<div *ngIf=\"isAdmin()\">\n\t\t\t<nav>\n\t\t\t\t<button (click)=\"noviZvanicniRekvizit()\">Novi rekvizit</button>\n\t\t\t\t<button (click)=\"pregledajOglase()\">Oglasi za proveru</button>\n\t\t\t</nav>\n\t\t</div>\n\t\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\n\t\t\t\t\t<app-rekvizit (izmenaEvent)=\"izmena($event)\" [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t</div>\n \n\t<div *ngSwitchCase=\"'oglasi'\">\n\t\t<nav>\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\n\t\t</nav>\n\t\t<div *ngFor = \"let o of oglasi\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f'></app-oglas>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div *ngSwitchCase=\"'noviOglas'\">\n\t\t<div>\n\t\t\t<h3>Naziv oglasa</h3>\n\t\t\t<input #nazivOglasa type=\"text\">\n\t\t\t<h3>Opis oglasa</h3>\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\n\t\t\t<h3>Slika oglasa</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena oglasa</h3>\n\t\t\t<input #cenaOglasa type=\"number\">\n\t\t\t<h3>Datum isteka oglasa</h3>\n\t\t\t<input #datumOglasa type=\"date\">\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'noviRekvizit'\">\n\t\t<div>\n\t\t\t<h3>Naziv rekvizita</h3>\n\t\t\t<input #nazivRekvizita type=\"text\" value=\"{{nazivRek}}\" >\n\t\t\t<h3>Opis rekvizita</h3>\n\t\t\t<textarea #opisRekvizita rows=\"10\" cols=\"30\" value=\"{{opisRek}}\"></textarea>\n\t\t\t<h3>Slika rekvizita</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena rekvizita</h3>\n\t\t\t<input #cenaRekvizita type=\"number\" value=\"{{cenaRek}}\">\n\t\t\t\n\t\t\t<div *ngIf=\"isMode() then postavi else izmeni;\"></div>\n\t\t\t\n\t\t\t<ng-template #postavi>\n\t\t\t\t<button (click)=\"postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Postavi rekvizit</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t\t<ng-template #izmeni>\n\t\t\t\t<button (click)=\"izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Izmeni rekvizit</button>\n\t\t\t\t<button (click)=\"odustani()\">Odustani</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'proveraOglasa'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiZaProveru\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'aktivniOglasi'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiKorisnika\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
+module.exports = "<div class=\"dropdown\">\n    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Notifikacije\n    <span class=\"caret\"></span></button>\n    <ul class=\"dropdown-menu\">\n      <li class=\"dropdown-header\">Notifikacije</li>\n      <li *ngFor=\"let n of notifikacije\">\n  \t\t\t{{n.sadrzaj}} \n\t  </li>\n    </ul>\n</div>\n\n\n<div>\n\t<nav>\n\t\t<button (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\n\t\t<button (click)=\"polovniOglasi()\">Oglasi</button>\n\t</nav>\n</div>\n\n\n<div [ngSwitch]=\"state\">\n\t<div *ngSwitchCase=\"'zvanicni'\">\n\t\t<div *ngIf=\"isAdmin()\">\n\t\t\t<nav>\n\t\t\t\t<button (click)=\"noviZvanicniRekvizit()\">Novi rekvizit</button>\n\t\t\t\t<button (click)=\"pregledajOglase()\">Oglasi za proveru</button>\n\t\t\t</nav>\n\t\t</div>\n\t\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\n\t\t\t\t\t<app-rekvizit (izmenaEvent)=\"izmena($event)\" [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t</div>\n \n\t<div *ngSwitchCase=\"'oglasi'\">\n\t\t<nav>\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\n\t\t</nav>\n\t\t<div *ngFor = \"let o of oglasi\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f'></app-oglas>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div *ngSwitchCase=\"'noviOglas'\">\n\t\t<div>\n\t\t\t<h3>Naziv oglasa</h3>\n\t\t\t<input #nazivOglasa type=\"text\">\n\t\t\t<h3>Opis oglasa</h3>\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\n\t\t\t<h3>Slika oglasa</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena oglasa</h3>\n\t\t\t<input #cenaOglasa type=\"number\">\n\t\t\t<h3>Datum isteka oglasa</h3>\n\t\t\t<input #datumOglasa type=\"date\">\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'noviRekvizit'\">\n\t\t<div>\n\t\t\t<h3>Naziv rekvizita</h3>\n\t\t\t<input #nazivRekvizita type=\"text\" value=\"{{nazivRek}}\" >\n\t\t\t<h3>Opis rekvizita</h3>\n\t\t\t<textarea #opisRekvizita rows=\"10\" cols=\"30\" value=\"{{opisRek}}\"></textarea>\n\t\t\t<h3>Slika rekvizita</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena rekvizita</h3>\n\t\t\t<input #cenaRekvizita type=\"number\" value=\"{{cenaRek}}\">\n\t\t\t\n\t\t\t<div *ngIf=\"isMode() then postavi else izmeni;\"></div>\n\t\t\t\n\t\t\t<ng-template #postavi>\n\t\t\t\t<button (click)=\"postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Postavi rekvizit</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t\t<ng-template #izmeni>\n\t\t\t\t<button (click)=\"izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Izmeni rekvizit</button>\n\t\t\t\t<button (click)=\"odustani()\">Odustani</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'proveraOglasa'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiZaProveru\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'aktivniOglasi'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiKorisnika\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
 
 /***/ }),
 
@@ -1573,6 +1578,9 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.getUser = function () {
         return this.user;
     };
+    UserServiceService.prototype.getUtype = function () {
+        return this.user.utype;
+    };
     UserServiceService.prototype.setUser = function (data) {
         this.user = data; //this.http.get<IUser>('/getDetailsByUsername/'+this.username);
         this.loggedIn = true;
@@ -1593,6 +1601,9 @@ var UserServiceService = /** @class */ (function () {
     UserServiceService.prototype.getCity = function () {
         return this.city;
     };
+    UserServiceService.prototype.getVenueAdmins = function () {
+        return this.http.get('/getVenueAdmins');
+    };
     UserServiceService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
@@ -1607,14 +1618,14 @@ var UserServiceService = /** @class */ (function () {
 /***/ "./src/app/userpage/userpage.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "agm-map {\n  height: 300px;\n  width: 400px;\n}"
 
 /***/ }),
 
 /***/ "./src/app/userpage/userpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<hr>\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n<button (click)=\"cinemas_button()\">Cinemas</button>\r\n<button (click)=\"theatres_button()\">Theatres</button>\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n<button (click)=\"my_profile_button()\">My profile</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'cinemas'\">\r\n<hr>\r\n<button (click)=\"search_cinemas()\">Search Cinemas</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Cinemas</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'theatres'\">\r\n<hr>\r\n<button (click)=\"search_theatres()\">Search Theatres</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Theatres</h3>\r\n\r\n</div>\r\n\r\n</div>"
+module.exports = "<hr>\r\n\r\n<div [ngSwitch]=\"usertype\">\r\n\r\n<div *ngSwitchCase=\"'regular'\">\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n<button (click)=\"cinemas_button()\">Cinemas</button>\r\n<button (click)=\"theatres_button()\">Theatres</button>\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n<button (click)=\"my_profile_button()\">My profile</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'cinemas'\">\r\n<hr>\r\n<button (click)=\"search_cinemas()\">Search Cinemas</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Cinemas</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'theatres'\">\r\n<hr>\r\n<button (click)=\"search_theatres()\">Search Theatres</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Theatres</h3>\r\n\r\n</div>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'sysAdmin'\">\r\n\r\n\t<div [ngSwitch]=\"admin_what\">\r\n\r\n\t<button (click)=\"register_cinemas_button()\">Register Cinema/Theatre</button>\r\n\t<button (click)=\"add_admin_button()\">Add new admin</button>\r\n\r\n\t<div *ngSwitchCase=\"'register_cinemas'\">\r\n\t\t<h3>Register new cinema/theatre</h3>\r\n\t\t<hr>\r\n\t\t<h4>Venue type</h4>\r\n\t\t<input type=\"radio\" name=\"venueType\" #cinemaBtn checked> Cinema<br>\r\n  \t\t<input type=\"radio\" name=\"venueType\" #theatreBtn> Theatre<br>\r\n\t\t<h4>Venue name</h4>\r\n\t\t<input type=\"text\" #venueName>\r\n\t\t<h4>Admin</h4>\r\n\t\t<div class=\"dropdown\">\r\n    \t\t<button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Admins\r\n    \t\t<span class=\"caret\"></span></button>\r\n    \t\t<ul class=\"dropdown-menu\">\r\n      \t\t\t<li class=\"dropdown-header\">Venue Admins</li>\r\n      \t\t\t<li *ngFor=\"let a of admins\" (click)=\"chosenAdmin(a.username)\">\r\n  \t\t\t\t\t{{a.username}} \r\n\t  \t\t\t</li>\r\n    \t\t</ul>\r\n\t\t</div>\r\n\t\t<h4>Venue location</h4>\r\n\t\t<agm-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"zoom\" (mapClick)=\"onChoseLocation($event)\">\r\n  \t\t\t<agm-marker [latitude]=\"lat\" [longitude]=\"lng\" *ngIf=\"locationChosen\"></agm-marker>\r\n\t\t</agm-map>\r\n\t\t<hr>\r\n\t\t<button (click)=\"registerVenue(cinemaBtn.checked,venueName.value)\">OK</button>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'add_admin'\">\r\n\t\t<h3>Add new admin</h3>\r\n\t\t<hr>\r\n\t\t<h4>Admin type</h4>\r\n\t\t<input type=\"radio\" name=\"adminType\" #sysadmin checked> System admin<br>\r\n  \t\t<input type=\"radio\" name=\"adminType\" #fanadmin> Fan zone admin<br>\r\n\t\t<h4>Admin name</h4>\r\n\t\t<input type=\"text\" #adminname>\r\n\t\t<button (click)=\"addAdmin(sysadmin.checked,adminname.value)\">Upgrade</button>\r\n\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1647,6 +1658,11 @@ var UserpageComponent = /** @class */ (function () {
         this.http = http;
         this.router = router;
         this.route = route;
+        this.lat = 45.25362179991922;
+        this.lng = 19.830322265625;
+        this.zoom = 12;
+        this.locationChosen = false;
+        this.admins = null;
     }
     Object.defineProperty(UserpageComponent.prototype, "email", {
         get: function () {
@@ -1672,8 +1688,13 @@ var UserpageComponent = /** @class */ (function () {
         return this.user.getUsername();
     };
     UserpageComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log('user set on userpage', this.user.getUser());
         this.my_friends();
+        this.usertype = this.user.getUtype();
+        console.log('user type');
+        console.log(this.usertype);
+        this.user.getVenueAdmins().subscribe(function (data) { return _this.admins = data; });
     };
     UserpageComponent.prototype.friends_button = function () {
         this.what = 'friends';
@@ -1689,6 +1710,13 @@ var UserpageComponent = /** @class */ (function () {
     };
     UserpageComponent.prototype.theatres_button = function () {
         this.what = 'theatres';
+    };
+    UserpageComponent.prototype.register_cinemas_button = function () {
+        this.admin_what = 'register_cinemas';
+        console.log(this.admins);
+    };
+    UserpageComponent.prototype.add_admin_button = function () {
+        this.admin_what = 'add_admin';
     };
     UserpageComponent.prototype.my_profile_button = function () {
         this.router.navigate(['users/' + this.user.username]);
@@ -1727,6 +1755,51 @@ var UserpageComponent = /** @class */ (function () {
                 _this.my_friends_list = data;
             }
         });
+    };
+    UserpageComponent.prototype.addAdmin = function (sysAdmin, name) {
+        console.log('podaci');
+        console.log(sysAdmin);
+        console.log(name);
+        var utype = "";
+        if (sysAdmin) {
+            utype = 'sysAdmin';
+        }
+        else {
+            utype = 'fanAdmin';
+        }
+        var user = {
+            utype: utype,
+            username: name
+        };
+        this.http.post('/addAdmin', user).subscribe(function (data) { });
+    };
+    UserpageComponent.prototype.registerVenue = function (cinemaButton, venueName) {
+        console.log(cinemaButton);
+        console.log(venueName);
+        var type = "";
+        if (cinemaButton) {
+            type = "cinema";
+        }
+        else {
+            type = "theatre";
+        }
+        var pozbio = {
+            type: type,
+            name: venueName,
+            adminName: this.adminName,
+            latitude: this.lat,
+            longitude: this.lng
+        };
+        this.http.post('/registerVenue', pozbio).subscribe(function (data) { });
+    };
+    UserpageComponent.prototype.onChoseLocation = function (event) {
+        this.lat = event.coords.lat;
+        this.lng = event.coords.lng;
+        console.log(event);
+        this.locationChosen = true;
+    };
+    UserpageComponent.prototype.chosenAdmin = function (username) {
+        this.adminName = username;
     };
     UserpageComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({

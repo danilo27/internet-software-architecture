@@ -52,6 +52,10 @@ private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
   getUser(): Observable<IUser> {
     return this.user;
   }
+  
+  getUtype(){
+      return this.user.utype;
+  }
 
   setUser(data) {
                 
@@ -77,6 +81,10 @@ private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
   }
   getCity(){
       return this.city;
+  }
+  
+  getVenueAdmins(): Observable<IUser[]>{
+      return this.http.get<IUser[]>('/getVenueAdmins');
   }
 
 }

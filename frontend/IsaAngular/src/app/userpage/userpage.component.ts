@@ -2,13 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from '@angular/router'
+import { } from '@types/googlemaps';
+import { IUser } from "../IUser";
+
 @Component({
   selector: 'app-userpage',
   templateUrl: './userpage.component.html',
   styleUrls: ['./userpage.component.css']
 })
 export class UserpageComponent implements OnInit {
+    lat: number = 45.25362179991922;
+    lng: number = 19.830322265625;
+    zoom: number = 12;
+    locationChosen = false;
+    adminName: string;
+
+    public admins = null;
+    
   public what: string;
+  public usertype: string;
+  public admin_what: string;
   
   constructor(private user: UserServiceService,
   private http: HttpClient,private router:Router,
@@ -41,7 +54,14 @@ export class UserpageComponent implements OnInit {
   ngOnInit() {
     console.log('user set on userpage', this.user.getUser());
     this.my_friends();
+    this.usertype = this.user.getUtype();
+    console.log('user type');
+    console.log(this.usertype);
+    this.user.getVenueAdmins().subscribe(data=>this.admins = data);
+    
+    
   }
+
   
   friends_button(){
     this.what='friends';
@@ -61,6 +81,16 @@ export class UserpageComponent implements OnInit {
   
   theatres_button(){
   this.what = 'theatres';
+  }
+  
+  register_cinemas_button(){
+      this.admin_what = 'register_cinemas';
+      
+      console.log(this.admins);
+  }
+  
+  add_admin_button(){
+      this.admin_what = 'add_admin';
   }
   
   my_profile_button(){
@@ -114,5 +144,63 @@ export class UserpageComponent implements OnInit {
        
       }
     })
+  }
+  
+  addAdmin(sysAdmin,name){
+      console.log('podaci');
+      console.log(sysAdmin);
+      console.log(name);
+      
+      var utype = "";
+      
+      if(sysAdmin){
+          utype = 'sysAdmin';
+      }else{
+          utype = 'fanAdmin';
+      }
+      
+      var user = {
+          utype: utype,
+          username: name
+      }
+      
+      this.http.post('/addAdmin',user).subscribe(data => {});
+      
+      
+  }
+  
+  registerVenue(cinemaButton,venueName){
+      console.log(cinemaButton);
+      console.log(venueName);
+      
+      var type = "";
+      if(cinemaButton){
+          type = "cinema";
+      }else{
+          type = "theatre";
+      }
+      
+      
+      var pozbio = {
+              type: type,
+              name: venueName,
+              adminName: this.adminName,
+              latitude: this.lat,
+              longitude: this.lng
+      }
+      
+      this.http.post('/registerVenue',pozbio).subscribe(data => {});
+  }
+  
+  
+  onChoseLocation(event){
+      this.lat = event.coords.lat;
+      this.lng = event.coords.lng;
+      console.log(event);
+      this.locationChosen = true;
+  }
+  
+  chosenAdmin(username){
+      this.adminName=username;
   }
 }
