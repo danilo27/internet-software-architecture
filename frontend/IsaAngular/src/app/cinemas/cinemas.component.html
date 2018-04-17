@@ -1,3 +1,10 @@
-<p>
-  cinemas works!
-</p>
+<div *ngFor="let c of cinemas">
+  	 <strong>Naziv:</strong> {{c.name}} <br>
+  	 
+  	 <strong>Lokacija:</strong><br>
+  	 
+  	 
+  	 <agm-map [latitude]="c.latitude" [longitude]="c.longitude" [zoom]="zoom">
+  			<agm-marker [latitude]="c.latitude" [longitude]="c.longitude"></agm-marker>
+	 </agm-map>
+</div>

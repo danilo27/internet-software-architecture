@@ -14,8 +14,6 @@
         </ul>
       </li>
     </ul>
-  
-  
   </div>
 </nav>
 
@@ -32,6 +30,7 @@
 			<div *ngFor = "let f of fileUploads">
 				<div *ngIf="isImage(r.slika,f)">
 					<app-rekvizit (izmenaEvent)="izmena($event)" [rekvizit]="r" [username]="user" [fileUpload]='f'></app-rekvizit>
+					<hr>
 				</div>
 			</div>
 		</div>
@@ -39,14 +38,16 @@
 	</div>
  
 	<div *ngSwitchCase="'oglasi'">
-		<nav>
-			<button (click)="noviOglas()">Novi oglas</button>
-			<button (click)="aktivniOglasi()">Aktivni oglasi</button>
-		</nav>
+		<div class="btn-group">
+  			<button type="button" class="btn btn-primary" (click)="noviOglas()">Novi oglas</button>
+  			<button type="button" class="btn btn-primary" (click)="aktivniOglasi()">Aktivni oglasi</button>
+		</div>
+		
 		<div *ngFor = "let o of oglasi">
 			<div *ngFor = "let f of fileUploads">
 				<div *ngIf="isImage(o.slika,f)">
 					<app-oglas [oglas]="o" [fileUpload]='f'></app-oglas>
+					<hr>
 				</div>
 			</div>
 		</div>
@@ -65,8 +66,10 @@
 			<h3>Cena oglasa</h3>
 			<input #cenaOglasa type="number">
 			<h3>Datum isteka oglasa</h3>
-			<input #datumOglasa type="date">
-			<button (click)="postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)">Postavi oglas</button>
+			<input #datumOglasa type="date"><br>
+			<div class="btn-group">
+  				<button type="button" class="btn btn-primary" (click)="postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)">Postavi oglas</button>
+			</div>
 		</div>
 	</div>
 	<div *ngSwitchCase="'noviRekvizit'">
@@ -80,17 +83,21 @@
 			<input type='file' (change)="onSelectFile($event)">
 			
 			<h3>Cena rekvizita</h3>
-			<input #cenaRekvizita type="number" value="{{cenaRek}}">
+			<input #cenaRekvizita type="number" value="{{cenaRek}}"><br>
 			
 			<div *ngIf="isMode() then izmeni; else postavi;"></div>
 			
 			<ng-template #postavi>
-				<button (click)="postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Postavi rekvizit</button>
+				<div class="btn-group">
+  					<button type="button" class="btn btn-primary" (click)="postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Postavi rekvizit</button>
+				</div>
 			</ng-template>
 			
 			<ng-template #izmeni>
-				<button (click)="izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Izmeni rekvizit</button>
-				<button (click)="odustani()">Odustani</button>
+				<div class="btn-group">
+  					<button type="button" class="btn btn-primary" (click)="izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Izmeni rekvizit</button>
+  					<button type="button" class="btn btn-primary" (click)="odustani()">Odustani</button>
+				</div>
 			</ng-template>
 			
 		</div>
