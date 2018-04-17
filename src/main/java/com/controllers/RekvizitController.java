@@ -82,6 +82,7 @@ public class RekvizitController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
 	public void postaviRekvizit(@RequestBody ZvanicniRekvizit rekvizit, HttpServletResponse response,HttpSession session) {
+		System.out.println(rekvizit.toString());
 		rs.postaviRekvizit(rekvizit);
 	}
 	

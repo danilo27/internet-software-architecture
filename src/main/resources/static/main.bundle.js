@@ -396,7 +396,7 @@ module.exports = "li {\n\tborder-bottom: 1px solid gray;\n}"
 /***/ "./src/app/fanpage/fanpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dropdown\">\n    <button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Notifikacije\n    <span class=\"caret\"></span></button>\n    <ul class=\"dropdown-menu\">\n      <li class=\"dropdown-header\">Notifikacije</li>\n      <li *ngFor=\"let n of notifikacije\">\n  \t\t\t{{n.sadrzaj}} \n\t  </li>\n    </ul>\n</div>\n\n\n<div>\n\t<nav>\n\t\t<button (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\n\t\t<button (click)=\"polovniOglasi()\">Oglasi</button>\n\t</nav>\n</div>\n\n\n<div [ngSwitch]=\"state\">\n\t<div *ngSwitchCase=\"'zvanicni'\">\n\t\t<div *ngIf=\"isAdmin()\">\n\t\t\t<nav>\n\t\t\t\t<button (click)=\"noviZvanicniRekvizit()\">Novi rekvizit</button>\n\t\t\t\t<button (click)=\"pregledajOglase()\">Oglasi za proveru</button>\n\t\t\t</nav>\n\t\t</div>\n\t\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\n\t\t\t\t\t<app-rekvizit (izmenaEvent)=\"izmena($event)\" [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t</div>\n \n\t<div *ngSwitchCase=\"'oglasi'\">\n\t\t<nav>\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\n\t\t</nav>\n\t\t<div *ngFor = \"let o of oglasi\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f'></app-oglas>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div *ngSwitchCase=\"'noviOglas'\">\n\t\t<div>\n\t\t\t<h3>Naziv oglasa</h3>\n\t\t\t<input #nazivOglasa type=\"text\">\n\t\t\t<h3>Opis oglasa</h3>\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\n\t\t\t<h3>Slika oglasa</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena oglasa</h3>\n\t\t\t<input #cenaOglasa type=\"number\">\n\t\t\t<h3>Datum isteka oglasa</h3>\n\t\t\t<input #datumOglasa type=\"date\">\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'noviRekvizit'\">\n\t\t<div>\n\t\t\t<h3>Naziv rekvizita</h3>\n\t\t\t<input #nazivRekvizita type=\"text\" value=\"{{nazivRek}}\" >\n\t\t\t<h3>Opis rekvizita</h3>\n\t\t\t<textarea #opisRekvizita rows=\"10\" cols=\"30\" value=\"{{opisRek}}\"></textarea>\n\t\t\t<h3>Slika rekvizita</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena rekvizita</h3>\n\t\t\t<input #cenaRekvizita type=\"number\" value=\"{{cenaRek}}\">\n\t\t\t\n\t\t\t<div *ngIf=\"isMode() then postavi else izmeni;\"></div>\n\t\t\t\n\t\t\t<ng-template #postavi>\n\t\t\t\t<button (click)=\"postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Postavi rekvizit</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t\t<ng-template #izmeni>\n\t\t\t\t<button (click)=\"izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Izmeni rekvizit</button>\n\t\t\t\t<button (click)=\"odustani()\">Odustani</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'proveraOglasa'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiZaProveru\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'aktivniOglasi'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiKorisnika\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
+module.exports = "<nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" routerLink=\"/fanpage\">Fan zona</a>\n    </div>\n    <button class=\"btn btn-default navbar-btn\" (click)=\"zvanicnaProdavnica()\">Zvanicna prodavnica</button>\n    <button class=\"btn btn-default navbar-btn\" (click)=\"polovniOglasi()\">Oglasi</button>\n    <ul class=\"nav navbar-nav navbar-right\">\n      <li class=\"dropdown\"><a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"#\">Notifikacije <span class=\"caret\"></span></a>\n        <ul class=\"dropdown-menu\">\n          <li *ngFor=\"let n of notifikacije\">\n  \t\t\t{{n.sadrzaj}} \n\t  \t  </li>\n        </ul>\n      </li>\n    </ul>\n  \n  \n  </div>\n</nav>\n\n<div [ngSwitch]=\"state\">\n\t<div *ngSwitchCase=\"'zvanicni'\">\n\t\t<div *ngIf=\"isAdmin()\">\n\t\t\t<div class=\"btn-group\">\n  \t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"noviZvanicniRekvizit()\">Novi rekvizit</button>\n  \t\t\t\t<button type=\"button\" class=\"btn btn-primary\" (click)=\"pregledajOglase()\">Oglasi za proveru</button>\n\t\t\t</div>\n\t\t</div>\n\t\n\t\t<div *ngFor=\"let r of zvanicniRekviziti\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(r.slika,f)\">\n\t\t\t\t\t<app-rekvizit (izmenaEvent)=\"izmena($event)\" [rekvizit]=\"r\" [username]=\"user\" [fileUpload]='f'></app-rekvizit>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t\n\t</div>\n \n\t<div *ngSwitchCase=\"'oglasi'\">\n\t\t<nav>\n\t\t\t<button (click)=\"noviOglas()\">Novi oglas</button>\n\t\t\t<button (click)=\"aktivniOglasi()\">Aktivni oglasi</button>\n\t\t</nav>\n\t\t<div *ngFor = \"let o of oglasi\">\n\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f'></app-oglas>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n\t<div *ngSwitchCase=\"'noviOglas'\">\n\t\t<div>\n\t\t\t<h3>Naziv oglasa</h3>\n\t\t\t<input #nazivOglasa type=\"text\">\n\t\t\t<h3>Opis oglasa</h3>\n\t\t\t<textarea #opisOglasa rows=\"10\" cols=\"30\"></textarea>\n\t\t\t<h3>Slika oglasa</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena oglasa</h3>\n\t\t\t<input #cenaOglasa type=\"number\">\n\t\t\t<h3>Datum isteka oglasa</h3>\n\t\t\t<input #datumOglasa type=\"date\">\n\t\t\t<button (click)=\"postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)\">Postavi oglas</button>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'noviRekvizit'\">\n\t\t<div>\n\t\t\t<h3>Naziv rekvizita</h3>\n\t\t\t<input #nazivRekvizita type=\"text\" value=\"{{nazivRek}}\" [disabled]=\"mode\">\n\t\t\t<h3>Opis rekvizita</h3>\n\t\t\t<textarea #opisRekvizita rows=\"10\" cols=\"30\" value=\"{{opisRek}}\"></textarea>\n\t\t\t<h3>Slika rekvizita</h3>\n\t\t\t\n\t\t\t<input type='file' (change)=\"onSelectFile($event)\">\n\t\t\t\n\t\t\t<h3>Cena rekvizita</h3>\n\t\t\t<input #cenaRekvizita type=\"number\" value=\"{{cenaRek}}\">\n\t\t\t\n\t\t\t<div *ngIf=\"isMode() then izmeni; else postavi;\"></div>\n\t\t\t\n\t\t\t<ng-template #postavi>\n\t\t\t\t<button (click)=\"postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Postavi rekvizit</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t\t<ng-template #izmeni>\n\t\t\t\t<button (click)=\"izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)\">Izmeni rekvizit</button>\n\t\t\t\t<button (click)=\"odustani()\">Odustani</button>\n\t\t\t</ng-template>\n\t\t\t\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'proveraOglasa'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiZaProveru\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<div *ngSwitchCase=\"'aktivniOglasi'\">\n\t\t<div>\n\t\t\t<div *ngFor = \"let o of oglasiKorisnika\">\n\t\t\t\t<div *ngFor = \"let f of fileUploads\">\n\t\t\t\t\t<div *ngIf=\"isImage(o.slika,f)\">\n\t\t\t\t\t\t<app-oglas [oglas]=\"o\" [fileUpload]='f' ></app-oglas>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n</div>\n\n"
 
 /***/ }),
 
@@ -471,31 +471,41 @@ var FanpageComponent = /** @class */ (function () {
     };
     FanpageComponent.prototype.postaviOglas = function (nazivOglasa, opisOglasa, cenaOglasa, datumOglasa) {
         var _this = this;
-        var slikaOglasa = this.selectedFiles.item(0).name;
-        var ponude = [];
-        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa, opisOglasa, slikaOglasa, cenaOglasa, this.user, datumOglasa, ponude);
-        this.currentFileUpload = this.selectedFiles.item(0);
-        this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
-            if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
-                console.log('File is completely uploaded!');
+        var slikaRekvizita = 'noimage.jpg';
+        if (this.selectedFiles) {
+            if (this.selectedFiles.item(0).name != this.slikaRek) {
+                slikaRekvizita = this.selectedFiles.item(0).name;
+                this.currentFileUpload = this.selectedFiles.item(0);
+                this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
+                    if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
+                        console.log('File is completely uploaded!');
+                    }
+                });
+                this.selectedFiles = undefined;
             }
-        });
-        this.selectedFiles = undefined;
+        }
+        var ponude = [];
+        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa, opisOglasa, slikaRekvizita, cenaOglasa, this.user, datumOglasa, ponude);
         this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
         this.state = "zvanicni";
     };
     FanpageComponent.prototype.postaviRekvizit = function (nazivRekvizita, opisRekvizita, cenaRekvizita) {
         var _this = this;
-        var slikaRekvizita = this.selectedFiles.item(0).name;
+        var slikaRekvizita = 'noimage.jpg';
+        if (this.selectedFiles) {
+            if (this.selectedFiles.item(0).name != this.slikaRek) {
+                slikaRekvizita = this.selectedFiles.item(0).name;
+                this.currentFileUpload = this.selectedFiles.item(0);
+                this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
+                    if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
+                        console.log('File is completely uploaded!');
+                    }
+                });
+                this.selectedFiles = undefined;
+            }
+        }
         console.log(slikaRekvizita);
         this._rekvizitiService.postaviRekvizit(nazivRekvizita, opisRekvizita, slikaRekvizita, cenaRekvizita);
-        this.currentFileUpload = this.selectedFiles.item(0);
-        this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(function (event) {
-            if (event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["e" /* HttpResponse */]) {
-                console.log('File is completely uploaded!');
-            }
-        });
-        this.selectedFiles = undefined;
         this._uploadService.getFiles().subscribe(function (data) { return _this.fileUploads = data; });
         this.state = "zvanicni";
     };
@@ -534,7 +544,7 @@ var FanpageComponent = /** @class */ (function () {
         return file.includes(r);
     };
     FanpageComponent.prototype.isAdmin = function () {
-        if (this.user.utype == "admin") {
+        if (this.user.utype == "fanAdmin") {
             return true;
         }
         return false;
@@ -553,7 +563,7 @@ var FanpageComponent = /** @class */ (function () {
         this.state = "noviRekvizit";
     };
     FanpageComponent.prototype.isMode = function () {
-        return !this.mode;
+        return this.mode;
     };
     FanpageComponent.prototype.odustani = function () {
         this.nazivRek = "";
@@ -593,7 +603,7 @@ module.exports = ""
 /***/ "./src/app/header/header.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n\t<button routerLink=\"/homepage\">Home</button>\r\n</div>\r\n\r\n<nav>\r\n\t<div *ngIf=\"isLoggedIn() then userpagebutton; else loginpagebutton;\"></div>\r\n\t<ng-template #loginpagebutton>\r\n\t\t<a routerLink=\"/login\">Login</a>\r\n\t</ng-template>\r\n\t<ng-template #userpagebutton>\r\n\t\t<strong><a routerLink=\"/users/{{getUsername()}}\">{{getUsername()}} </a></strong>\r\n\t\t<a routerLink=\"/logout\">Logout</a>\r\n\r\n\t</ng-template>\r\n</nav>"
+module.exports = "<nav class=\"navbar navbar-inverse\">\r\n  <div class=\"container-fluid\">\r\n    <div class=\"navbar-header\">\r\n      <a class=\"navbar-brand\" routerLink=\"/homepage\">Home</a>\r\n    </div>\r\n    \r\n     <div *ngIf=\"isLoggedIn() then userpagebutton; else loginpagebutton;\"></div>\r\n     \r\n     <ng-template #loginpagebutton>\r\n    \t<ul class=\"nav navbar-nav navbar-right\">\r\n\t\t  <li><a routerLink=\"/login\"><span class=\"glyphicon glyphicon-log-in\"></span> Login</a></li>\r\n\t\t</ul>\r\n\t </ng-template>\r\n     \r\n     <ng-template #userpagebutton>\r\n     \t<ul class=\"nav navbar-nav navbar-right\">\r\n     \t\t<li><a routerLink=\"/fanpage\">Fanpage</a></li>\r\n     \t\t<li><a routerLink=\"/userpage\"> <span class=\"glyphicon glyphicon-user\"></span> Userpage</a></li>\r\n\t\t\t<li><strong><a routerLink=\"/users/{{getUsername()}}\">{{getUsername()}} </a></strong></li>\r\n\t\t\t<li><a routerLink=\"/logout\">Logout</a></li>\r\n\t\t</ul>\r\n\t </ng-template>\r\n\r\n  </div>\r\n</nav>"
 
 /***/ }),
 
@@ -653,7 +663,7 @@ module.exports = ""
 /***/ "./src/app/homepage/homepage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\r\n\t<div *ngIf=\"isLoggedIn() then userpagebutton; else loginpagebutton;\"></div>\r\n\t<ng-template #loginpagebutton>\r\n\t\t<!--  <a routerLink=\"/login\">Login</a> -->\r\n\t</ng-template>\r\n\t<ng-template #userpagebutton>\r\n\t\t<a routerLink=\"/userpage\">Userpage</a>\r\n\t\t{{user.username}}\r\n\t</ng-template>\r\n</nav>\r\n\r\n<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n</nav>\r\n\r\n<nav>\r\n\t<a routerLink=\"/fanpage\">Fanpage</a>\r\n</nav>\r\n"
+module.exports = "\r\n<nav>\r\n\t<a routerLink=\"/cinemas\">Cinemas</a>\r\n\t<a routerLink=\"/theatres\">Theatres</a>\r\n</nav>\r\n\r\n"
 
 /***/ }),
 
@@ -1111,7 +1121,7 @@ module.exports = ""
 /***/ "./src/app/rekvizit/rekvizit.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n\t<h3>Naziv: </h3>\n\t{{rekvizit.naziv}}<br>\n\t<h3>Opis: </h3>\n\t{{rekvizit.opis}}<br>\n\t<img src=\"{{fileUpload}}\" alt=\"{{fileUpload}}\" style=\"max-width:350px\" />\n\t<h3>Cena: </h3>\n\t{{rekvizit.cena}}<br>\n\t<button (click)=\"rezervisiZvanicni()\">Rezervisi</button>\n\t<div *ngIf=\"isAdmin()\">\n\t\t<button (click)=\"ukloniZvanicni()\">Ukloni</button>\n\t\t<button (click)=\"izmeniZvanicni()\">Izmeni</button>\n\t</div>\n</div>\n"
+module.exports = "<div>\n\t<h3>Naziv: </h3>\n\t{{rekvizit.naziv}}<br>\n\t<h3>Opis: </h3>\n\t{{rekvizit.opis}}<br>\n\t<img src=\"{{fileUpload}}\" alt=\"/assets/data/noimage.jpg\" style=\"max-width:350px\" />\n\t<h3>Cena: </h3>\n\t{{rekvizit.cena}}<br>\n\t<button (click)=\"rezervisiZvanicni()\">Rezervisi</button>\n\t<div *ngIf=\"isAdmin()\">\n\t\t<button (click)=\"ukloniZvanicni()\">Ukloni</button>\n\t\t<button (click)=\"izmeniZvanicni()\">Izmeni</button>\n\t</div>\n</div>\n"
 
 /***/ }),
 
@@ -1155,7 +1165,7 @@ var RekvizitComponent = /** @class */ (function () {
         this.izmenaEvent.emit(this.rekvizit);
     };
     RekvizitComponent.prototype.isAdmin = function () {
-        if (this.user.utype == "admin") {
+        if (this.user.utype == "fanAdmin") {
             return true;
         }
         return false;
@@ -1625,7 +1635,7 @@ module.exports = "agm-map {\n  height: 300px;\n  width: 400px;\n}"
 /***/ "./src/app/userpage/userpage.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<hr>\r\n\r\n<div [ngSwitch]=\"usertype\">\r\n\r\n<div *ngSwitchCase=\"'regular'\">\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n<button (click)=\"cinemas_button()\">Cinemas</button>\r\n<button (click)=\"theatres_button()\">Theatres</button>\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n<button (click)=\"my_profile_button()\">My profile</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'cinemas'\">\r\n<hr>\r\n<button (click)=\"search_cinemas()\">Search Cinemas</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Cinemas</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'theatres'\">\r\n<hr>\r\n<button (click)=\"search_theatres()\">Search Theatres</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Theatres</h3>\r\n\r\n</div>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'sysAdmin'\">\r\n\r\n\t<div [ngSwitch]=\"admin_what\">\r\n\r\n\t<button (click)=\"register_cinemas_button()\">Register Cinema/Theatre</button>\r\n\t<button (click)=\"add_admin_button()\">Add new admin</button>\r\n\r\n\t<div *ngSwitchCase=\"'register_cinemas'\">\r\n\t\t<h3>Register new cinema/theatre</h3>\r\n\t\t<hr>\r\n\t\t<h4>Venue type</h4>\r\n\t\t<input type=\"radio\" name=\"venueType\" #cinemaBtn checked> Cinema<br>\r\n  \t\t<input type=\"radio\" name=\"venueType\" #theatreBtn> Theatre<br>\r\n\t\t<h4>Venue name</h4>\r\n\t\t<input type=\"text\" #venueName>\r\n\t\t<h4>Admin</h4>\r\n\t\t<div class=\"dropdown\">\r\n    \t\t<button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Admins\r\n    \t\t<span class=\"caret\"></span></button>\r\n    \t\t<ul class=\"dropdown-menu\">\r\n      \t\t\t<li class=\"dropdown-header\">Venue Admins</li>\r\n      \t\t\t<li *ngFor=\"let a of admins\" (click)=\"chosenAdmin(a.username)\">\r\n  \t\t\t\t\t{{a.username}} \r\n\t  \t\t\t</li>\r\n    \t\t</ul>\r\n\t\t</div>\r\n\t\t<h4>Venue location</h4>\r\n\t\t<agm-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"zoom\" (mapClick)=\"onChoseLocation($event)\">\r\n  \t\t\t<agm-marker [latitude]=\"lat\" [longitude]=\"lng\" *ngIf=\"locationChosen\"></agm-marker>\r\n\t\t</agm-map>\r\n\t\t<hr>\r\n\t\t<button (click)=\"registerVenue(cinemaBtn.checked,venueName.value)\">OK</button>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'add_admin'\">\r\n\t\t<h3>Add new admin</h3>\r\n\t\t<hr>\r\n\t\t<h4>Admin type</h4>\r\n\t\t<input type=\"radio\" name=\"adminType\" #sysadmin checked> System admin<br>\r\n  \t\t<input type=\"radio\" name=\"adminType\" #fanadmin> Fan zone admin<br>\r\n\t\t<h4>Admin name</h4>\r\n\t\t<input type=\"text\" #adminname>\r\n\t\t<button (click)=\"addAdmin(sysadmin.checked,adminname.value)\">Upgrade</button>\r\n\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\r\n\r\n</div>\r\n"
+module.exports = "<hr>\r\n\r\n<div [ngSwitch]=\"usertype\">\r\n\r\n<div *ngSwitchCase=\"'regular'\">\r\n\r\n<div [ngSwitch]=\"what\">\r\n\r\n\r\n\r\n\r\n<button (click)=\"cinemas_button()\">Cinemas</button>\r\n<button (click)=\"theatres_button()\">Theatres</button>\r\n<button (click)=\"istorija()\">History</button>\r\n<button (click)=\"friends_button()\">My Friends</button>\r\n<button (click)=\"lista_rezervacija()\">Reservations</button>\r\n<button (click)=\"my_profile_button()\">My profile</button>\r\n\r\n<div *ngSwitchCase=\"'history'\">\r\n\r\n<div>\r\n <h3> Istorija poseta pozorista i bioskopa: </h3>\r\n  <ul>\r\n  <li *ngFor=\"let visit of visits\">\r\n      {{visit}}\r\n  </li>\r\n</ul>\r\n</div>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'friends'\">\r\n\r\n<h3>My friends</h3>\r\n<button (click)=\"sortByName($event)\"  >Sort by name</button>\r\n<button (click)=\"sortByLastname($event)\" >Sort by lastname</button>\r\n<a routerLink=\"/users/{{getUsername()}}\">See all options</a>\r\n<ol>\r\n  <li *ngFor=\"let friend of my_friends_list\">\r\n  <a routerLink=\"/users/{{friend.username}}\">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>\r\n<button (click)=\"removeFriend($event)\" name={{friend.email}}  >Remove</button>\r\n  </li>\r\n  </ol>\r\n</div>\r\n\r\n\r\n<div *ngSwitchCase=\"'reservations'\">\r\n\r\n<h3>My reservations</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'cinemas'\">\r\n<hr>\r\n<button (click)=\"search_cinemas()\">Search Cinemas</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Cinemas</h3>\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'theatres'\">\r\n<hr>\r\n<button (click)=\"search_theatres()\">Search Theatres</button>\r\n<button (click)=\"search_cinemas()\">Sort by Name</button>\r\n<button (click)=\"search_cinemas()\">Sort by City</button>\r\n<button (click)=\"search_cinemas()\">Sort by Distance</button>\r\n\r\n<h3>Theatres</h3>\r\n\r\n</div>\r\n\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n</div>\r\n\r\n<div *ngSwitchCase=\"'sysAdmin'\">\r\n\r\n\t<div [ngSwitch]=\"admin_what\">\r\n\r\n\t<button (click)=\"register_cinemas_button()\">Register Cinema/Theatre</button>\r\n\t<button (click)=\"add_admin_button()\">Add new admin</button>\r\n\r\n\t<div *ngSwitchCase=\"'register_cinemas'\">\r\n\t\t<h3>Register new cinema/theatre</h3>\r\n\t\t<hr>\r\n\t\t<h4>Venue type</h4>\r\n\t\t<input type=\"radio\" name=\"venueType\" #cinemaBtn checked> Cinema<br>\r\n  \t\t<input type=\"radio\" name=\"venueType\" #theatreBtn> Theatre<br>\r\n\t\t<h4>Venue name</h4>\r\n\t\t<input type=\"text\" #venueName>\r\n\t\t<h4>Admin</h4>\r\n\t\t<div class=\"dropdown\">\r\n    \t\t<button class=\"btn btn-default dropdown-toggle\" type=\"button\" data-toggle=\"dropdown\">Admins\r\n    \t\t<span class=\"caret\"></span></button>\r\n    \t\t<ul class=\"dropdown-menu\">\r\n      \t\t\t<li class=\"dropdown-header\">Venue Admins</li>\r\n      \t\t\t<li *ngFor=\"let a of admins\" (click)=\"chosenAdmin(a.username)\">\r\n  \t\t\t\t\t{{a.username}} \r\n\t  \t\t\t</li>\r\n    \t\t</ul>\r\n\t\t</div>\r\n\t\t<h4>Venue location</h4>\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t<agm-map [latitude]=\"lat\" [longitude]=\"lng\" [zoom]=\"zoom\" (mapClick)=\"onChoseLocation($event)\">\r\n  \t\t\t<agm-marker [latitude]=\"lat\" [longitude]=\"lng\" *ngIf=\"locationChosen\"></agm-marker>\r\n\t\t</agm-map>\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t\r\n\t\t<hr>\r\n\t\t<button (click)=\"registerVenue(cinemaBtn.checked,venueName.value)\">OK</button>\r\n\t</div>\r\n\r\n\r\n\t<div *ngSwitchCase=\"'add_admin'\">\r\n\t\t<h3>Add new admin</h3>\r\n\t\t<hr>\r\n\t\t<h4>Admin type</h4>\r\n\t\t<input type=\"radio\" name=\"adminType\" #sysadmin checked> System admin<br>\r\n  \t\t<input type=\"radio\" name=\"adminType\" #fanadmin> Fan zone admin<br>\r\n\t\t<h4>Admin name</h4>\r\n\t\t<input type=\"text\" #adminname>\r\n\t\t<button (click)=\"addAdmin(sysadmin.checked,adminname.value)\">Upgrade</button>\r\n\t</div>\r\n\r\n\t</div>\r\n</div>\r\n\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 

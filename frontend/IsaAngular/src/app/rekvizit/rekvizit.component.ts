@@ -39,7 +39,7 @@ export class RekvizitComponent implements OnInit {
     }
     
     isAdmin(){
-        if(this.user.utype=="admin"){
+        if(this.user.utype=="fanAdmin"){
             return true;
         }
         return false;
