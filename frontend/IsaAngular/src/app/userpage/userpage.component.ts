@@ -9,6 +9,8 @@ import {ActivatedRoute, Router} from '@angular/router'
 })
 export class UserpageComponent implements OnInit {
   public what: string;
+  public all_or_found_bio: string;
+  public all_or_found_poz: string;
   
   constructor(private user: UserServiceService,
   private http: HttpClient,private router:Router,
@@ -18,7 +20,11 @@ export class UserpageComponent implements OnInit {
   }
   //my_friends_list: Array<Array<string>>;
    my_friends_list: any;
-   friends_sorted: string;
+  bios_list: any;
+  bios_sorted: any;
+  poz_list: any;
+  poz_sorted: any;
+  friends_sorted: string;
   
     get email():string {
       return this.user.email;
@@ -57,19 +63,80 @@ export class UserpageComponent implements OnInit {
   
   cinemas_button(){
   this.what = 'cinemas';
+    this.all_or_found_bio = 'all_bio';
+    this.getAllBios();
   }
   
   theatres_button(){
   this.what = 'theatres';
+    this.all_or_found_poz = 'all_poz';
+    this.getAllPoz();
   }
   
   my_profile_button(){
   this.router.navigate(['users/'+this.user.username]);
   }
   
+  getAllBios(){
+  this.http.get('/getBio').subscribe(data => {
+      
+      if(data != null){
+        console.log(data);
+        this.bios_list = data as any[];
+        
+       
+      }
+    })
+  }
+  
+   getAllPoz(){
+  this.http.get('/getPoz').subscribe(data => {
+      
+      if(data != null){
+        console.log(data);
+        this.poz_list = data as any[];
+        
+       
+      }
+    })
+  }
+  
+  findBio(event){
+    event.preventDefault();
+    if(event.target.elements[0].value.length == 0){
+      this.getAllBios();
+    } else {
+      this.http.get('/findPozBio/bio/'+event.target.elements[0].value).subscribe(data => {
+        if(data != null){
+       
+          this.bios_list = data as any[];
+          
+         
+        }
+      })
+    }
+  }
+  
+  findPoz(event){
+    event.preventDefault();
+    if(event.target.elements[0].value.length == 0){
+      this.getAllPoz();
+    } else {
+      this.http.get('/findPozBio/poz/'+event.target.elements[0].value).subscribe(data => {
+        
+        if(data != null){
+       
+          this.poz_list = data as any[];
+          
+         
+        }
+      })
+    }
+  }
+  
   my_friends(){
   
-    this.http.get('/find_my_friends/'+this.user.email).subscribe(data => {
+    this.http.get('/find_my_friends/'+this.user.username).subscribe(data => {
       
       if(data != null){
         console.log('1 ',data);
@@ -83,7 +150,7 @@ export class UserpageComponent implements OnInit {
   removeFriend(event) {
      console.log(event.target.name);
 
-      this.http.get('/removeFriend/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/removeFriend/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
      this.my_friends();
     })
@@ -92,7 +159,7 @@ export class UserpageComponent implements OnInit {
   
   sortByName(){
   
-    this.http.get('/sortByName/'+this.user.email).subscribe(data => {
+    this.http.get('/sortByName/'+this.user.username).subscribe(data => {
       
       if(data != null){
         console.log('sort by name ',data);
@@ -105,7 +172,7 @@ export class UserpageComponent implements OnInit {
   
   sortByLastname(){
   
-    this.http.get('/sortByLastname/'+this.user.email).subscribe(data => {
+    this.http.get('/sortByLastname/'+this.user.username).subscribe(data => {
       
       if(data != null){
         console.log('sort by lastname ',data);
@@ -115,4 +182,75 @@ export class UserpageComponent implements OnInit {
       }
     })
   }
+  
+  sortBioByName(){
+  
+    this.http.get('/sortPozBio/bio/name').subscribe(data => {  
+      if(data != null){
+        this.bios_list = data as any;
+        
+       
+      }
+    })
+  }
+  
+  sortBioByCity(){
+  
+    this.http.get('/sortPozBio/bio/city').subscribe(data => {
+      
+      if(data != null){
+        this.bios_list = data as any[];
+        
+       
+      }
+    })
+  }
+ 
+  sortBioByDistance(){
+  
+    this.http.get('/sortPozBio/bio/distance').subscribe(data => {
+      
+      if(data != null){
+        this.bios_list = data as any[];
+        
+       
+      }
+    })
+  }
+
+  sortPozByName(){
+  
+    this.http.get('/sortPozBio/poz/name').subscribe(data => {
+      
+      if(data != null){
+        this.my_friends_list = data as any[];
+        
+       
+      }
+    })
+  }
+  
+  sortPozByCity(){
+  
+    this.http.get('/sortPozBio/poz/city').subscribe(data => {
+      
+      if(data != null){
+        this.my_friends_list = data as any[];
+        
+       
+      }
+    })
+  }
+  
+  sortPozByDistance(){
+  
+    this.http.get('/sortPozBio/poz/distance').subscribe(data => {
+      
+      if(data != null){
+        this.my_friends_list = data as any[];
+       
+      }
+    })
+  }
+  
 }

@@ -34,7 +34,7 @@
 <ol>
   <li *ngFor="let friend of my_friends_list">
   <a routerLink="/users/{{friend.username}}">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>
-<button (click)="removeFriend($event)" name={{friend.email}}  >Remove</button>
+<button (click)="removeFriend($event)" name={{friend.username}}  >Remove</button>
   </li>
   </ol>
 </div>
@@ -46,25 +46,82 @@
 
 </div>
 
+
+
+
+
+
+
+
+
+
 <div *ngSwitchCase="'cinemas'">
 <hr>
-<button (click)="search_cinemas()">Search Cinemas</button>
-<button (click)="search_cinemas()">Sort by Name</button>
-<button (click)="search_cinemas()">Sort by City</button>
-<button (click)="search_cinemas()">Sort by Distance</button>
+
+<button (click)="sortBioByName()">Sort by Name</button>
+<button (click)="sortBioByCity()">Sort by City</button>
+<button (click)="sortBioByDistance()">Sort by Distance</button>
 
 <h3>Cinemas</h3>
+
+ <form (submit)="findBio($event)">
+ 		Search cinemas:
+ 		<input type="text" placeholder="Enter cinema's name" name="keyword" />
+		<input type="submit" name="findBio" value="Search" />
+</form>
+
+<div [ngSwitch]="all_or_found_bio">
+
+<div *ngSwitchCase="'all_bio'">
+
+<ol>
+  <li *ngFor="let bio of bios_list">
+  <a routerLink="/rezervisi/{{bio.name}}">{{bio['name']}}</a>
+
+  </li>
+  </ol>
+
+</div>
+
+<div *ngSwitchCase="'found_bio'">
+
+</div>
+
+</div>
 
 </div>
 
 <div *ngSwitchCase="'theatres'">
 <hr>
-<button (click)="search_theatres()">Search Theatres</button>
-<button (click)="search_cinemas()">Sort by Name</button>
-<button (click)="search_cinemas()">Sort by City</button>
-<button (click)="search_cinemas()">Sort by Distance</button>
+<button (click)="sortPozByName()">Sort by Name</button>
+<button (click)="sortPozByCity()">Sort by City</button>
+<button (click)="sortPozByDistance()">Sort by Distance</button>
 
 <h3>Theatres</h3>
+
+ <form (submit)="findPoz($event)">
+ 		Search theatres:
+ 		<input type="text" placeholder="Enter theathre's name" name="keyword" />
+		<input type="submit" name="findPoz" value="Search" />
+</form>
+
+<div [ngSwitch]="all_or_found_poz">
+
+<div *ngSwitchCase="'all_poz'">
+
+<ol>
+  <li *ngFor="let poz of poz_list">
+  <a routerLink="/rezervisi/{{poz.name}}">{{poz.name}}</a>
+
+  </li>
+  </ol>
+
+</div>
+
+<div *ngSwitchCase="'all_bio'">
+</div>
+
+</div>
 
 </div>
 
