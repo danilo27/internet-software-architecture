@@ -37,5 +37,13 @@ public class ZvanicniRekvizit {
 		this.slika = slika;
 		this.cena = cena;
 	}
+	
+	public ZvanicniRekvizit() { }
+	@Override
+	public String toString() {
+		return "ZvanicniRekvizit [naziv=" + naziv + ", opis=" + opis + ", slika=" + slika + ", cena=" + cena + "]";
+	}
+	
+	
 
 }

@@ -1,10 +1,23 @@
-<div>
-	<h3>Naziv: </h3>
-	{{rekvizit.naziv}}<br>
-	<h3>Opis: </h3>
-	{{rekvizit.opis}}<br>
-	<img src="{{fileUpload}}" alt="{{fileUpload}}" style="max-width:350px" />
-	<h3>Cena: </h3>
-	{{rekvizit.cena}}<br>
-	<button (click)="rezervisiZvanicni()">Rezervisi</button>
+<div class="media">
+    <div class="media-left media-middle">
+      <img src="{{fileUpload}}" class="media-object" style="width:250px;height:200px">
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{rekvizit.naziv}}</h4>
+      <strong>Cena: </strong>{{rekvizit.cena}}<br>
+    </div>
+    <h4>Opis</h4>
+    {{rekvizit.opis}}
+    
+    <div class="btn-group">
+  		<button type="button" class="btn btn-primary" (click)="rezervisiZvanicni()">Rezervisi</button>
+	</div>
+	
+	<div *ngIf="isAdmin()">
+		<div class="btn-group">
+  			<button type="button" class="btn btn-primary" (click)="ukloniZvanicni()">Ukloni</button>
+  			<button type="button" class="btn btn-primary" (click)="izmeniZvanicni()">Izmeni</button>
+		</div>
+	</div>
+    
 </div>

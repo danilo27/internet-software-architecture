@@ -1,0 +1,6 @@
+div.media {
+	float: left;
+    width: 450px;
+    height: 400px;
+    overflow: scroll;
+}

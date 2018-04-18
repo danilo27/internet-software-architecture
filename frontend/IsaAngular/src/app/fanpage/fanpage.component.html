@@ -1,20 +1,36 @@
-<div>
-	<nav>
-		<button (click)="zvanicnaProdavnica()">Zvanicna prodavnica</button>
-		<button (click)="polovniOglasi()">Oglasi</button>
-	</nav>
-</div>
-
-					   
-
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" routerLink="/fanpage">Fan zona</a>
+    </div>
+    <button class="btn btn-default navbar-btn" (click)="zvanicnaProdavnica()">Zvanicna prodavnica</button>
+    <button class="btn btn-default navbar-btn" (click)="polovniOglasi()">Oglasi</button>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifikacije <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li *ngFor="let n of notifikacije">
+  			{{n.sadrzaj}} 
+	  	  </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <div [ngSwitch]="state">
 	<div *ngSwitchCase="'zvanicni'">
+		<div *ngIf="isAdmin()">
+			<div class="btn-group">
+  				<button type="button" class="btn btn-primary" (click)="noviZvanicniRekvizit()">Novi rekvizit</button>
+  				<button type="button" class="btn btn-primary" (click)="pregledajOglase()">Oglasi za proveru</button>
+			</div>
+		</div>
+	
 		<div *ngFor="let r of zvanicniRekviziti">
 			<div *ngFor = "let f of fileUploads">
 				<div *ngIf="isImage(r.slika,f)">
-					<app-rekvizit [rekvizit]="r" [username]="user" [fileUpload]='f'></app-rekvizit>
+					<app-rekvizit (izmenaEvent)="izmena($event)" [rekvizit]="r" [username]="user" [fileUpload]='f'></app-rekvizit>
+					<hr>
 				</div>
 			</div>
 		</div>
@@ -22,12 +38,18 @@
 	</div>
  
 	<div *ngSwitchCase="'oglasi'">
-		<nav>
-			<button (click)="noviOglas()">Novi oglas</button>
-			<button (click)="aktivniOglasi()">Aktivni oglasi</button>
-		</nav>
+		<div class="btn-group">
+  			<button type="button" class="btn btn-primary" (click)="noviOglas()">Novi oglas</button>
+  			<button type="button" class="btn btn-primary" (click)="aktivniOglasi()">Aktivni oglasi</button>
+		</div>
+		
 		<div *ngFor = "let o of oglasi">
-			<app-oglas [oglas]="o"></app-oglas>
+			<div *ngFor = "let f of fileUploads">
+				<div *ngIf="isImage(o.slika,f)">
+					<app-oglas [oglas]="o" [fileUpload]='f'></app-oglas>
+					<hr>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -44,8 +66,62 @@
 			<h3>Cena oglasa</h3>
 			<input #cenaOglasa type="number">
 			<h3>Datum isteka oglasa</h3>
-			<input #datumOglasa type="date">
-			<button (click)="postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)">Postavi oglas</button>
+			<input #datumOglasa type="date"><br>
+			<div class="btn-group">
+  				<button type="button" class="btn btn-primary" (click)="postaviOglas(nazivOglasa.value,opisOglasa.value,cenaOglasa.value,datumOglasa.value)">Postavi oglas</button>
+			</div>
+		</div>
+	</div>
+	<div *ngSwitchCase="'noviRekvizit'">
+		<div>
+			<h3>Naziv rekvizita</h3>
+			<input #nazivRekvizita type="text" value="{{nazivRek}}" [disabled]="mode">
+			<h3>Opis rekvizita</h3>
+			<textarea #opisRekvizita rows="10" cols="30" value="{{opisRek}}"></textarea>
+			<h3>Slika rekvizita</h3>
+			
+			<input type='file' (change)="onSelectFile($event)">
+			
+			<h3>Cena rekvizita</h3>
+			<input #cenaRekvizita type="number" value="{{cenaRek}}"><br>
+			
+			<div *ngIf="isMode() then izmeni; else postavi;"></div>
+			
+			<ng-template #postavi>
+				<div class="btn-group">
+  					<button type="button" class="btn btn-primary" (click)="postaviRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Postavi rekvizit</button>
+				</div>
+			</ng-template>
+			
+			<ng-template #izmeni>
+				<div class="btn-group">
+  					<button type="button" class="btn btn-primary" (click)="izmeniRekvizit(nazivRekvizita.value,opisRekvizita.value,cenaRekvizita.value)">Izmeni rekvizit</button>
+  					<button type="button" class="btn btn-primary" (click)="odustani()">Odustani</button>
+				</div>
+			</ng-template>
+			
+		</div>
+	</div>
+	<div *ngSwitchCase="'proveraOglasa'">
+		<div>
+			<div *ngFor = "let o of oglasiZaProveru">
+				<div *ngFor = "let f of fileUploads">
+					<div *ngIf="isImage(o.slika,f)">
+						<app-oglas [oglas]="o" [fileUpload]='f' ></app-oglas>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngSwitchCase="'aktivniOglasi'">
+		<div>
+			<div *ngFor = "let o of oglasiKorisnika">
+				<div *ngFor = "let f of fileUploads">
+					<div *ngIf="isImage(o.slika,f)">
+						<app-oglas [oglas]="o" [fileUpload]='f' ></app-oglas>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

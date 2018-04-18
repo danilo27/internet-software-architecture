@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.slf4j.Logger;
@@ -37,9 +39,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.beans.Aplikacija;
+import com.beans.PozBio;
 import com.beans.User;
+import com.beans.ZvanicniRekvizit;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -48,13 +54,17 @@ import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import com.repositories.UserRepository;
 import com.services.EmailService;
 import com.services.UserService;
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 import static org.springframework.data.mongodb.core.query.Query.query;
+import static com.mongodb.client.model.Filters.eq;
 @RestController
 public class UserController {
 
@@ -473,6 +483,68 @@ public class UserController {
 		   String u = mapper.writeValueAsString(friends);
 		   System.out.println(u);
 		   return u;
+	}
+	
+	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void addAdmin(@RequestBody User user, HttpServletResponse response, HttpSession session) {
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> korisnici = baza.getCollection("users");
+		
+		System.out.println(user.getUsername() + " " + user.getUtype());
+		
+		korisnici.findOneAndUpdate(eq("username",user.getUsername()), Updates.set("utype", user.getUtype()));
+		
+		mongoClient.close();
+		
+	}
+	
+	@GetMapping("/getVenueAdmins")
+	public String getVenueAdmins() {
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> korisnici = baza.getCollection("users");
+		FindIterable<Document> korisniciList = korisnici.find(eq("utype","venueAdmin"));
+		Gson g = new GsonBuilder().create();
+		String ret = "[";
+		
+		boolean dodaj = false;
+		
+		for(Document d : korisniciList) {
+			if(dodaj) {
+				ret+=",";
+			}
+			dodaj = true;
+			User u = g.fromJson(d.toJson(), User.class);
+			ret+=g.toJson(u);
+		}
+		ret+="]";
+
+		mongoClient.close();
+		
+		System.out.println(ret);
+		
+		return ret;
+	}
+	
+	
+	@RequestMapping(value = "/registerVenue", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void registerVenue(@RequestBody PozBio pozbio, HttpServletResponse response, HttpSession session) {
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> pozbios = baza.getCollection("pozbios");
+		
+		Gson g = new GsonBuilder().create();
+		
+		Document d = Document.parse(g.toJson(pozbio));
+		
+		pozbios.insertOne(d);
+		
+		mongoClient.close();
+		
+		
 	}
 	
 }

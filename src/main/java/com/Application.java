@@ -38,7 +38,7 @@ public class Application implements CommandLineRunner{
 //		repository.save(new User("danilo", "danilo"));
 //		repository.save(new User("admin", "admin"));
 		
-		repository.save(new User("regular", "ae", "ae", "ae", "ae", "ae",
+		repository.save(new User("fanAdmin", "ae", "ae", "ae", "ae", "ae",
 				4323, new ArrayList<String>(Arrays.asList("a","b","c")), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "ae", new ArrayList<String>(), new ArrayList<String>()				));
@@ -63,17 +63,17 @@ public class Application implements CommandLineRunner{
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "el", new ArrayList<String>(), new ArrayList<String>()		 ));
 		
-		repository.save(new User("regular", "a", "a", "a", "a", "a",
+		repository.save(new User("sysAdmin", "a", "a", "a", "a", "a",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "a", new ArrayList<String>(), new ArrayList<String>()	 ));
 		
-		repository.save(new User("regular", "b", "b", "b", "b", "b",
+		repository.save(new User("venueAdmin", "b", "b", "b", "b", "b",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "b", new ArrayList<String>(), new ArrayList<String>()		 ));
 		
-		repository.save(new User("regular", "c", "c", "c", "c", "c",
+		repository.save(new User("venueAdmin", "c", "c", "c", "c", "c",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "c", new ArrayList<String>(), new ArrayList<String>()		 ));

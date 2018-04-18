@@ -1,0 +1,23 @@
+div.media {
+	float: left;
+    width: 450px;
+    height: 400px;
+    overflow: scroll;
+}
+
+div.ponude-div {
+    width: 250px;
+    height: 400px;
+    overflow: scroll;
+}
+
+div.lista-ponuda {
+	width: 250px;
+    height: 300px;
+    overflow: scroll;
+}
+
+div.korisnikova-ponuda {
+	width: 250px;
+    height: 100px;
+}

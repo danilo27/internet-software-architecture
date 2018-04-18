@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-cinemas',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CinemasComponent implements OnInit {
 
-  constructor() { }
+    zoom: number = 15;
+    
+    public cinemas = null;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+      this.http.get('/getCinemas').subscribe(data=>this.cinemas=data);
   }
 
 }

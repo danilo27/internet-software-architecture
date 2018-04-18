@@ -1,5 +1,28 @@
 <hr>
 
+<div [ngSwitch]="usertype">
+
+<div *ngSwitchCase="'regular'">
+<hr>
+<div class="statusKorisnika">
+  <div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="bstatus + '%'">
+      Bronzani status
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="sstatus + '%'">
+      Srebrni status
+    </div>
+  </div>
+  <div class="progress">
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="zstatus + '%'">
+      Zlatni status
+    </div>
+  </div>
+</div>
+
+
 <div [ngSwitch]="what">
 
 
@@ -124,5 +147,80 @@
 </div>
 
 </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div *ngSwitchCase="'sysAdmin'">
+
+	<div [ngSwitch]="admin_what">
+
+	<button (click)="register_cinemas_button()">Register Cinema/Theatre</button>
+	<button (click)="add_admin_button()">Add new admin</button>
+
+	<div *ngSwitchCase="'register_cinemas'">
+		<h3>Register new cinema/theatre</h3>
+		<hr>
+		<h4>Venue type</h4>
+		<input type="radio" name="venueType" #cinemaBtn checked> Cinema<br>
+  		<input type="radio" name="venueType" #theatreBtn> Theatre<br>
+		<h4>Venue name</h4>
+		<input type="text" #venueName>
+		<h4>Admin</h4>
+		<div class="dropdown">
+    		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Admins
+    		<span class="caret"></span></button>
+    		<ul class="dropdown-menu">
+      			<li class="dropdown-header">Venue Admins</li>
+      			<li *ngFor="let a of admins" (click)="chosenAdmin(a.username)">
+  					{{a.username}} 
+	  			</li>
+    		</ul>
+		</div>
+		<h4>Venue location</h4>
+		
+		
+		
+		
+		
+		<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="onChoseLocation($event)">
+  			<agm-marker [latitude]="lat" [longitude]="lng" *ngIf="locationChosen"></agm-marker>
+		</agm-map>
+		
+		
+		
+		
+		
+		
+		<hr>
+		<button (click)="registerVenue(cinemaBtn.checked,venueName.value)">OK</button>
+	</div>
+
+
+	<div *ngSwitchCase="'add_admin'">
+		<h3>Add new admin</h3>
+		<hr>
+		<h4>Admin type</h4>
+		<input type="radio" name="adminType" #sysadmin checked> System admin<br>
+  		<input type="radio" name="adminType" #fanadmin> Fan zone admin<br>
+		<h4>Admin name</h4>
+		<input type="text" #adminname>
+		<button (click)="addAdmin(sysadmin.checked,adminname.value)">Upgrade</button>
+	</div>
+
+	</div>
+</div>
+
+
 
 </div>

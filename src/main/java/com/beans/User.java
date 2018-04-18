@@ -217,4 +217,14 @@ public class User {
 		return email;
 	} 
 	
+	public String ispisi() {
+		return "User [utype=" + utype + ", username=" + username + ", password=" + password + ", passwordRepeat="
+				+ passwordRepeat + ", email=" + email + ", name=" + name + ", lastname=" + lastname + ", city=" + city
+				+ ", phoneNumber=" + phoneNumber + ", friends=" + friends + ", listaZahteva=" + listaZahteva
+				+ ", listaPoslatihZahteva=" + listaPoslatihZahteva + ", listaProjekcija=" + listaProjekcija
+				+ ", listaIstorijaPoseta=" + listaIstorijaPoseta + ", listaOcenaPozBio=" + listaOcenaPozBio
+				+ ", listaOcenaProjekcija=" + listaOcenaProjekcija + ", enabled=" + enabled + ", confirmationToken="
+				+ confirmationToken + ", loggedInEmail=" + loggedInEmail + "]";
+	} 
+	
 }

@@ -1,6 +1,6 @@
 package com.beans;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 public class PolovniRekvizit {
 	private String naziv;
@@ -8,7 +8,8 @@ public class PolovniRekvizit {
 	private String slika;
 	private double cena;
 	private String username;
-	private Date datumIsteka;
+	private String datumIsteka;
+	private ArrayList<Ponuda> ponude;
 	
 	public String getNaziv() {
 		return naziv;
@@ -40,13 +41,25 @@ public class PolovniRekvizit {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public Date getDatumIsteka() {
+	
+	
+	
+	public String getDatumIsteka() {
 		return datumIsteka;
 	}
-	public void setDatumIsteka(Date datumIsteka) {
+	public void setDatumIsteka(String datumIsteka) {
 		this.datumIsteka = datumIsteka;
 	}
-	public PolovniRekvizit(String naziv, String opis, String slika, double cena, String username, Date datumIsteka) {
+	public ArrayList<Ponuda> getPonude() {
+		return ponude;
+	}
+	public void setPonude(ArrayList<Ponuda> ponude) {
+		this.ponude = ponude;
+	}
+	
+	
+	public PolovniRekvizit(String naziv, String opis, String slika, double cena, String username, String datumIsteka,
+			ArrayList<Ponuda> ponude) {
 		super();
 		this.naziv = naziv;
 		this.opis = opis;
@@ -54,11 +67,14 @@ public class PolovniRekvizit {
 		this.cena = cena;
 		this.username = username;
 		this.datumIsteka = datumIsteka;
+		this.ponude = ponude;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "PolovniRekvizit [naziv=" + naziv + ", opis=" + opis + ", slika=" + slika + ", cena=" + cena
-				+ ", username=" + username + ", datumIsteka=" + datumIsteka + "]";
+				+ ", username=" + username + ", datumIsteka=" + datumIsteka + ", ponude=" + ponude + "]";
 	}
 	
 	public PolovniRekvizit() {}
