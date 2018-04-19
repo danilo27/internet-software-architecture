@@ -32,7 +32,7 @@
 		 <ol>
 		   <li *ngFor="let friend of my_friends_list">
 		   <a routerLink="/users/{{friend.username}}">{{friend.email}}, {{friend.name}}, {{friend.lastname}}</a>
-			<button (click)="removeFriend($event)" name={{friend.email}}  >Remove</button>
+			<button (click)="removeFriend($event)" name={{friend.username}}  >Remove</button>
     	    </li>
     	    </ol>
 	</div>	
@@ -85,10 +85,10 @@
 	                 <div *ngIf="friend[2]== 'poslat';  then if2condition"></div>   
 	               <div *ngIf="friend[2]== 'vec';  then if3condition"></div>
 	                <div *ngIf="friend[2]== 'primljen';  then if4condition"></div>
-	                <ng-template #if1condition><button (click)="add_friend($event)"   name={{friend[0]}}  >Add</button></ng-template>  
-					<ng-template #if2condition><button (click)="cancelFR($event)" name={{friend[0]}} >Cancel Request</button></ng-template> 
-					<ng-template #if3condition><button (click)="removeFriend($event)"   name={{friend[0]}}  >Remove</button></ng-template>  	
-					<ng-template #if4condition><button (click)="declineFR($event)"   name={{friend[0]}}  >Decline</button></ng-template>  			
+	                <ng-template #if1condition><button (click)="add_friend($event)"   name={{friend[1]}}  >Add</button></ng-template>  
+					<ng-template #if2condition><button (click)="cancelFR($event)" name={{friend[1]}} >Cancel Request</button></ng-template> 
+					<ng-template #if3condition><button (click)="removeFriend($event)"   name={{friend[1]}}  >Remove</button></ng-template>  	
+					<ng-template #if4condition><button (click)="declineFR($event)"   name={{friend[1]}}  >Decline</button></ng-template>  			
     	    
     	    </li>
 

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient} from "@angular/common/http";
@@ -30,26 +31,30 @@ export class LoginComponent implements OnInit {
           email: email,
           password: password
       }
-      //console.log(email,password);
-
+   
       this.http.post('/login', user).subscribe(data => {
-      //if(data['email'] != ''){
-      if(data != null){
-        console.log(data);
-        
-        this._userService.setLoggedIn();
-        this.router.navigate(['userpage']);
-        this._userService.email = data['email'];
-        this._userService.friends = data['friends'];
-        this._userService.name = data['name'];
-        this._userService.lastname = data['lastname'];
-        this._userService.city = data['city'];
-        this._userService.phoneNumber = data['phoneNumber'];
-        this._userService.username = data['username'];
-        this._userService.utype = data['type'];
-        
-        this._userService.setUser(data);
-      }
+	      if(data != null){
+		         console.log(data);
+		         if(data['promenio']==false && data['utype'] == 'fanAdmin'){
+		        	this.router.navigate(['change-password/'+data['username']]);
+		        	alert('First time you log in you have to change your password!');
+		         } else {
+			        this._userService.setLoggedIn();
+			        this._userService.email = data['email'];
+			        this._userService.friends = data['friends'];
+			        this._userService.name = data['name'];
+			        this._userService.lastname = data['lastname'];
+			        this._userService.city = data['city'];
+			        this._userService.phoneNumber = data['phoneNumber'];
+			        this._userService.username = data['username'];
+			        this._userService.utype = data['type'];
+			        this._userService.promenio = data['promenio'];
+			        this._userService.setUser(data);
+			        this.router.navigate(['userpage']);
+		         }
+	      } else {
+	    	  alert('Wrong username or password');
+	      }
     })
     return false;
   }

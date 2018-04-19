@@ -16,10 +16,6 @@ export class UserpageComponent implements OnInit {
     zoom: number = 12;
     locationChosen = false;
     adminName: string;
-    
-    bstatus: number = 50;
-    sstatus: number = 30;
-    zstatus: number = 0;
 
     public admins = null;
     
@@ -31,7 +27,7 @@ export class UserpageComponent implements OnInit {
   public usertype: string;
   public admin_what: string;
 
-  
+  public promenio: boolean;
   constructor(private user: UserServiceService,
   private http: HttpClient,private router:Router,
                 private route: ActivatedRoute) {
@@ -45,6 +41,9 @@ export class UserpageComponent implements OnInit {
   poz_list: any;
   poz_sorted: any;
   friends_sorted: string;
+  res: any;
+  inv: any;
+  hist: any;
   
     get email():string {
       return this.user.email;
@@ -66,12 +65,19 @@ export class UserpageComponent implements OnInit {
       }
   ngOnInit() {
     console.log('user set on userpage', this.user.getUser());
-    this.my_friends();
-    this.usertype = this.user.getUtype();
-    console.log('user type');
-    console.log(this.usertype);
-    this.user.getVenueAdmins().subscribe(data=>this.admins = data);
+
     
+    this.usertype = this.user.getUtype();
+    this.promenio = this.user.getPromenio();
+
+    
+
+	    this.my_friends();
+	    
+	   
+	    console.log(this.usertype);
+	    this.user.getVenueAdmins().subscribe(data=>this.admins = data);
+	
     
   }
 
@@ -82,10 +88,41 @@ export class UserpageComponent implements OnInit {
   
   istorija(){
   this.what ='history';
+	this.http.get('/getMyHist/'+this.user.username).subscribe(data => {
+	      
+	      if(data != null){
+	        console.log(data);
+	        this.hist = data as any[];
+	        
+	       
+	      }
+	    })
   }
   
   lista_rezervacija(){
-  this.what = 'rezervations';
+	  this.what = 'reservations';
+	  this.http.get('/getMyRes/'+this.user.username).subscribe(data => {
+      
+      if(data != null){
+        console.log(data);
+        this.res = data as any[];
+        
+       
+      }
+    })
+  }
+  
+  lista_pozivnica(){
+  this.what = 'invitations';
+  this.http.get('/getMyInv/'+this.user.username).subscribe(data => {
+      
+      if(data != null){
+        console.log(data);
+        this.inv = data as any[];
+        
+       
+      }
+    })
   }
   
   cinemas_button(){
@@ -348,6 +385,36 @@ export class UserpageComponent implements OnInit {
   
   chosenAdmin(username){
       this.adminName=username;
+  }
+  
+  removeRes(event){
+	  console.log('cancel res: ',event.target.name);
+      this.http.get('/cancelRes/'+this.user.username+"/"+event.target.name).subscribe(data => {
+      if(data['poruka']=='canceled'){
+    	  this.lista_rezervacija();
+      } else {
+    	  alert('Isteklo vreme za otkazivanje!');
+      }
+    })
+    return false;
+  }
+  
+  acceptRes(event){
+	  console.log('accept inv: ',event.target.name);
+      this.http.get('/acceptInv/'+this.user.username+"/"+event.target.name).subscribe(data => {
+
+    	  this.lista_pozivnica();
+    })
+    return false;
+  }
+  
+  declineRes(event){
+	  console.log('decline inv: ',event.target.name);
+      this.http.get('/declineInv/'+this.user.username+"/"+event.target.name).subscribe(data => {
+
+    	  this.lista_pozivnica();
+    })
+    return false;
   }
 
 }

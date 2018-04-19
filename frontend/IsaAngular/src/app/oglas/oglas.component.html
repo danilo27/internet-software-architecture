@@ -1,15 +1,15 @@
-<div class="media">
-    <div class="media-left media-middle">
-      <img src="{{fileUpload}}" class="media-object" style="width:250px;height:200px">
-    </div>
-    <div class="media-body">
-      <h4 class="media-heading">{{oglas.naziv}}</h4>
-      <strong>Cena: </strong>{{oglas.cena}}<br>
-      <strong>Korisnik: </strong>{{oglas.username}}<br>
-      <strong>Datum isteka: </strong>{{oglas.datumIsteka}}<br>
-    </div>
-    <h4>Opis</h4>
-    {{oglas.opis}}
+<div class="oglas-div">
+	<h3>Naziv oglasa</h3>
+	{{oglas.naziv}}<br>
+	<h3>Opis oglasa</h3>
+	{{oglas.opis}}<br>
+	<img src="{{fileUpload}}" alt="{{fileUpload}}" style="max-width:350px" />
+	<h3>Cena</h3>
+	{{oglas.cena}}<br>
+	<h3>Korisnik</h3>
+	{{oglas.username}}<br>
+	<h3>Datum isteka</h3>
+	{{oglas.datumIsteka}}<br>
 </div>
 
 
@@ -29,17 +29,13 @@
 			<div class="korisnikova-ponuda">
 				Vasa trenutna ponuda: {{trenutnaPonuda}} <br>
 				<input type="number" #cenaLicitacije>
-				<div class="btn-group">
-  					<button type="button" class="btn btn-primary" (click)="licitiraj(cenaLicitacije.value)">Licitiraj</button>
-				</div>
+				<button (click)="licitiraj(cenaLicitacije.value)">Licitiraj</button>
 			</div>
 		</ng-template>
 	
 		<ng-template #odaberi>
 			Zaustavi licitaciju i odaberi najvecu ponudu
-			<div class="btn-group">
-  				<button type="button" class="btn btn-primary" (click)="odaberiPonudu()">Ok</button>
-			</div>
+			<button (click)="odaberiPonudu()">Ok</button>
 		</ng-template>
 		
 	</div>
@@ -47,9 +43,9 @@
 
 <ng-template #provera>
 	<div>
-		<div class="btn-group">
-  			<button type="button" class="btn btn-primary" (click)="prihvacenOglas()">Prihvati</button>
-  			<button type="button" class="btn btn-primary" (click)="odbijenOglas()">Odbij</button>
-		</div>
+		<nav>
+			<button (click)="prihvacenOglas()">Prihvati</button>
+			<button (click)="odbijenOglas()">Odbij</button>
+		</nav>
 	</div>
 </ng-template>

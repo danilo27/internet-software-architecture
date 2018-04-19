@@ -3,25 +3,36 @@ package com.beans;
 import java.util.ArrayList;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-//@Document(collection="pozbios")
+@Document(collection="pozbios")
 public class PozBio {
 	private String type;
 	private String name;
+	private String city;
 	private String adress;
 	private String opis;
 	private ArrayList<Sala> listaSala;
 	private ArrayList<Projekcija> listaProjekcija;
 	private double prosecnaOcena;
 	private int brojOcena;
+	
+	private ArrayList<RezervacijaKarte> listaRezervacija;
+	
 	private double latitude;
 	private double longitude;
 	private String adminName;
+
+	//private ArrayList<ZauzetostSale> zauzetost;
+
 	
 	
 
 	public PozBio(String type, String name, String adress, String opis, ArrayList<Sala> listaSala,
-			ArrayList<Projekcija> listaProjekcija, double prosecnaOcena, int brojOcena, double latitude,
-			double longitude, String adminName) {
+
+			ArrayList<Projekcija> listaProjekcija, 
+			
+			 double prosecnaOcena,
+			 int brojOcena,
+			 String city) {
 		super();
 		this.type = type;
 		this.name = name;
@@ -31,10 +42,65 @@ public class PozBio {
 		this.listaProjekcija = listaProjekcija;
 		this.prosecnaOcena = prosecnaOcena;
 		this.brojOcena = brojOcena;
+		this.city = city;
+		this.listaRezervacija = new ArrayList<RezervacijaKarte>();
+		
+		//this.zauzetost = new ArrayList<ZauzetostSale>();
+	}
+	
+	
+	
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public PozBio(String type, String name, String city, String adress, String opis, ArrayList<Sala> listaSala,
+			ArrayList<Projekcija> listaProjekcija, double prosecnaOcena, int brojOcena,
+			double lattitude, double longitude, String adminName
+			) {
+
+		super();
+		this.type = type;
+		this.name = name;
+		this.city = city;
+		this.adress = adress;
+		this.opis = opis;
+		this.listaSala = listaSala;
+		this.listaProjekcija = listaProjekcija;
+		this.prosecnaOcena = prosecnaOcena;
+		this.brojOcena = brojOcena;
+
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.adminName = adminName;
+
+		this.listaRezervacija = new ArrayList<RezervacijaKarte>();
+		//this.zauzetost = new ArrayList<ZauzetostSale>();
+
 	}
+
+//	public ArrayList<ZauzetostSale> getZauzetost() {
+//		return zauzetost;
+//	}
+//    void setZauzetost(ArrayList<ZauzetostSale> zauzetost) {
+//		this.zauzetost = zauzetost;
+//	}
+
+	public ArrayList<RezervacijaKarte> getListaRezervacija() {
+		return listaRezervacija;
+	}
+
+
+
+	public void setListaRezervacija(ArrayList<RezervacijaKarte> listaRezervacija) {
+		this.listaRezervacija = listaRezervacija;
+	}
+
+
 
 	public String getType() {
 		return type;

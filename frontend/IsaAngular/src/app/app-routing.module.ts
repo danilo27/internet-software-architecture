@@ -15,6 +15,8 @@ import { UpdateUserComponent} from './update-user/update-user.component';
 
 import { AuthguardGuard} from './authguard.guard';
 import { LogoutComponent } from './logout/logout.component';
+import { RezervacijaComponent } from './rezervacija/rezervacija.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/homepage', pathMatch: 'full'},
@@ -28,7 +30,10 @@ const routes: Routes = [
   { path: 'userprofile', component: UserprofileComponent},
   { path: 'activation-page', component: ActivationPageComponent},
   { path: 'logout', component: LogoutComponent},
+  { path: 'updateuser/:username', component: UpdateUserComponent},
   { path: 'update-user', component: UpdateUserComponent},
+  { path: 'change-password/:username', component: ChangePasswordComponent},
+  { path: 'rezervisi/:name', component: RezervacijaComponent},
   { path: 'users/:username', component: UserprofileComponent},
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -47,5 +52,6 @@ export const RoutingComponents = [
   TheatresComponent,
   UserpageComponent,
   PageNotFoundComponent,
-  ActivationPageComponent
+  ActivationPageComponent,
+  RezervacijaComponent
 ];

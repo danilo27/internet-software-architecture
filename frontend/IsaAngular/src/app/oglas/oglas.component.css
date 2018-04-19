@@ -1,11 +1,13 @@
-div.media {
+div.oglas-div {
 	float: left;
-    width: 450px;
+	background-color: lightgreen;
+    width: 350px;
     height: 400px;
     overflow: scroll;
 }
 
 div.ponude-div {
+	background-color: lightblue;
     width: 250px;
     height: 400px;
     overflow: scroll;

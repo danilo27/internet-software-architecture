@@ -28,7 +28,14 @@ export class UpdateUserComponent implements OnInit {
 
       console.log("email je:");
        console.log(this.loggedInEmail);
-
+       if((e.target.elements[1].value != '' && e.target.elements[2].value == '')
+    		   || (e.target.elements[1].value == '' && e.target.elements[2].value != '')
+       ){
+    	   alert('Enter your password again!');
+       } else if (e.target.elements[1].value != e.target.elements[2].value) {
+    	   alert('Passwords don\'t match!');
+       }
+       else {
       if(window.confirm('Are sure you want to save changes ?')){
           alert('updating info')
 
@@ -48,6 +55,7 @@ export class UpdateUserComponent implements OnInit {
               email: email,
               password: password,
               password_repeat: password_repeat,
+              username: this.user.username,
               name: name,
               lastname: lastname,
               city: city,
@@ -56,12 +64,14 @@ export class UpdateUserComponent implements OnInit {
 
               this.http.post('/updateUser', updated_user).subscribe(data => {
                 this.user.email = data['email'];
-                this.router.navigate(['userprofile']);
+                this.router.navigate(['users/'+this.user.username]);
 
           })
 
 
           }
+       }
+      
 }
 
 }

@@ -12,10 +12,10 @@ public class Projekcija {
 	private double prosecnaOcena;
 	private String opis;
 	private ArrayList<Integer> listaSala;
-	private ArrayList<String> listaTermina;
+	private ArrayList<DatumProjekcije> listaDatumaProjekcije;
 	public Projekcija(String nazivProjekcije, ArrayList<String> listaGlumaca, String zanr, String imeReditelja,
 			String trajnje, String putanjaSlike, double prosecnaOcena, String opis, ArrayList<Integer> listaSala,
-			ArrayList<String> listaTermina) {
+			ArrayList<DatumProjekcije> listaDatumaProjekcije) {
 		super();
 		this.nazivProjekcije = nazivProjekcije;
 		this.listaGlumaca = listaGlumaca;
@@ -26,7 +26,7 @@ public class Projekcija {
 		this.prosecnaOcena = prosecnaOcena;
 		this.opis = opis;
 		this.listaSala = listaSala;
-		this.listaTermina = listaTermina;
+		this.listaDatumaProjekcije = listaDatumaProjekcije;
 	}
 	public String getNazivProjekcije() {
 		return nazivProjekcije;
@@ -82,11 +82,11 @@ public class Projekcija {
 	public void setListaSala(ArrayList<Integer> listaSala) {
 		this.listaSala = listaSala;
 	}
-	public ArrayList<String> getListaTermina() {
-		return listaTermina;
+	public ArrayList<DatumProjekcije> getListaDatumaProjekcije() {
+		return listaDatumaProjekcije;
 	}
-	public void setListaTermina(ArrayList<String> listaTermina) {
-		this.listaTermina = listaTermina;
+	public void setListaDatumaProjekcije(ArrayList<DatumProjekcije> listaDatumaProjekcije) {
+		this.listaDatumaProjekcije = listaDatumaProjekcije;
 	}
 	
 }

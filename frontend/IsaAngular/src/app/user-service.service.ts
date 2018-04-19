@@ -22,6 +22,7 @@ export class UserServiceService {
   city: string;
   username: string;
   utype: string;
+  promenio: boolean;
 
   
 private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
@@ -44,7 +45,9 @@ private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
   getUsername() {
     return  this.username;
   }
-  
+  getPromenio(){
+  	return this.user.promenio;
+  }
   logout(){
   this.loggedIn = false;
   }

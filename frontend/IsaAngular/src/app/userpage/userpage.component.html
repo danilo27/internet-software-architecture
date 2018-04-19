@@ -3,25 +3,6 @@
 <div [ngSwitch]="usertype">
 
 <div *ngSwitchCase="'regular'">
-<hr>
-<div class="statusKorisnika">
-  <div class="progress">
-    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="bstatus + '%'">
-      Bronzani status
-    </div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="sstatus + '%'">
-      Srebrni status
-    </div>
-  </div>
-  <div class="progress">
-    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="zstatus + '%'">
-      Zlatni status
-    </div>
-  </div>
-</div>
-
 
 <div [ngSwitch]="what">
 
@@ -33,18 +14,26 @@
 <button (click)="istorija()">History</button>
 <button (click)="friends_button()">My Friends</button>
 <button (click)="lista_rezervacija()">Reservations</button>
+<button (click)="lista_pozivnica()">Invitations</button>
 <button (click)="my_profile_button()">My profile</button>
 
 <div *ngSwitchCase="'history'">
 
-<div>
  <h3> Istorija poseta pozorista i bioskopa: </h3>
-  <ul>
-  <li *ngFor="let visit of visits">
-      {{visit}}
+  <ol>
+  <li *ngFor="let r of hist">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD<br></b>
   </li>
-</ul>
-</div>
+  </ol>
 
 </div>
 
@@ -67,10 +56,73 @@
 
 <h3>My reservations</h3>
 
+<ol>
+  <li *ngFor="let r of res">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+  <b>Confirmed arrivals:</b>
+  <ul>
+  <li *ngFor="let s of r.potvrdjeni">
+  	{{s}}
+	</li>
+  </ul>
+   <b>Waiting for response:</b><ul>
+  <li *ngFor="let s of r.invited_friends">
+  	{{s}}
+	</li>
+  </ul>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+ 
+<div *ngIf="r.narucilac == user.username;  then ifcondition"></div>
+<div *ngIf="r.narucilac != user.username;  then if2condition"></div>
+  <ng-template #ifcondition><button (click)="removeRes($event)" name={{r.idRez}} >Cancel Reservation</button></ng-template>  
+ <ng-template #if2condition><b>Invited by {{r.narucilac}}</b></ng-template>  
+  </li>
+  </ol>
+
 </div>
 
 
+<div *ngSwitchCase="'invitations'">
 
+<h3>Pending reservations</h3>
+
+<ol>
+  <li *ngFor="let r of inv">
+  <h4>{{r.pozbio}}</h4><h4>{{r.projekcija}}</h4>{{r.datum}}<br>{{r.termin}}<br>Sala {{r.sala}}<br>
+  <b>Confirmed arrivals:</b>
+  <ul>
+  <li *ngFor="let s of r.potvrdjeni">
+  	{{s}}
+	</li>
+  </ul>
+   <b>Waiting for response:</b><ul>
+  <li *ngFor="let s of r.invited_friends">
+  	{{s}}
+	</li>
+  </ul>
+
+  Seats:<ul>
+  <li *ngFor="let s of r.selected_seats">
+  	{{s}}
+	</li>
+  </ul>
+ 
+  Rezervisao: {{r.narucilac}}<br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+<button (click)="acceptRes($event)" name={{r.idRez}}  >Accept Invitation</button>
+<button (click)="declineRes($event)" name={{r.idRez}}  >Decline Invitation</button>
+  </li>
+  </ol>
+
+</div>
 
 
 

@@ -18,14 +18,42 @@ public class User {
 	private ArrayList<String> friends;
 	private ArrayList<String> listaZahteva;
 	private ArrayList<String> listaPoslatihZahteva;
-	private ArrayList<String> listaProjekcija;
+	private ArrayList<Integer> listaProjekcija; //listaRezervacija
+	private ArrayList<Integer> listaPozivnica; 
+	private boolean promenio;
+	private int popust;
+	private String status;
 	
-	public ArrayList<String> getListaProjekcija() {
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getPopust() {
+		return popust;
+	}
+
+	public void setPopust(int popust) {
+		this.popust = popust;
+	}
+
+	public ArrayList<Integer> getListaPozivnica() {
+		return listaPozivnica;
+	}
+
+	public void setListaPozivnica(ArrayList<Integer> listaPozivnica) {
+		this.listaPozivnica = listaPozivnica;
+	}
+
+	public ArrayList<Integer> getListaProjekcija() {
 		return listaProjekcija;
 	}
 
-	public void setListaProjekcija(ArrayList<String> listaProjekcija) {
-		this.listaProjekcija = listaProjekcija;
+	public void setListaProjekcija(ArrayList<Integer> listaKarata) {
+		this.listaProjekcija = listaKarata;
 	}
 
 	public ArrayList<String> getListaPoslatihZahteva() {
@@ -39,8 +67,8 @@ public class User {
 	private ArrayList<String> listaIstorijaPoseta;
 	private HashMap<String,Integer> listaOcenaPozBio;
 	private HashMap<String,Integer> listaOcenaProjekcija;
-	private boolean enabled;
-	private String confirmationToken;
+	private String enabled = "false";
+	private String confirmationToken = "";
 	private String loggedInEmail;
 	
 	public String getLoggedInEmail() {
@@ -55,7 +83,7 @@ public class User {
 			int phoneNumber, ArrayList<String> listaPrijatelja, ArrayList<String> listaZahteva,
 			HashMap<String, Integer> listaOcenaPozBio, HashMap<String, Integer> listaOcenaProjekcija, 
 			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva,
-			ArrayList<String> listaProjekcija
+			ArrayList<Integer> listaProjekcija
 			) {
 		super();
 		this.utype = type;
@@ -70,11 +98,53 @@ public class User {
 		this.listaIstorijaPoseta = listaIstorijaPoseta;
 		this.listaOcenaPozBio = listaOcenaPozBio;
 		this.listaOcenaProjekcija = listaOcenaProjekcija;
-		this.enabled = false;
+		this.enabled = "false";
 		this.loggedInEmail = email;
 		this.username = username;
 		this.listaPoslatihZahteva = listaPoslatihZahteva;
 		this.listaProjekcija = listaProjekcija;
+		this.listaPozivnica = new ArrayList<Integer>();
+		this.promenio = false;
+		this.loggedInEmail = email;
+		this.popust = 0;
+		this.status = "novi";
+	}
+	
+	public boolean isPromenio() {
+		return promenio;
+	}
+
+	public void setPromenio(boolean promenio) {
+		this.promenio = promenio;
+	}
+
+	public User(String type, String pass, String email, String name, String lastname, String city,
+			int phoneNumber, ArrayList<String> listaPrijatelja, ArrayList<String> listaZahteva,
+			HashMap<String, Integer> listaOcenaPozBio, HashMap<String, Integer> listaOcenaProjekcija, 
+			ArrayList<String> listaIstorijaPoseta, String username, ArrayList<String> listaPoslatihZahteva,
+			ArrayList<Integer> listaProjekcija, String enabled
+			) {
+		super();
+		this.utype = type;
+		this.password = pass;
+		this.email = email;
+		this.name = name;
+		this.lastname = lastname;
+		this.city = city;
+		this.phoneNumber = phoneNumber;
+		this.friends = listaPrijatelja;
+		this.listaZahteva = listaZahteva;
+		this.listaIstorijaPoseta = listaIstorijaPoseta;
+		this.listaOcenaPozBio = listaOcenaPozBio;
+		this.listaOcenaProjekcija = listaOcenaProjekcija;
+		this.enabled = enabled;
+		this.loggedInEmail = email;
+		this.username = username;
+		this.listaPoslatihZahteva = listaPoslatihZahteva;
+		this.listaProjekcija = listaProjekcija;
+		this.listaPozivnica = new ArrayList<Integer>();
+		this.popust = 0;
+		this.status = "novi";
 	}
 	
 	public String getUsername() {
@@ -101,12 +171,12 @@ public class User {
 		this.confirmationToken = confirmationToken;
 	}
 	
-	public boolean isEnabled() {
+	public String getEnabled() {
 		return enabled;
 	}
 
 
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
 

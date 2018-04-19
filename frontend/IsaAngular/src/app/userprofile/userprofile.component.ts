@@ -16,7 +16,6 @@ export class UserprofileComponent implements OnInit {
   found_friends: string[] = [];
   found_friends_list: Array<Array<string>>;
   pending_friends_requests: string[] = [];
-  //my_friends_list: Array<Array<string>>;
   my_friends_list: any;
   anyObject: any;
   
@@ -97,7 +96,7 @@ export class UserprofileComponent implements OnInit {
   
   my_friends(){
   
-    this.http.get('/find_my_friends/'+this.user.email).subscribe(data => {
+    this.http.get('/find_my_friends/'+this.user.username).subscribe(data => {
       
       if(data != null){
         this.current = 'my_friends';
@@ -115,7 +114,7 @@ export class UserprofileComponent implements OnInit {
 
   
   pending_friend_requests(){         
-     this.http.get('/pending_friend_requests/'+this.user.email).subscribe(data => {
+     this.http.get('/pending_friend_requests/'+this.user.username).subscribe(data => {
       if(data != null){
         this.pending_friends_requests = data as any[];
       }
@@ -165,7 +164,7 @@ export class UserprofileComponent implements OnInit {
   
   findByUser(user){
     console.log(this.user.email);
-      this.http.post('/find_friends/'+this.user.email, user).subscribe(data => {
+      this.http.post('/find_friends/'+this.user.username, user).subscribe(data => {
 
       if(data != null){
         console.log(data);
@@ -180,7 +179,7 @@ export class UserprofileComponent implements OnInit {
   add_friend(event) {
      console.log(event.target.name);
 
-      this.http.get('/add_friend/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/add_friend/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
       if(data != null){
         console.log(data);
@@ -196,7 +195,7 @@ export class UserprofileComponent implements OnInit {
   acceptFR(event) {
      console.log(event.target.name);
 
-      this.http.get('/acceptFR/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/acceptFR/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
       this.pending_friend_requests();
     })
@@ -206,7 +205,7 @@ export class UserprofileComponent implements OnInit {
    declineFR(event) {
      console.log(event.target.name);
 
-      this.http.get('/declineFR/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/declineFR/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
         //this.my_friends();
       this.pending_friend_requests();
@@ -216,8 +215,9 @@ export class UserprofileComponent implements OnInit {
   
   removeFriend(event) {
      console.log(event.target.name);
+     console.log(this.user.username);
 
-      this.http.get('/removeFriend/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/removeFriend/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
      this.my_friends();
     })
@@ -227,7 +227,7 @@ export class UserprofileComponent implements OnInit {
   cancelFR(event) {
      console.log(event.target.name);
 
-      this.http.get('/cancelFR/'+this.user.email+"/"+event.target.name).subscribe(data => {
+      this.http.get('/cancelFR/'+this.user.username+"/"+event.target.name).subscribe(data => {
 
      this.findByUser(this.user_global);
     })

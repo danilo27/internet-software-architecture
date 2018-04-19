@@ -1,4 +1,8 @@
-<form  (submit)="register($event)">
+<div [ngSwitch]="what">
+
+<div *ngSwitchCase="'reg'">
+
+<form (submit)="register($event)">
   <div class="container">
 
     <div id="login-box">
@@ -36,3 +40,11 @@
 
   </div>
 </form>
+
+</div>
+
+<div *ngSwitchCase="'link'">
+Activation link is sent to your email.
+</div>
+
+</div>

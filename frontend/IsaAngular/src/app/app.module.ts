@@ -25,7 +25,14 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RezervacijaComponent } from './rezervacija/rezervacija.component';
 
+
 import { AgmCoreModule } from '@agm/core';
+
+import { FormsModule } from '@angular/forms';
+import { PozivniceComponent } from './pozivnice/pozivnice.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,15 +44,21 @@ import { AgmCoreModule } from '@agm/core';
     UserprofileComponent,
     UpdateUserComponent,
     LogoutComponent,
-    RezervacijaComponent
+    RezervacijaComponent,
+    PozivniceComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+
     AgmCoreModule.forRoot({
         apiKey: 'AIzaSyAL7fctJPUvG52w9R2KjlVbcoHAG1CRlzs'
-      })
+      }),
+
+    FormsModule
+
   ],
   providers: [UserServiceService,RekvizitiService, AuthguardGuard, UploadFileService],
   bootstrap: [AppComponent]
