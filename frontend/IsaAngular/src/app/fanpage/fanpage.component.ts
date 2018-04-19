@@ -5,6 +5,7 @@ import { UploadFileService } from "../upload-file.service";
 import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 import { IPonuda } from "../IPonuda";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fanpage',
@@ -41,7 +42,8 @@ export class FanpageComponent implements OnInit {
     
     constructor(private _rekvizitiService: RekvizitiService,
                 private _userService: UserServiceService,
-                private _uploadService: UploadFileService) { }
+                private _uploadService: UploadFileService,
+                private router: Router,) { }
 
     ngOnInit() {
         this._rekvizitiService.getZvanicniRekviziti().subscribe(data => this.zvanicniRekviziti = data);
@@ -78,42 +80,62 @@ export class FanpageComponent implements OnInit {
     }
     
     public postaviOglas(nazivOglasa,opisOglasa,cenaOglasa,datumOglasa){
-        var slikaOglasa = this.selectedFiles.item(0).name;
-        var ponude:IPonuda[] = [];
-        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa,opisOglasa,slikaOglasa,cenaOglasa,this.user,datumOglasa,ponude);
+        var slikaRekvizita = 'noimage.jpg';
         
-        this.currentFileUpload = this.selectedFiles.item(0)
-        this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-          if (event instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
-          }
-        })
-     
-        this.selectedFiles = undefined;
+        if(this.selectedFiles){
+            if(this.selectedFiles.item(0).name != this.slikaRek){
+                slikaRekvizita = this.selectedFiles.item(0).name;
+                
+                this.currentFileUpload = this.selectedFiles.item(0)
+                this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+                  if (event instanceof HttpResponse) {
+                    console.log('File is completely uploaded!');
+                  }
+                })
+                
+                this.selectedFiles = undefined;
+                
+            }
+        }
+        
+        
+        var ponude:IPonuda[] = [];
+        this._rekvizitiService.posaljiOglasNaProveru(nazivOglasa,opisOglasa,slikaRekvizita,cenaOglasa,this.user,datumOglasa,ponude);
+
         
         
         this._uploadService.getFiles().subscribe(data => this.fileUploads = data);
         this.state = "zvanicni";
+        this.router.navigate(['fanpage']);
     }
     
     
-    public postaviRekvizit(nazivRekvizita,opisRekvizita,cenaRekvizita){
-        var slikaRekvizita = this.selectedFiles.item(0).name;
+    public postaviRekvizit(nazivRekvizita,opisRekvizita,cenaRekvizita){     
+        var slikaRekvizita = 'noimage.jpg';
+        
+        if(this.selectedFiles){
+            if(this.selectedFiles.item(0).name != this.slikaRek){
+                slikaRekvizita = this.selectedFiles.item(0).name;
+                
+                this.currentFileUpload = this.selectedFiles.item(0)
+                this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+                  if (event instanceof HttpResponse) {
+                    console.log('File is completely uploaded!');
+                  }
+                })
+                
+                this.selectedFiles = undefined;
+                
+            }
+        }
+        
         console.log(slikaRekvizita);
         
         this._rekvizitiService.postaviRekvizit(nazivRekvizita,opisRekvizita,slikaRekvizita,cenaRekvizita);
         
-        this.currentFileUpload = this.selectedFiles.item(0)
-        this._uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-          if (event instanceof HttpResponse) {
-            console.log('File is completely uploaded!');
-          }
-        })
-     
-        this.selectedFiles = undefined;
-        
-        
         this._uploadService.getFiles().subscribe(data => this.fileUploads = data);
+        this._rekvizitiService.getZvanicniRekviziti().subscribe(data => this.zvanicniRekviziti = data);
+        
         this.state = "zvanicni";
     }
     
@@ -165,7 +187,7 @@ export class FanpageComponent implements OnInit {
     }
     
     isAdmin(){
-        if(this.user.utype=="admin"){
+        if(this.user.utype=="fanAdmin"){
             return true;
         }
         return false;
@@ -187,7 +209,7 @@ export class FanpageComponent implements OnInit {
     }
     
     isMode(){
-        return !this.mode;
+        return this.mode;
     }
     
     odustani(){

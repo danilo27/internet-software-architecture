@@ -65,7 +65,8 @@ export class RekvizitiService {
               naziv:nazivRekvizita,
               opis:opisRekvizita,
               slika:slikaRekvizita,
-              cena:cenaRekvizita
+              cena:cenaRekvizita,
+              rezervisan:false
       }
       
       this.http.post('/postaviRekvizit',rekvizit).subscribe((data)=>{});
@@ -77,7 +78,8 @@ export class RekvizitiService {
               naziv:nazivRekvizita,
               opis:opisRekvizita,
               slika:slikaRekvizita,
-              cena:cenaRekvizita
+              cena:cenaRekvizita,
+              rezervisan:false
       }
       
       this.http.post('/izmeniRekvizit',rekvizit).subscribe((data)=>{});
@@ -87,14 +89,20 @@ export class RekvizitiService {
       this.http.post('/ukloniZvanicni',rekvizit).subscribe((data)=>{});
   }
   
-  posaljiPonudu(imeKorisnika,cenaLicitacije,nazivOglasa){
+  posaljiPonudu(imeKorisnika,cenaLicitacije,nazivOglasa): boolean{
+      var uspeh = false;
       var licitacija = {
               username:imeKorisnika,
               cena:cenaLicitacije,
               oglas:nazivOglasa
       }
       
-      this.http.post('/posaljiPonudu',licitacija).subscribe((data)=>{});
+      this.http.post('/posaljiPonudu',licitacija).subscribe(
+              data => { uspeh = true; }, 
+              error => {alert("Licitacije na oglas: " + licitacija.oglas + " su zabranjene")} 
+          );
+      
+      return uspeh;
   }
   
   odaberiPonudu(oglas){
@@ -102,11 +110,17 @@ export class RekvizitiService {
   }
   
   prihvacenOglas(oglas){
-      this.http.post('/prihvacenOglas',oglas).subscribe((data)=>{});
+      this.http.post('/prihvacenOglas',oglas).subscribe(
+              data => { alert("Oglas prihvacen: " + oglas.naziv) }, 
+              error => {alert("Nazalost ovaj oglas je vec preuzet na proveru")} 
+          );
   }
   
   odbijenOglas(oglas){
-      this.http.post('/odbijenOglas',oglas).subscribe((data)=>{});
+      this.http.post('/odbijenOglas',oglas).subscribe(
+              data => { alert("Oglas odbijen: " + oglas.naziv) }, 
+              error => {alert("Nazalost ovaj oglas je vec preuzet na proveru")} 
+          );
   }
   
  

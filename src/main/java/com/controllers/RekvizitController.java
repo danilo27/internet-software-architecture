@@ -59,7 +59,6 @@ public class RekvizitController {
 	public void rezervisiZvanicniRekvizit(@RequestBody RezervacijaRekvizita rezRek, HttpServletResponse response,HttpSession session) throws IOException {
 		try {
 			rs.rezervisiZvanicniRekvizit(rezRek);
-
 		}catch(Exception e) {
 			response.sendError(Response.SC_FORBIDDEN);
 		}
@@ -80,8 +79,12 @@ public class RekvizitController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void posaljiPonudu(@RequestBody Licitacija licitacija, HttpServletResponse response,HttpSession session) {
-		rs.posaljiPonudu(licitacija);
+	public void posaljiPonudu(@RequestBody Licitacija licitacija, HttpServletResponse response,HttpSession session) throws IOException {
+		try {
+			rs.posaljiPonudu(licitacija);
+		}catch(Exception e) {
+			response.sendError(Response.SC_FORBIDDEN);
+		}
 	}
 	
 	@RequestMapping(
@@ -145,8 +148,12 @@ public class RekvizitController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void prihvacenOglas(@RequestBody PolovniRekvizit oglas, HttpServletResponse response,HttpSession session) {
-		rs.prihvacenOglas(oglas);
+	public void prihvacenOglas(@RequestBody PolovniRekvizit oglas, HttpServletResponse response,HttpSession session) throws IOException {
+		try {
+			rs.prihvacenOglas(oglas);
+		}catch(Exception e) {
+			response.sendError(Response.SC_FORBIDDEN);
+		}
 	}
 	
 	@RequestMapping(
@@ -154,8 +161,12 @@ public class RekvizitController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void odbijenOglas(@RequestBody PolovniRekvizit oglas, HttpServletResponse response,HttpSession session) {
-		rs.odbijenOglas(oglas);
+	public void odbijenOglas(@RequestBody PolovniRekvizit oglas, HttpServletResponse response,HttpSession session) throws IOException {
+		try {
+			rs.odbijenOglas(oglas);
+		}catch(Exception e) {
+			response.sendError(Response.SC_FORBIDDEN);
+		}
 	}
 	
 	@GetMapping("/getCinemas")

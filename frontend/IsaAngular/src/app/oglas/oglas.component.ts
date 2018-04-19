@@ -39,8 +39,9 @@ export class OglasComponent implements OnInit {
     }
     
     licitiraj(cenaLicitacije){
-        this._rekvizitiService.posaljiPonudu(this.user.username,cenaLicitacije,this.oglas.naziv);
-        this.trenutnaPonuda = cenaLicitacije;
+        if(this._rekvizitiService.posaljiPonudu(this.user.username,cenaLicitacije,this.oglas.naziv)){
+            this.trenutnaPonuda = cenaLicitacije;
+        }
     }
     
     isUser(){

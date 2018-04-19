@@ -9,9 +9,21 @@
     <h4>Opis</h4>
     {{rekvizit.opis}}
     <hr>
-    <div class="btn-group">
-  		<button type="button" class="btn btn-primary" (click)="rezervisiZvanicni()">Rezervisi</button>
-	</div>
+    
+    <div *ngIf="isRezervisan() then rez;else notrez;"></div>
+    
+    
+    <ng-template #rez>
+    	<img src="/assets/reserved.jpg" style="width:250px; height:50px;">
+    </ng-template>
+    
+    <ng-template #notrez>
+    	<div class="btn-group">
+  			<button type="button" class="btn btn-primary" (click)="rezervisiZvanicni()">Rezervisi</button>
+		</div>
+    </ng-template>
+    
+    
 	
 	<div *ngIf="isAdmin()">
 		<div class="btn-group">

@@ -3,4 +3,5 @@ export interface IZvanicniRekvizit {
   opis: string;
   slika: string;
   cena: number;
+  rezervisan: boolean;
 }

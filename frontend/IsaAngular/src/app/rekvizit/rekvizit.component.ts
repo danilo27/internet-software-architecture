@@ -12,6 +12,7 @@ import { UserServiceService } from "../user-service.service";
 export class RekvizitComponent implements OnInit {
 
     @Input('rekvizit') public rekvizit; 
+    @Input('username') public username;
     @Input('fileUpload') fileUpload: string;
     
     public user = null;
@@ -42,6 +43,10 @@ export class RekvizitComponent implements OnInit {
             return true;
         }
         return false;
+    }
+    
+    isRezervisan(){
+        return this.rekvizit.rezervisan;
     }
 
 }

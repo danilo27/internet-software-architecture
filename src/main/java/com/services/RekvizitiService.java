@@ -18,6 +18,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Updates;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import static com.mongodb.client.model.Filters.eq;
@@ -26,12 +27,16 @@ public class RekvizitiService {
 	
 	private MongoDatabase baza;
 	private LinkedList<String> rezervacijeRekvizita;
+	private LinkedList<String> prihvaceniOglasi;
+	private LinkedList<String> obustavljenePonude;
 	
 	@SuppressWarnings("resource")
 	public RekvizitiService() {
 		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 		baza = mongoClient.getDatabase("IsaDB");
 		rezervacijeRekvizita = new LinkedList<String>();
+		prihvaceniOglasi = new LinkedList<String>();
+		obustavljenePonude = new LinkedList<String>();
 	}
 	
 	
@@ -99,8 +104,6 @@ public class RekvizitiService {
 		return ret;
 	}
 	
-	
-	
 	public void rezervisiZvanicniRekvizit(RezervacijaRekvizita rezrek) throws Exception {
 		
 		if(rezervacijeRekvizita.contains(rezrek.getImeRekvizita())) {
@@ -108,22 +111,28 @@ public class RekvizitiService {
 		}else {
 			rezervacijeRekvizita.add(rezrek.getImeRekvizita());
 		}
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		MongoCollection<Document> rezervisaniRekviziti = baza.getCollection("rezervisaniRekviziti");
 		Gson g = new GsonBuilder().create();
 		String rr = g.toJson(rezrek); 
 		Document d = Document.parse(rr);
 		rezervisaniRekviziti.insertOne(d);
 	
+		MongoCollection<Document> zvanicniRekviziti = baza.getCollection("zvanicniRekviziti");
+		
+		FindIterable<Document> dokRek = zvanicniRekviziti.find(eq("naziv",rezrek.getImeRekvizita()));
+		
+		ZvanicniRekvizit rekvizit = g.fromJson(dokRek.first().toJson(), ZvanicniRekvizit.class);
+		
+		if(rekvizit.isRezervisan()) {
+			throw new Exception();
+		}
+		
+		zvanicniRekviziti.findOneAndUpdate(eq("naziv",rezrek.getImeRekvizita()), Updates.set("rezervisan", true));
+		
 		rezervacijeRekvizita.remove(rezrek.getImeRekvizita());
-		
-		
-	
 	}
-	
-	
-	
-	
+
 	public void posaljiOglasNaProveru(PolovniRekvizit oglas) {
 		MongoCollection<Document> oglasiZaProveru = baza.getCollection("oglasiZaProveru");
 		Gson g = new GsonBuilder().create();
@@ -133,12 +142,20 @@ public class RekvizitiService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void posaljiPonudu(Licitacija licitacija) {
+	public void posaljiPonudu(Licitacija licitacija) throws Exception {
+		if(obustavljenePonude.contains(licitacija.getOglas())) {
+			throw new Exception();
+		}
+		
 		MongoCollection<Document> oglasi = baza.getCollection("oglasi");
 		Gson g = new GsonBuilder().create();
 		Ponuda p = new Ponuda(licitacija.getUsername(),licitacija.getCena());
 
 		FindIterable<Document> d = oglasi.find(eq("naziv",licitacija.getOglas()));
+		
+		if(d.first() == null) {
+			throw new Exception();
+		}
 		
 		PolovniRekvizit oglas = g.fromJson(d.first().toJson(), PolovniRekvizit.class);
 		
@@ -168,11 +185,16 @@ public class RekvizitiService {
 	}
 	
 	public void odaberiPonudu(PolovniRekvizit oglas) {
+		if(!obustavljenePonude.contains(oglas.getNaziv())) {
+		obustavljenePonude.add(oglas.getNaziv());
+			
 		MongoCollection<Document> oglasi = baza.getCollection("oglasi");
 		
 		Gson g = new GsonBuilder().create();
 		
 		oglasi.deleteOne(eq("naziv", oglas.getNaziv()));
+		
+		obustavljenePonude.remove(oglas.getNaziv());
 		
 		MongoCollection<Document> notifikacije = baza.getCollection("notifikacije");
 		
@@ -191,6 +213,7 @@ public class RekvizitiService {
 			
 			notifikacije.insertOne(notifikacija);
 		}		
+		}
 	}
 	
 	public void postaviRekvizit(ZvanicniRekvizit rekvizit) {
@@ -263,9 +286,21 @@ public class RekvizitiService {
 		return ret;
 	}
 	
-	public void prihvacenOglas(PolovniRekvizit oglas) {
-		System.out.println("dosao do prihvacenog");
+	public void prihvacenOglas(PolovniRekvizit oglas) throws Exception {
+		if(prihvaceniOglasi.contains(oglas.getNaziv())) {
+			throw new Exception();
+		} else {
+			prihvaceniOglasi.add(oglas.getNaziv());
+		}
+		Thread.sleep(3000);
 		MongoCollection<Document> oglasiZaProveru = baza.getCollection("oglasiZaProveru");
+		
+		FindIterable<Document> docs = oglasiZaProveru.find(eq("naziv",oglas.getNaziv()));
+		
+		if(docs.first() == null) {
+			throw new Exception();
+		}
+		
 		oglasiZaProveru.deleteOne(eq("naziv",oglas.getNaziv()));
 		
 		Gson g = new GsonBuilder().create();
@@ -282,10 +317,25 @@ public class RekvizitiService {
 		MongoCollection<Document> notifikacije = baza.getCollection("notifikacije");
 		
 		notifikacije.insertOne(notifikacija);
+		
+		prihvaceniOglasi.remove(oglas.getNaziv());
 	}
 	
-	public void odbijenOglas(PolovniRekvizit oglas) {
+	public void odbijenOglas(PolovniRekvizit oglas) throws Exception {
+		if(prihvaceniOglasi.contains(oglas.getNaziv())) {
+			throw new Exception();
+		} else {
+			prihvaceniOglasi.add(oglas.getNaziv());
+		}
+		Thread.sleep(3000);
 		MongoCollection<Document> oglasiZaProveru = baza.getCollection("oglasiZaProveru");
+		
+		FindIterable<Document> docs = oglasiZaProveru.find(eq("naziv",oglas.getNaziv()));
+		
+		if(docs.first() == null) {
+			throw new Exception();
+		}
+		
 		Gson g = new GsonBuilder().create();
 		oglasiZaProveru.deleteOne(eq("naziv",oglas.getNaziv()));
 		
@@ -298,6 +348,8 @@ public class RekvizitiService {
 		MongoCollection<Document> notifikacije = baza.getCollection("notifikacije");
 		
 		notifikacije.insertOne(notifikacija);
+		
+		prihvaceniOglasi.remove(oglas.getNaziv());
 	}
 	
 }
