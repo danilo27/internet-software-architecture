@@ -190,7 +190,6 @@ public class PozBioController {
 		System.out.println(datum);
 		System.out.println(termin);
 		String end = datum+" "+termin;
-		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
 		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
 		Date sad = null;
 		Date rez = null;
@@ -202,8 +201,6 @@ public class PozBioController {
 		}
 		System.out.println(sad);
 		System.out.println(rez);
-		//java.time.LocalDateTime rez = LocalDateTime.parse(end, formatter);
-		//java.time.LocalDateTime sad = LocalDateTime.parse(sads, formatter);
 		
 		Instant instant_sad = Instant.ofEpochMilli(sad.getTime());
 	    LocalDateTime sad_ldt = LocalDateTime.ofInstant(instant_sad, ZoneOffset.UTC);
@@ -245,11 +242,7 @@ public class PozBioController {
 										DBCollection pozbios = db.getCollection("pozbios");
 										
 										
-										//save
-										
-										
-										
-										
+										//save	
 										RezervacijaKarte nova = new RezervacijaKarte(
 												rk.getPozbio(),
 												rk.getProjekcija(),
@@ -266,64 +259,40 @@ public class PozBioController {
 										
 										rezervacijaRepository.save(nova);
 										
-										//
-										System.out.println("Lista Rezervacija: " + rezervacijaRepository.findAll());
-										System.out.println("current id: " + nova.getIdRez());
-										//////////////////update bazu///////////////////////////	
 									    DBObject findQuery = new BasicDBObject("name", rk.getPozbio());
 									    pozbios.update(findQuery, new BasicDBObject("$push",new BasicDBObject("listaRezervacija", pojoToDoc(nova))));
-										System.out.println("repo->pozbio->listaRez: " + pozBioRepository.findByName(rk.getPozbio()).getListaRezervacija());
 									    
-									    //////////////////////////////////////////////////////////
-										
-										//////////////////update narucioca///////////////////////////
 									    DBObject findQuery2 = new BasicDBObject("username", narucilac.getUsername());
 									    users.update(findQuery2, new BasicDBObject("$push",new BasicDBObject("listaProjekcija", nova.getIdRez())));
 									    System.out.println(userService.findByUsername(narucilac.getUsername()).getListaProjekcija());
-										///////////////////////////////////////////////////////////
-									    
-									    //////////////////update prijatelje///////////////////////////
+
 									    DBObject findQuery3;
 									    for(String un : rk.getInvited_friends()){
 									    	findQuery3 = new BasicDBObject("username", un);
 									    	 users.update(findQuery3, new BasicDBObject("$push",new BasicDBObject("listaPozivnica", nova.getIdRez())));
 									    }
-										//////////////////////////////////////////////////////////////
-									    
-									    /////////////////////////Zauzmi sedista/////////////////////
-									    
-//									    for(Projekcija p : pb.getListaProjekcija()){
-//									    	if(p.getNazivProjekcije().equals(projekcija)){
-//									    		for(DatumProjekcije dp : p.getListaDatumaProjekcije()){
-//									    			if(dp.getDatum().equals(datum)){
-//									    				for(Termin t : dp.getListaTermina()){
-//									    					if(t.termin.equals(termin)){
-//									    						if(t.sala==sala){
-//									    							//t.getZauzetost().remove(sediste);
-//									    						}
-//									    					}
-//									    				}
-//									    			}
-//									    		}
-//									    	}
-//									    }
-									    
+
 									    for(String seat : rk.getSelected_seats()){
 									    	t.getZauzetost().add(seat);
 									    	System.out.println(t.getZauzetost());
 									    	
 									    }
-									    System.out.println("PB je: " + pb);
-									    System.out.println("Naziv: "+pb.getName());
-									    //promenjen = pb;
-									    
-									    ////////////////////////////////////////////////////////////
-									    
-									    
-									    //////////////////posalji detalje naruciocu//////////////////
+	
+										if(pb != null){
+											MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+											MongoDatabase baza = mongoClient.getDatabase("test");
+
+											
+											MongoCollection<org.bson.Document> pozbos = baza.getCollection("pozbios");
+											Gson g = new GsonBuilder().create();
+											String prom_json = g.toJson(pb);
+											org.bson.Document prom_document = org.bson.Document.parse(prom_json);
 		
-										
-										
+											pozbos.findOneAndReplace(eq("name",pb.getName()), prom_document);
+											
+											mongoClient.close();	
+										}
+									    
 										String appUrl = request.getScheme() + "://" + request.getServerName();
 		
 										System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
@@ -364,170 +333,20 @@ public class PozBioController {
 								} else {
 									 System.out.println("No invited friends");
 								}
-								///////////////////////////////////////////////
 							
-								
-							//replace promene
-							System.out.println("replace: Pb je : " + pb);
-							if(pb != null){
-								System.out.println("Nije null");
-								MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-								MongoDatabase baza = mongoClient.getDatabase("test");
-
-								
-								MongoCollection<org.bson.Document> pozbios = baza.getCollection("pozbios");
-								Gson g = new GsonBuilder().create();
-								String prom_json = g.toJson(pb);
-								org.bson.Document prom_document = org.bson.Document.parse(prom_json);
-								
-								
-								
-								pozbios.findOneAndReplace(eq("name",pb.getName()), prom_document);
-								
-								
-//								for(Projekcija proj : pb.getListaProjekcija()){
-//									if(proj.getNazivProjekcije().equals(rk.getProjekcija())){
-//										System.out.println("1");
-//										for(DatumProjekcije dp : proj.getListaDatumaProjekcije()){
-//											if(dp.getDatum().equals(rk.getDatum())){
-//												System.out.println("2");
-//												for(Termin t : dp.getListaTermina()){
-//													if(t.getTermin().equals(rk.getTermin()) && t.getSala() == Integer.parseInt(rk.getSala())){
-//														System.out.println("3");
-//														if(compareDates(dp.getDatum(),t.getTermin()).equals("pre")){
-//															System.out.println("NAKON IZMENE: " + t.getZauzetost());
-//														}
-//													}
-//												}
-//											}
-//										}
-//									}
-//								}
-							}
-							
-								//////////////////////////////////////////////
-							
-								
 								return "{\"poruka\":\"success\"}";
-								
-							}
+															
+							
 						}
 					}
 				}
 			}
 		
-		
+		}
 		
 		return null;
 		
 	}
-	
-//	@RequestMapping(path = "/sortPozByCity/{tip}/{sort}", method = RequestMethod.GET)
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public String sortPozByCity(@PathVariable String tip, @PathVariable String sort, HttpServletResponse response, HttpSession session)
-//			throws Exception {	
-//		
-//		ArrayList<User> friends = new ArrayList<User>();
-//		for(String s : userService.findByEmail(email).getFriends()){
-//			friends.add(userService.findByEmail(s));
-//		}
-//		
-//		Collections.sort(friends, new Comparator<User>() {
-//	        @Override
-//	        public int compare(User c1, User c2) {
-//
-//	            return c1.getLastname().compareTo(c2.getLastname());
-//	        }
-//	       });
-//		
-//		   ObjectMapper mapper = new ObjectMapper();
-//		   
-//		   
-//		   
-//		   String u = mapper.writeValueAsString(friends);
-//		   System.out.println(u);
-//		   return u;
-//	}
-//	
-//	@RequestMapping(path = "/sortPozByDistance/{email}", method = RequestMethod.GET)
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public String sortPozByDistance(@PathVariable String email, HttpServletResponse response, HttpSession session)
-//			throws Exception {	
-//		ArrayList<User> friends = new ArrayList<User>();
-//		for(String s : userService.findByEmail(email).getFriends()){
-//			friends.add(userService.findByEmail(s));
-//		}
-//		
-//		Collections.sort(friends, new Comparator<User>() {
-//	        @Override
-//	        public int compare(User c1, User c2) {
-//
-//	            return c1.getLastname().compareTo(c2.getLastname());
-//	        }
-//	       });
-//		
-//		   ObjectMapper mapper = new ObjectMapper();
-//		   
-//		   
-//		   
-//		   String u = mapper.writeValueAsString(friends);
-//		   System.out.println(u);
-//		   return u;
-//	}
-//	
-//	//bio
-//	
-//	@RequestMapping(path = "/sortBioByName/{email}", method = RequestMethod.GET)
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public String sortBioByName(@PathVariable String email, HttpServletResponse response, HttpSession session)
-//			throws Exception {	
-//		ArrayList<User> friends = new ArrayList<User>();
-//		for(String s : userService.findByEmail(email).getFriends()){
-//			friends.add(userService.findByEmail(s));
-//		}
-//		
-//		Collections.sort(friends, new Comparator<User>() {
-//	        @Override
-//	        public int compare(User c1, User c2) {
-//
-//	            return c1.getName().compareTo(c2.getName());
-//	        }
-//	       });
-//		
-//		ObjectMapper mapper = new ObjectMapper();
-//		   
-//		   
-//		   
-//		   String u = mapper.writeValueAsString(friends);
-//		   System.out.println(u);
-//		   return u;
-//	}
-//	
-//	@RequestMapping(path = "/sortBioByCity/{email}", method = RequestMethod.GET)
-//	@ResponseStatus(value = HttpStatus.OK)
-//	public String sortBioByCity(@PathVariable String email, HttpServletResponse response, HttpSession session)
-//			throws Exception {	
-//		ArrayList<User> friends = new ArrayList<User>();
-//		for(String s : userService.findByEmail(email).getFriends()){
-//			friends.add(userService.findByEmail(s));
-//		}
-//		
-//		Collections.sort(friends, new Comparator<User>() {
-//	        @Override
-//	        public int compare(User c1, User c2) {
-//
-//	            return c1.getLastname().compareTo(c2.getLastname());
-//	        }
-//	       });
-//		
-//		   ObjectMapper mapper = new ObjectMapper();
-//		   
-//		   
-//		   
-//		   String u = mapper.writeValueAsString(friends);
-//		   System.out.println(u);
-//		   return u;
-//	}
 	
 	@RequestMapping(path = "/sortBioByDistance/{email}", method = RequestMethod.GET)
 	@ResponseStatus(value = HttpStatus.OK)

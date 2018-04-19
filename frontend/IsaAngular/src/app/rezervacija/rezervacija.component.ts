@@ -55,6 +55,7 @@ export class RezervacijaComponent implements OnInit {
   projekcija_button(e){
     this.what = 'izabrana_projekcija';
     this.izabrana_projekcija = e.target.name;
+
     this.calling_friends = false;
     
   }
@@ -62,16 +63,10 @@ export class RezervacijaComponent implements OnInit {
   datum_button(e){
     this.what = 'izabran_datum';
     this.izabran_datum = e.target.name;
+    console.log('izabran datum: ', this.izabran_datum);
     this.calling_friends = false;
 
   }
-  
-  
-  
-  
-  
-  
-  //var alphabet = {'a','b'};
  
   alphabet: string[] = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   
@@ -81,12 +76,14 @@ export class RezervacijaComponent implements OnInit {
   termin_button(e){
     this.what = 'izabran_termin';
     this.izabran_termin = e.target.name;
+    console.log('izabran termin: ', this.izabran_termin);
     this.termin = this.izabran_termin.split("-")[0];
     this.sala = Number(this.izabran_termin.split("-")[1]);
     this.cena = Number(this.izabran_termin.split("-")[2]);
     this.rows = [];
     this.cols = [];
     this.selected = [];
+    this.reserved = [];
     this.calling_friends = false;
 
     this.ticketPrice = this.cena;
@@ -117,6 +114,7 @@ export class RezervacijaComponent implements OnInit {
     				for (let t of d.listaTermina){
     					if(t.termin == this.termin && t.sala == this.sala){
     						for(let z of t.zauzetost){
+    							console.log(t.zauzetost);
     							this.reserved.push(z);
     						}
     					}

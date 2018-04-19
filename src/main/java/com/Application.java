@@ -132,7 +132,24 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350)   )) ),
+										   
+										   new DatumProjekcije("25/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350)   )) ),
+										   
+										  new DatumProjekcije("30/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350)   )) )
+										   
+												
+												))),
 						new Projekcija("Cica Gorio", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -181,7 +198,23 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("25/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ) ,
+										   new 
+										   DatumProjekcije("30/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ) 
+										   
+												)  )),
 						new Projekcija("Proces", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -225,12 +258,28 @@ public class Application implements CommandLineRunner{
 								new ArrayList<Integer>(Arrays.asList(1,2,3)),
 								new ArrayList<DatumProjekcije>(
 										Arrays.asList(new 
-										   DatumProjekcije("25/04/2018", new ArrayList<Termin>(Arrays.asList(
+										   DatumProjekcije("15/04/2018", new ArrayList<Termin>(Arrays.asList(
 												   new Termin("15:00", 1, 300), 
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("16/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("17/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) )
+										   
+												))),
 						new Projekcija("Na Drini cuprija", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -281,7 +330,23 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("27/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("29/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) )
+										   
+												))),
 						new Projekcija("LOTR", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -293,7 +358,24 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300),
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350),
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("27/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300),
+												   new Termin("18:00", 2, 300),
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("29/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300),
+												   new Termin("18:00", 2, 300),
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350),
+												   new Termin("22:00", 3, 350))) )
+										   
+												
+												))),
 						new Projekcija("Deadpool", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -307,7 +389,28 @@ public class Application implements CommandLineRunner{
 													   new Termin("18:00", 2, 300), 
 													   new Termin("20:00", 2, 350), 
 													   new Termin("22:00", 2, 350), 
-													   new Termin("22:00", 3, 350))) ))))
+													   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("27/04/2018", 
+												   new ArrayList<Termin>(
+													   Arrays.asList(
+													   new Termin("15:00", 1, 300), 
+													   new Termin("18:00", 2, 300), 
+													   new Termin("20:00", 2, 350), 
+													   new Termin("22:00", 2, 350), 
+													   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("29/04/2018", 
+												   new ArrayList<Termin>(
+													   Arrays.asList(
+													   new Termin("15:00", 1, 300), 
+													   new Termin("18:00", 2, 300), 
+													   new Termin("20:00", 2, 350), 
+													   new Termin("22:00", 2, 350), 
+													   new Termin("22:00", 3, 350))) )
+										   
+										   
+												)))
 						)),
 				4.3, 20, "Acapulco"
 				));
@@ -330,7 +433,23 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("27/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("29/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) )
+										   
+												))),
 						new Projekcija("X-Men", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",
@@ -379,7 +498,23 @@ public class Application implements CommandLineRunner{
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
-												   new Termin("22:00", 3, 350))) )))),
+												   new Termin("22:00", 3, 350))) ),
+										   
+										   new 
+										   DatumProjekcije("17/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) ),
+										   new 
+										   DatumProjekcije("18/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("15:00", 1, 300), 
+												   new Termin("18:00", 2, 300), 
+												   new Termin("20:00", 2, 350),
+												   new Termin("22:00", 2, 350), 
+												   new Termin("22:00", 3, 350))) )
+												))),
 						new Projekcija("Guardians", 
 								new ArrayList<String>(Arrays.asList("Glumac 1", "Glumac 2", "Glumac 3" )),
 								"Komedija", "Reditelj1", "120", "putanja", 4.2, "opis",

@@ -738,11 +738,23 @@ public class UserController {
 
 		    DBCollection users = db.getCollection("users");
 		    DBCollection pozbios = db.getCollection("pozbios");
-		    System.out.println("Pre otkaza: "+userService.findByUsername(username).getListaProjekcija());
+
 		    DBObject findQuery = new BasicDBObject("username", username);
 		    users.update(findQuery, new BasicDBObject("$pull",new BasicDBObject("listaProjekcija", idRez)));
-		    System.out.println("Posle otkaza: "+userService.findByUsername(username).getListaProjekcija());
+		    
+		    ArrayList<String> invited_friends = fr.getInvited_friends();
+		    ArrayList<String> confirmed_friends = fr.getPotvrdjeni();
 
+		    DBObject findFriend;
+		    for(String usern : invited_friends){
+		    	findFriend = new BasicDBObject("username", usern);
+		    	users.update(findFriend, new BasicDBObject("$pull",new BasicDBObject("listaPozivnica", idRez)));
+		    }
+		    for(String usern : confirmed_friends){
+		    	findFriend = new BasicDBObject("username", usern);
+		    	 users.update(findFriend, new BasicDBObject("$pull",new BasicDBObject("listaProjekcija", idRez)));
+		    }
+		   
 		    
 		    replaceCancelSedista(fr,"all");
 		    
@@ -774,18 +786,15 @@ public class UserController {
 									   if(sta.equals("all")){
 										   for(String seat : rk.getSelected_seats()){
 										    	t.getZauzetost().remove(seat);
-										    	System.out.println(t.getZauzetost());
-										    	
 										    }
-									   } else if(sta.equals("one")){ 
+									   } else if(sta.equals("one")){
 										   for(String seat : rk.getSelected_seats()){
 										    	t.getZauzetost().remove(seat);
-										    	System.out.println(t.getZauzetost());
 										    	break;
 										    }
 									   }
 										
-										System.out.println("Nije null");
+										
 										MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 										MongoDatabase baza = mongoClient.getDatabase("test");
 							
@@ -798,6 +807,8 @@ public class UserController {
 										
 										
 										pozbios.findOneAndReplace(eq("name",pb.getName()), prom_document);
+										
+										mongoClient.close();
 									}
 								}
 							}
@@ -807,6 +818,7 @@ public class UserController {
 			}
 			
 		}
+		
 	}
 
 	@RequestMapping(path = "/acceptInv/{username}/{idRez}", method = RequestMethod.GET)
