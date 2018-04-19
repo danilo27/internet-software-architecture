@@ -15,11 +15,13 @@ import org.springframework.context.ApplicationContext;
 import com.beans.PozBio;
 import com.beans.Projekcija;
 import com.beans.Sala;
+import com.beans.Status;
 import com.beans.User;
 import com.beans.Termin;
 import com.beans.DatumProjekcije;
 import com.repositories.PozBioRepository;
 import com.repositories.RezervacijaRepository;
+import com.repositories.StatusRepository;
 import com.repositories.UserRepository;
 import com.services.StorageService;
 
@@ -35,6 +37,9 @@ public class Application implements CommandLineRunner{
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
 	
+	@Autowired
+	private StatusRepository statusRepository;
+	
 	@Resource
 	StorageService storageService;
 
@@ -48,6 +53,7 @@ public class Application implements CommandLineRunner{
 		repository.deleteAll();
 		pozBioRepository.deleteAll();
 		rezervacijaRepository.deleteAll();
+		statusRepository.deleteAll();
 		
 		repository.save(new User("fanAdmin", "ae", "ae", "ae", "ae", "ae",
 				4323, new ArrayList<String>(Arrays.asList("a","b","c")), new ArrayList<String>(),
@@ -493,8 +499,8 @@ public class Application implements CommandLineRunner{
 								new ArrayList<Integer>(Arrays.asList(1,2,3)),
 								new ArrayList<DatumProjekcije>(
 										Arrays.asList(new 
-										   DatumProjekcije("16/04/2018", new ArrayList<Termin>(Arrays.asList(
-												   new Termin("15:00", 1, 300), 
+										   DatumProjekcije("19/04/2018", new ArrayList<Termin>(Arrays.asList(
+												   new Termin("21:51", 1, 300), 
 												   new Termin("18:00", 2, 300), 
 												   new Termin("20:00", 2, 350),
 												   new Termin("22:00", 2, 350), 
@@ -546,7 +552,14 @@ public class Application implements CommandLineRunner{
 				));
 		
 		
-		
+		statusRepository.save(new Status("NEW", 0, 0));
+		statusRepository.save(new Status("BRONZE", 0, 10));
+		statusRepository.save(new Status("SILVER", 1, 20));
+		statusRepository.save(new Status("GOLD", 2, 30));
 	}
+	
+	
+	
+	
 
 }

@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit {
 			        this._userService.utype = data['type'];
 			        this._userService.promenio = data['promenio'];
 			        this._userService.setUser(data);
+			        
+			       
 			        this.router.navigate(['userpage']);
 		         }
 	      } else {

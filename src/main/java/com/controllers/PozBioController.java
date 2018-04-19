@@ -185,12 +185,12 @@ public class PozBioController {
 	} 
 	
 	public String compareDates(String datum, String termin) throws java.text.ParseException{
-		String sads = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
+		String sads = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 
 		System.out.println(datum);
 		System.out.println(termin);
 		String end = datum+" "+termin;
-		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date sad = null;
 		Date rez = null;
 		try{

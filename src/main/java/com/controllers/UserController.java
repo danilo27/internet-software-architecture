@@ -53,6 +53,7 @@ import com.beans.DatumProjekcije;
 import com.beans.PozBio;
 import com.beans.Projekcija;
 import com.beans.RezervacijaKarte;
+import com.beans.Status;
 import com.beans.Termin;
 import com.beans.User;
 import com.beans.ZvanicniRekvizit;
@@ -74,6 +75,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.repositories.RezervacijaRepository;
+import com.repositories.StatusRepository;
 import com.repositories.UserRepository;
 import com.services.EmailService;
 import com.services.PozBioService;
@@ -95,9 +97,8 @@ public class UserController {
 	private RezervacijaRepository rezervacijaRepository;
 	@Autowired
 	MongoOperations  mongoOperations;
-	
-	// @Autowired
-	// private Aplikacija aplikacija;
+	@Autowired
+	private StatusRepository statusRepository;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -613,26 +614,84 @@ public class UserController {
 	   	ArrayList<Integer> idovi = userService.findByUsername(username).getListaProjekcija();
 	   	ArrayList<RezervacijaKarte> rks = new ArrayList<RezervacijaKarte>();
 	   	
+	   	int brPoseta = 0;
 	   	for(Integer i : idovi){
-	   		if(compareDates(rezervacijaRepository.findByIdRez(i)).equals("posle"))
+	   		if(compareDates(rezervacijaRepository.findByIdRez(i)).equals("posle")){
 	   			rks.add(rezervacijaRepository.findByIdRez(i));
+	   			brPoseta++;
+	   		}
 	   	}
+	   	
+	   	String status = "";
+	   	int popust = 0;
+	   	for(Status s : statusRepository.findAll()){
+	   		if(brPoseta >= s.getBrojPoseta()){
+	   			status = s.getNaziv();
+	   			popust = s.getPopust();
+	   		}
+	   	}
+	   	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+	    MongoDatabase baza = mongoClient.getDatabase("test");
+	    MongoCollection<Document> korisnici = baza.getCollection("users");
+	   	korisnici.findOneAndUpdate(eq("username",username), Updates.set("status", status));
+	   	korisnici.findOneAndUpdate(eq("username",username), Updates.set("popust", popust));
+	   	mongoClient.close();
 	   	
 	    String u = mapper.writeValueAsString(rks);
 	    System.out.println(u);
 	    return u;
 	}
 	
+	@RequestMapping(path = "/getStatus/{username}", method = RequestMethod.GET)
+	@ResponseStatus(value = HttpStatus.OK)
+	public String getStatus(@PathVariable String username, HttpServletResponse response, HttpSession session)
+			throws Exception {	
+		ObjectMapper mapper = new ObjectMapper();
+	   	ArrayList<Integer> idovi = userService.findByUsername(username).getListaProjekcija();
+	   	
+	   	int brPoseta = 0;
+	   	for(Integer i : idovi){
+	   		if(compareDates(rezervacijaRepository.findByIdRez(i)).equals("posle")){
+	   			brPoseta++;
+	   		}
+	   	}
+	   	
+	   	String status = "";
+	   	int popust = 0;
+	   	for(Status s : statusRepository.findAll()){
+	   		if(brPoseta >= s.getBrojPoseta()){
+	   			status = s.getNaziv();
+	   			popust = s.getPopust();
+	   		}
+	   	}
+	   	MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+	    MongoDatabase baza = mongoClient.getDatabase("test");
+	    MongoCollection<Document> korisnici = baza.getCollection("users");
+	    if(!status.equals("")){
+	    	korisnici.findOneAndUpdate(eq("username",username), Updates.set("status", status));
+	    	korisnici.findOneAndUpdate(eq("username",username), Updates.set("popust", popust));
+	    } else {
+	    	korisnici.findOneAndUpdate(eq("username",username), Updates.set("status", "NEW"));
+	    	korisnici.findOneAndUpdate(eq("username",username), Updates.set("popust", 0));
+	    }
+	    mongoClient.close();
+
+	   	System.out.println(statusRepository.findAll());
+	    String u = mapper.writeValueAsString(statusRepository.findByNaziv(status));
+	    System.out.println(u);
+	    return u;
+	}
+	
 	public String compareDates(RezervacijaKarte fr) throws java.text.ParseException{
-		String sads = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
+		String sads = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 		
 		String datum_rez = fr.getDatum();
 		String termin_rez = fr.getTermin();
 		System.out.println(datum_rez);
 		System.out.println(termin_rez);
 		String end = datum_rez+" "+termin_rez;
-		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
-		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date sad = null;
 		Date rez = null;
 		try{
@@ -660,13 +719,13 @@ public class UserController {
 	}
 	
 	public String compareDates(String datum, String termin) throws java.text.ParseException{
-		String sads = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
+		String sads = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 
 		System.out.println(datum);
 		System.out.println(termin);
 		String end = datum+" "+termin;
-		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
-		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date sad = null;
 		Date rez = null;
 		try{
@@ -702,15 +761,15 @@ public class UserController {
 		RezervacijaKarte fr = rezervacijaRepository.findByIdRez(idRez);
 		PozBio pb = pozBioService.findByName(pozbio);
 		
-		String sads = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
+		String sads = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(Calendar.getInstance().getTime());
 		
 		String datum_rez = fr.getDatum();
 		String termin_rez = fr.getTermin();
 		System.out.println(datum_rez);
 		System.out.println(termin_rez);
 		String end = datum_rez+" "+termin_rez;
-		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm");
-		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date sad = null;
 		Date rez = null;
 		try{
@@ -862,12 +921,37 @@ public class UserController {
 	    DBObject findQuery = new BasicDBObject("username", username);
 	    collection.update(findQuery, new BasicDBObject("$pull",new BasicDBObject("listaPozivnica", idRez)));
 	    
-	    
-	    
 	    RezervacijaKarte fr = rezervacijaRepository.findByIdRez(idRez);
+	    
+	    MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> rezervacije = baza.getCollection("users");
+		rezervacije.findOneAndUpdate(eq("idRez",idRez), Updates.set("ukcena", 
+				(fr.getUkcena() - fr.getFiksnaCena()) * userService.findByUsername(username).getPopust()
+				));
+	    
+	    
 	    replaceCancelSedista(fr,"one");
 	    
 		
 	}
+	
+	@RequestMapping(path = "/editScale", method = RequestMethod.POST)
+	@ResponseStatus(value = HttpStatus.OK)
+	public void editScale(HttpServletResponse response, @RequestBody Status status , HttpSession session)
+			throws Exception {
+		System.out.println("New scale: " + status);
+	    MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> statusi = baza.getCollection("statusi");
+		statusi.findOneAndUpdate(eq("naziv", status.getNaziv()), Updates.set("brojPoseta", status.getBrojPoseta()));
+		statusi.findOneAndUpdate(eq("naziv", status.getNaziv()), Updates.set("popust", status.getPopust()));
+
+		System.out.println(statusRepository.findAll());
+		mongoClient.close();
+	}
+	
+	
+	
 	
 }

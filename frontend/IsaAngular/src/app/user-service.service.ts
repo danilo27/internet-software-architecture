@@ -1,4 +1,5 @@
 import { IUser } from './IUser';
+import { IStatus } from './IStatus';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject, BehaviorSubject } from 'rxjs';
@@ -89,5 +90,10 @@ private _isLoggedIn:Subject<boolean> = new BehaviorSubject<boolean>(false);
   getVenueAdmins(): Observable<IUser[]>{
       return this.http.get<IUser[]>('/getVenueAdmins');
   }
+  
+  getStatus(username): Observable<IStatus>{
+   	  return this.http.get<IStatus>('/getStatus/'+username);
+  }
+
 
 }

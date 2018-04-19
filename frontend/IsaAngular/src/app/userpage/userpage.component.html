@@ -11,12 +11,12 @@
     </div>
   </div>
   <div class="progress">
-    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" >
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="sstatus + '%'">
       Srebrni status
     </div>
   </div>
   <div class="progress">
-    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" >
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" [style.width]="zstatus + '%'" >
       Zlatni status
     </div>
   </div>
@@ -95,7 +95,7 @@
   </ul>
  
   Rezervisao: {{r.narucilac}}<br>
- <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length * (100 - status.popust)/100}} RSD</b><br>
  
 <div *ngIf="r.narucilac == user.username;  then ifcondition"></div>
 <div *ngIf="r.narucilac != user.username;  then if2condition"></div>
@@ -133,7 +133,7 @@
   </ul>
  
   Rezervisao: {{r.narucilac}}<br>
- <b>Total price: {{r.fiksnaCena * r.selected_seats.length}} RSD</b><br>
+ <b>Total price: {{r.fiksnaCena * r.selected_seats.length * (100 - status.popust)/100}} RSD</b><br>
 <button (click)="acceptRes($event)" name={{r.idRez}}  >Accept Invitation</button>
 <button (click)="declineRes($event)" name={{r.idRez}}  >Decline Invitation</button>
   </li>
@@ -236,6 +236,7 @@
 
 	<button (click)="register_cinemas_button()">Register Cinema/Theatre</button>
 	<button (click)="add_admin_button()">Add new admin</button>
+	<button (click)="edit_scale_button()">Edit Discount Scale</button>
 
 	<div *ngSwitchCase="'register_cinemas'">
 		<h3>Register new cinema/theatre</h3>
@@ -285,6 +286,24 @@
 		<h4>Admin name</h4>
 		<input type="text" #adminname>
 		<button (click)="addAdmin(sysadmin.checked,adminname.value)">Upgrade</button>
+	</div>
+
+	<div *ngSwitchCase="'edit_scale'">
+		<h3>Edit scale</h3>
+		<hr>
+		<form (submit)="saveScale($event)">
+		Status:<select>
+		  <option value="BRONZE" >Bronze</option>
+		  <option value="SILVER" >Silver</option>
+		  <option value="GOLD" >Gold</option>
+		</select>
+		<br>
+		Number of visits: <input type="text" placeholder="Enter number of visits">
+		<br>
+		Discount percentage: <input type="text" placeholder="Enter discount percentage">
+		<br>
+		<input type="submit" value="Save changes">
+		</form>
 	</div>
 
 	</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from '@angular/router'
@@ -17,8 +17,8 @@ export class UserpageComponent implements OnInit {
     locationChosen = false;
     adminName: string;
 
-    bstatus: number = 50;
-    sstatus: number = 30;
+    bstatus: number = 0;
+    sstatus: number = 0;
     zstatus: number = 0;
     
     public admins = null;
@@ -34,7 +34,8 @@ export class UserpageComponent implements OnInit {
   public promenio: boolean;
   constructor(private user: UserServiceService,
   private http: HttpClient,private router:Router,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private zone:NgZone) {
         // this.friends = user.friends;
 
   }
@@ -48,6 +49,7 @@ export class UserpageComponent implements OnInit {
   res: any;
   inv: any;
   hist: any;
+  public status = null;
   
     get email():string {
       return this.user.email;
@@ -81,10 +83,34 @@ export class UserpageComponent implements OnInit {
 	   
 	    console.log(this.usertype);
 	    this.user.getVenueAdmins().subscribe(data=>this.admins = data);
-	
+	    this.user.getStatus(this.user.getUsername()).subscribe(data =>{ 
+	    		this.status = data;
+	    		
+	    			this.getStatusProcenat();
+	    		
+	    		console.log('statusss: ',this.status);	
+
+	    });
+	    
     
   }
 
+  getStatusProcenat(){
+	  if(this.status.naziv == 'BRONZE'){
+		  console.log('BRONZE');
+		  this.bstatus = 100;
+		  this.sstatus = 30;
+		  this.zstatus = 0;
+	  } else if (this.status.naziv == 'SILVER') {
+		  this.bstatus = 100;
+		  this.sstatus = 100;
+		  this.zstatus = 30;
+	  } else if (this.status.naziv == 'GOLD') {
+		  this.bstatus = 100;
+		  this.sstatus = 100;
+		  this.zstatus = 100;
+	  }
+  }
   
   friends_button(){
     this.what='friends';
@@ -149,6 +175,10 @@ export class UserpageComponent implements OnInit {
   
   add_admin_button(){
       this.admin_what = 'add_admin';
+  }
+  
+  edit_scale_button(){
+	  this.admin_what = 'edit_scale';
   }
   
   my_profile_button(){
@@ -354,6 +384,22 @@ export class UserpageComponent implements OnInit {
       this.http.post('/addAdmin',user).subscribe(data => {});
       
       
+  }
+  
+  saveScale(event){
+	  if( event.target.elements[1].value == '' ||  event.target.elements[2].value == ''){
+		  alert('Please enter all the details!');
+	  } else {
+		  var newScale = {
+			  naziv: event.target.elements[0].value,
+			  brojPoseta: event.target.elements[1].value,
+			  popust: event.target.elements[2].value
+		  }
+		  console.log(newScale);
+		  this.http.post('/editScale', newScale).subscribe(data => {
+			  alert('New scale saved.');
+		  });
+	  }
   }
   
   registerVenue(cinemaButton,venueName){

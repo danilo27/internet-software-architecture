@@ -141,8 +141,9 @@
 								      
 								        <div *ngIf="selected.length > 0" class="font14 marginTB10">
 								            <div class="wordWrap">SEATS RESERVED : {{selected.length}} </div>
-								            <div>PRICE : {{ticketPrice}} * {{selected.length}} = {{currency}}.{{ticketPrice*selected.length}} </div>
-								            <div>TOTAL : {{currency}}.{{ticketPrice * selected.length}}</div>
+								            <div>PRICE : {{ticketPrice}} * {{selected.length}} = {{ticketPrice*selected.length}}  {{currency}}</div>
+								            <div>{{kupac.status}} DISCOUNT {{kupac.popust}}% : {{ticketPrice}} * {{selected.length}} = {{ticketPrice*selected.length*((100 - kupac.popust)/100)}}  {{currency}}</div>
+								            <div>TOTAL : {{ticketPrice*selected.length*((100 - kupac.popust)/100)}}  {{currency}}</div>
 								        </div>
 								
 								        

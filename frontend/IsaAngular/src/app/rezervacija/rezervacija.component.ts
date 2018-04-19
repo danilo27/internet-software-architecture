@@ -23,6 +23,7 @@ export class RezervacijaComponent implements OnInit {
    selected_friends_count: any;
    invited_friends: string[] = [];
    invited_friends_ids: string[] = [];
+   kupac = null;
    constructor(private user: UserServiceService,
                 private http: HttpClient,
                 private router: Router,
@@ -41,6 +42,7 @@ export class RezervacijaComponent implements OnInit {
   ngOnInit() {
     this.getPozBio();
     this.calling_friends = false;
+    this.kupac = this.user.getUser();
   }
   
   getPozBio(){
@@ -250,7 +252,7 @@ export class RezervacijaComponent implements OnInit {
                 		sala: this.izabran_termin.split("-")[1],
                 		selected_seats: this.selected,
                 		invited_friends: this.invited_friends_ids,
-                		ukcena: (this.ticketPrice * this.selected.length),
+                		ukcena: (this.ticketPrice * this.selected.length * ((100 - this.kupac.popust)/100)),
                 		fiksnaCena: this.ticketPrice
                  }
 

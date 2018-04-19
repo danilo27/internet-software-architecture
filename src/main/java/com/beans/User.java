@@ -107,7 +107,7 @@ public class User {
 		this.promenio = false;
 		this.loggedInEmail = email;
 		this.popust = 0;
-		this.status = "novi";
+		this.status = "BRONZE";
 	}
 	
 	public boolean isPromenio() {
@@ -144,7 +144,7 @@ public class User {
 		this.listaProjekcija = listaProjekcija;
 		this.listaPozivnica = new ArrayList<Integer>();
 		this.popust = 0;
-		this.status = "novi";
+		this.status = "BRONZE";
 	}
 	
 	public String getUsername() {
