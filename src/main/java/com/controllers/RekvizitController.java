@@ -1,8 +1,14 @@
 package com.controllers;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Response;
+import org.bson.Document;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.beans.Licitacija;
 import com.beans.PolovniRekvizit;
+import com.beans.PozBio;
 import com.beans.RezervacijaRekvizita;
 import com.beans.User;
 import com.beans.ZvanicniRekvizit;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import com.services.RekvizitiService;
 
 @RestController
@@ -44,8 +56,13 @@ public class RekvizitController {
 			method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
-	public void rezervisiZvanicniRekvizit(@RequestBody RezervacijaRekvizita rezRek, HttpServletResponse response,HttpSession session) {
-		rs.rezervisiZvanicniRekvizit(rezRek);
+	public void rezervisiZvanicniRekvizit(@RequestBody RezervacijaRekvizita rezRek, HttpServletResponse response,HttpSession session) throws IOException {
+		try {
+			rs.rezervisiZvanicniRekvizit(rezRek);
+
+		}catch(Exception e) {
+			response.sendError(Response.SC_FORBIDDEN);
+		}
 	}
 	
 	
@@ -82,6 +99,7 @@ public class RekvizitController {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value=HttpStatus.OK)
 	public void postaviRekvizit(@RequestBody ZvanicniRekvizit rekvizit, HttpServletResponse response,HttpSession session) {
+		System.out.println(rekvizit.toString());
 		rs.postaviRekvizit(rekvizit);
 	}
 	
@@ -140,6 +158,33 @@ public class RekvizitController {
 		rs.odbijenOglas(oglas);
 	}
 	
-	
+	@GetMapping("/getCinemas")
+	public String getCinemas() {
+		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+		MongoDatabase baza = mongoClient.getDatabase("test");
+		MongoCollection<Document> pozbios = baza.getCollection("pozbios");
+		List<Document> pozbioslist = (List<Document>) pozbios.find().into(new ArrayList<Document>());
+		
+		Gson g = new GsonBuilder().create();
+		
+		String ret = "[";
+		
+		boolean dodaj = false;
+		
+		for(Document d : pozbioslist) {
+			if(dodaj) {
+				ret+=",";
+			}
+			dodaj = true;
+			PozBio r = g.fromJson(d.toJson(), PozBio.class);
+			ret+=g.toJson(r);
+		}
+		ret+="]";
+
+		mongoClient.close();
+		
+		return ret;
+		
+	}
 	
 }

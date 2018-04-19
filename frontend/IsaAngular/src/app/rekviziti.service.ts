@@ -39,7 +39,10 @@ export class RekvizitiService {
               imeKorisnika:imeKorisnika
       };
       
-      this.http.post('/rezervisiZvanicniRekvizit',rezervacijaRekvizita).subscribe((data) => {});
+      this.http.post('/rezervisiZvanicniRekvizit',rezervacijaRekvizita).subscribe(
+          data => { alert("Uspesno ste rezervisali rekvizit" + imeRekvizita) }, 
+          error => {alert("Nazalost ovaj rekvizit je vec rezervisan")} 
+      );
   }
   
   posaljiOglasNaProveru(nazivOglasa,opisOglasa,slikaOglasa,cenaOglasa,user,datumOglasa,ponude){

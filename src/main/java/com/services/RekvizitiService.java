@@ -2,6 +2,7 @@ package com.services;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.bson.Document;
@@ -24,11 +25,13 @@ import static com.mongodb.client.model.Filters.eq;
 public class RekvizitiService {
 	
 	private MongoDatabase baza;
+	private LinkedList<String> rezervacijeRekvizita;
 	
 	@SuppressWarnings("resource")
 	public RekvizitiService() {
 		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
 		baza = mongoClient.getDatabase("IsaDB");
+		rezervacijeRekvizita = new LinkedList<String>();
 	}
 	
 	
@@ -96,13 +99,29 @@ public class RekvizitiService {
 		return ret;
 	}
 	
-	public void rezervisiZvanicniRekvizit(RezervacijaRekvizita rezrek) {
+	
+	
+	public void rezervisiZvanicniRekvizit(RezervacijaRekvizita rezrek) throws Exception {
+		
+		if(rezervacijeRekvizita.contains(rezrek.getImeRekvizita())) {
+			throw new Exception();
+		}else {
+			rezervacijeRekvizita.add(rezrek.getImeRekvizita());
+		}
+		Thread.sleep(5000);
 		MongoCollection<Document> rezervisaniRekviziti = baza.getCollection("rezervisaniRekviziti");
 		Gson g = new GsonBuilder().create();
 		String rr = g.toJson(rezrek); 
 		Document d = Document.parse(rr);
 		rezervisaniRekviziti.insertOne(d);
+	
+		rezervacijeRekvizita.remove(rezrek.getImeRekvizita());
+		
+		
+	
 	}
+	
+	
 	
 	
 	public void posaljiOglasNaProveru(PolovniRekvizit oglas) {

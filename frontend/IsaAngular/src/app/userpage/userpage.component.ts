@@ -17,6 +17,10 @@ export class UserpageComponent implements OnInit {
     locationChosen = false;
     adminName: string;
 
+    bstatus: number = 50;
+    sstatus: number = 30;
+    zstatus: number = 0;
+    
     public admins = null;
     
   public what: string;

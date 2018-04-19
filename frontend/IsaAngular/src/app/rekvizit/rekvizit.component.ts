@@ -12,7 +12,6 @@ import { UserServiceService } from "../user-service.service";
 export class RekvizitComponent implements OnInit {
 
     @Input('rekvizit') public rekvizit; 
-    @Input('username') public username;
     @Input('fileUpload') fileUpload: string;
     
     public user = null;
@@ -27,7 +26,7 @@ export class RekvizitComponent implements OnInit {
     }
 
     rezervisiZvanicni(){
-        this._rekvizitiService.rezervisiZvanicniRekvizit(this.rekvizit.naziv,this.username);
+        this._rekvizitiService.rezervisiZvanicniRekvizit(this.rekvizit.naziv,this.user.username);
     }
     
     ukloniZvanicni(){
@@ -39,7 +38,7 @@ export class RekvizitComponent implements OnInit {
     }
     
     isAdmin(){
-        if(this.user.utype=="admin"){
+        if(this.user.utype=="fanAdmin"){
             return true;
         }
         return false;
