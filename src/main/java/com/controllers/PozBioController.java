@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.expression.ParseException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,16 +58,11 @@ import static com.mongodb.client.model.Filters.eq;
 
 @RestController
 public class PozBioController {
-	
-
-	@Autowired
-	private UserRepository userRepository;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private PozBioService pozBioService;
-	@Autowired
-	private PozBioRepository pozBioRepository;
+
 	@Autowired
 	private RezervacijaRepository rezervacijaRepository;
 	
@@ -216,7 +212,7 @@ public class PozBioController {
 	}
 	
 	@SuppressWarnings("unused")
-	@RequestMapping(path = "/rezervisi", method = RequestMethod.POST)
+	@RequestMapping(path = "/rezervisi", method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
 	public String rezervisi(@RequestBody RezervacijaKarte rk, HttpServletResponse response,HttpServletRequest request, HttpSession session)
 			throws Exception {	

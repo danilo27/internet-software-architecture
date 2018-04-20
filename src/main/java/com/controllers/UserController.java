@@ -45,6 +45,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -102,8 +103,9 @@ public class UserController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
 	@ResponseStatus(value = HttpStatus.OK)
+	@ResponseBody
 	public String guestLogin(@RequestBody User user, HttpServletResponse response, HttpSession session)
 			throws Exception {
 		if (userRepository.findByEmail(user.getEmail()) != null && userRepository.findByEmail(user.getEmail()).getEnabled().equals("true")) {
@@ -123,7 +125,8 @@ public class UserController {
 	@RequestMapping(
 			value = "/updateUser",
 			method = RequestMethod.POST,
-			consumes = MediaType.APPLICATION_JSON_VALUE)
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = "application/json")
 	@ResponseStatus(value=HttpStatus.OK)
 	public String processRegistrationForm(@RequestBody User user, HttpServletRequest request) throws JsonProcessingException {
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
@@ -197,7 +200,7 @@ public class UserController {
 			
 	}
 	
-	@RequestMapping(path = "/changePassword", method = RequestMethod.POST)
+	@RequestMapping(path = "/changePassword", method = RequestMethod.POST, produces="application/json")
 	@ResponseStatus(value = HttpStatus.OK)
 	public String changePassword(@RequestBody User user, HttpServletResponse response, HttpSession session)
 			throws Exception {	
@@ -225,7 +228,7 @@ public class UserController {
 	
 	}
 	
-	@RequestMapping(path = "/find_my_friends/{username}", method = RequestMethod.GET)
+	@RequestMapping(path = "/find_my_friends/{username}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseStatus(value = HttpStatus.OK)
 	public String find_my_friends(@PathVariable String username, HttpServletResponse response, HttpSession session)
 			throws Exception {	
@@ -242,6 +245,16 @@ public class UserController {
 	    return u;
 	}
 	
+	@RequestMapping(path = "/findAllUsers", method = RequestMethod.GET, produces = "application/json")
+	@ResponseStatus(value = HttpStatus.OK)
+	public String find_my_friends(HttpServletResponse response, HttpSession session)
+			throws Exception {	
+		ObjectMapper mapper = new ObjectMapper();   
+	    String u = mapper.writeValueAsString(userService.findAll());
+	    System.out.println(u);
+	    return u;
+	}
+
 	@RequestMapping(path = "/find_friends/{username}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
 	public ArrayList<ArrayList<String>> find_friends(@RequestBody User user, @PathVariable String username, HttpServletResponse response, HttpSession session)
@@ -439,9 +452,9 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(path = "/getDetailsByUsername/{username}", method = RequestMethod.GET)
+	@RequestMapping(path = "/getDetailsByUsername/{username}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public String getDetailsByUsername(HttpServletResponse response, @PathVariable String username, HttpSession session)
+	public String getDetailsByUsername(@PathVariable String username)
 			throws Exception {	
 		ObjectMapper mapper = new ObjectMapper();   
 		String u = mapper.writeValueAsString(userService.findByUsername(username));
@@ -450,7 +463,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(path = "/sortByName/{username}", method = RequestMethod.GET)
+	@RequestMapping(path = "/sortByName/{username}", method = RequestMethod.GET, produces="application/json")
 	@ResponseStatus(value = HttpStatus.OK)
 	public String sortByName(@PathVariable String username, HttpServletResponse response, HttpSession session)
 			throws Exception {	
@@ -564,7 +577,7 @@ public class UserController {
 		
 	}
 	
-	@RequestMapping(path = "/getMyRes/{username}", method = RequestMethod.GET)
+	@RequestMapping(path = "/getMyRes/{username}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
 	public String getMyRes(@PathVariable String username, HttpServletResponse response, HttpSession session)
 			throws Exception {	
@@ -752,11 +765,11 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(path = "/cancelRes/{username}/{idRez}", method = RequestMethod.GET)
+	@RequestMapping(path = "/cancelRes/{username}/{idRez}", method = RequestMethod.GET, produces="application/json")
 	@ResponseStatus(value = HttpStatus.OK)
 	public String cancelRes(HttpServletResponse response, @PathVariable String username, @PathVariable int idRez, HttpSession session)
 			throws Exception {
-		
+		System.out.println("Canceling...");
 		String pozbio = rezervacijaRepository.findByIdRez(idRez).getPozbio();
 		RezervacijaKarte fr = rezervacijaRepository.findByIdRez(idRez);
 		PozBio pb = pozBioService.findByName(pozbio);

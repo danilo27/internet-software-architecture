@@ -29,7 +29,7 @@ import com.services.StorageService;
 public class Application implements CommandLineRunner{
 
 	@Autowired
-	private UserRepository repository;
+	private UserRepository userRepository;
 	
 	@Autowired
 	private PozBioRepository pozBioRepository;
@@ -50,62 +50,62 @@ public class Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		repository.deleteAll();
+		userRepository.deleteAll();
 		pozBioRepository.deleteAll();
 		rezervacijaRepository.deleteAll();
 		statusRepository.deleteAll();
 		
-		repository.save(new User("fanAdmin", "ae", "ae", "ae", "ae", "ae",
+		userRepository.save(new User("fanAdmin", "ae", "ae", "ae", "ae", "ae",
 				4323, new ArrayList<String>(Arrays.asList("a","b","c")), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "ae", new ArrayList<String>(), new ArrayList<Integer>(),"true"				));
 		
-		repository.save(new User("regular", "de", "de", "de", "de", "de",
+		userRepository.save(new User("regular", "de", "de", "de", "de", "de",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "de", new ArrayList<String>(), new ArrayList<Integer>()	,"true"					));
 		
-		repository.save(new User("regular", "pas", "danilo@danilo", "Danilo", "Bujisa", "Novi Sad",
+		userRepository.save(new User("regular", "pas", "danilo@danilo", "Danilo", "Bujisa", "Novi Sad",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "coda", new ArrayList<String>(), new ArrayList<Integer>(),"true"						));
 		
-		repository.save(new User("regular", "pas", "rose@rose", "Rose", "N", "Ohio",
+		userRepository.save(new User("regular", "pas", "rose@rose", "Rose", "N", "Ohio",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "thug", new ArrayList<String>(), new ArrayList<Integer>()	,"true"		 ));
 		
-		repository.save(new User("regular", "pas", "tony@tony", "Tony", "F", "Miami",
+		userRepository.save(new User("regular", "pas", "tony@tony", "Tony", "F", "Miami",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "el", new ArrayList<String>(), new ArrayList<Integer>()	,"true"		 ));
 		
-		repository.save(new User("sysAdmin", "a", "a", "a", "a", "a",
+		userRepository.save(new User("sysAdmin", "a", "a", "a", "a", "a",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "a", new ArrayList<String>(), new ArrayList<Integer>()	,"true"	 ));
 		
-		repository.save(new User("venueAdmin", "b", "b", "b", "b", "b",
+		userRepository.save(new User("venueAdmin", "b", "b", "b", "b", "b",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "b", new ArrayList<String>(), new ArrayList<Integer>()	,"true"		 ));
 		
-		repository.save(new User("fanAdmin", "c", "c", "c", "c", "c",
+		userRepository.save(new User("fanAdmin", "c", "c", "c", "c", "c",
 				2131, new ArrayList<String>(), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "c", new ArrayList<String>(), new ArrayList<Integer>()	,"true"		 ));
 		
-		repository.save(new User("regular", "pas", "testacc1isa@gmail.com", "Ime1", "Prezime1", "a",
+		userRepository.save(new User("regular", "pas", "testacc1isa@gmail.com", "Ime1", "Prezime1", "a",
 		2131,  new ArrayList<String>(Arrays.asList("acc2","acc3")), new ArrayList<String>(),
 		new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 		new ArrayList<String>(), "acc1", new ArrayList<String>(), new ArrayList<Integer>()	,"true"	 ));
 
-		repository.save(new User("regular", "pas", "testacc2isa@gmail.com", "Ime2", "Prezime2", "a",
+		userRepository.save(new User("regular", "pas", "testacc2isa@gmail.com", "Ime2", "Prezime2", "a",
 				2131,  new ArrayList<String>(Arrays.asList("acc1","acc3")), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "acc2", new ArrayList<String>(), new ArrayList<Integer>()	,"true"	 ));
 
-		repository.save(new User("regular", "pas", "testacc3isa@gmail.com", "Ime3", "Prezime3", "a",
+		userRepository.save(new User("regular", "pas", "testacc3isa@gmail.com", "Ime3", "Prezime3", "a",
 				2131, new ArrayList<String>(Arrays.asList("acc1","acc2")), new ArrayList<String>(),
 				new HashMap<String, Integer>(), new HashMap<String, Integer>(), 
 				new ArrayList<String>(), "acc3", new ArrayList<String>(), new ArrayList<Integer>()	,"true"	 ));

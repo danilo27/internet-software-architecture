@@ -114,5 +114,7 @@ public class RezervacijaKarte {
 	public void setPotvrdjeni(ArrayList<String> potvrdjeni) {
 		this.potvrdjeni = potvrdjeni;
 	}
-	
+	public String toString(){
+		return Integer.toString(idRez);
+	}
 }

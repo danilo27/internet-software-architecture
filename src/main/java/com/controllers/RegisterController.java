@@ -80,7 +80,7 @@ public class RegisterController {
 					         user.getLastname(),
 					         user.getCity(),
 					         user.getPhoneNumber(),
-					         new ArrayList<String>(Arrays.asList("coda","el","thug")),
+					         new ArrayList<String>(),
 					         new ArrayList<String>(),
 					         new HashMap<String, Integer>(),
 					         new HashMap<String, Integer>(),

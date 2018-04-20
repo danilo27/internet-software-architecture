@@ -33,7 +33,7 @@ public class RekvizitiService {
 	@SuppressWarnings("resource")
 	public RekvizitiService() {
 		MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-		baza = mongoClient.getDatabase("IsaDB");
+		baza = mongoClient.getDatabase("test"); //IsaDB
 		rezervacijeRekvizita = new LinkedList<String>();
 		prihvaceniOglasi = new LinkedList<String>();
 		obustavljenePonude = new LinkedList<String>();

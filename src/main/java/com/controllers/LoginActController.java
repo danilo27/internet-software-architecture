@@ -33,8 +33,6 @@ public class LoginActController {
 	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserRepository repository;
 	
 	@RequestMapping(value="/login",method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseStatus(HttpStatus.OK)

@@ -12,9 +12,11 @@ import com.beans.User;
 import com.repositories.UserRepository;
 
 @Service
-public class UserService implements UserInterface{
+public class UserService implements UserServiceInterface{
 
     private UserRepository userRepository;
+    
+    public UserService(){}
     
     @Autowired
     public UserService(UserRepository userRepository) { 
